@@ -6,12 +6,6 @@ plugins {
 }
 android {
     signingConfigs {
-        release {
-            storeFile file('D:\\sources\\Cross64\\cross.jks')
-            storePassword '20020931'
-            keyAlias 'key0'
-            keyPassword '20020931'
-        }
     }
 
     compileSdk 34
@@ -71,7 +65,7 @@ android {
             jniDebuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.release
         }
 
         all {
