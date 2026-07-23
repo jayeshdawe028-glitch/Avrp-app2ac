@@ -7,7 +7,7 @@
 #include <cstdint>
 
 #include "TimeInfo.h"
-#include "game/Collision/ColModel.h"
+#include "game/collision/ColModel.h"
 #include "game/core/core/KeyGen.h"
 
 enum ModelInfoType : uint8_t {
