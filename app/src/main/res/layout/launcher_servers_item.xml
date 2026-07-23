@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/launcherServersItem" android:background="@drawable/launcher_servers_item_bg" android:layout_width="@dimen/_148sdp" android:layout_height="@dimen/_51sdp"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="@dimen/_18sdp" android:textColor="#ff4d3709" android:gravity="center" android:id="@+id/launcherServersItemNum" android:background="@drawable/launcher_servers_item_gold_bg" android:layout_width="@dimen/_39sdp" android:layout_height="@dimen/_39sdp" android:text="\#1" android:fontFamily="@font/akrobat_black" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintDimensionRatio="1:1" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.7659" app:layout_constraintHorizontal_bias="0.06" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/launcherServersItemName"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:autoSizeMaxTextSize="@dimen/_12sdp"
+        android:autoSizeMinTextSize="@dimen/_10sdp"
+        android:autoSizeStepGranularity="@dimen/_1sdp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/akrobat_extra_bold"
+        android:includeFontPadding="false"
+        android:text="ЭЛИВИЯ MOBILE"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2393"
+        app:layout_constraintHorizontal_bias="0.678"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.255"
+        app:layout_constraintWidth_percent="0.4597" />
+
+    <TextView
+        android:id="@+id/textview10000"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:autoSizeMaxTextSize="@dimen/_6sdp"
+        android:autoSizeMinTextSize="@dimen/_4sdp"
+        android:autoSizeStepGranularity="@dimen/_1sdp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/akrobat_extra_bold"
+        android:includeFontPadding="false"
+        android:text="ОНЛАЙН СЕРВЕРА: %s из %s"
+        android:textAllCaps="true"
+        android:textColor="#80ffffff"
+        android:textSize="@dimen/_6sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.1436"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/launcherServersItemName"
+        app:layout_constraintWidth_percent="0.4615" />
+    <ProgressBar android:id="@+id/launcherServersItemProgress" android:layout_width="0.0dip" android:layout_height="0.0dip" android:layout_marginBottom="@dimen/_4sdp" android:max="1000" android:progress="300" android:indeterminate="false" android:progressDrawable="@drawable/launcher_server_online_low_progress_bar" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.0478" app:layout_constraintHorizontal_bias="0.51" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.83" app:layout_constraintWidth_percent="0.2857" style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+
+    <TextView
+        android:id="@+id/launcherServersItemBusy"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:autoSizeMaxTextSize="@dimen/_9sdp"
+        android:autoSizeMinTextSize="@dimen/_7sdp"
+        android:autoSizeStepGranularity="@dimen/_1sdp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/akrobat_extra_bold"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="ТОП"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintBottom_toBottomOf="@id/launcherServersItemProgress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/launcherServersItemProgress"
+        app:layout_constraintWidth_percent="0.249" />
+
+    <ImageView
+        android:id="@+id/launcherServersItemCharExist"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:src="@drawable/launcher_servers_item_char_ic"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2765"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14" />
+    <ImageView android:id="@+id/launcherServersItemIsRecommended" android:layout_width="0.0dip" android:layout_height="0.0dip" android:src="@drawable/launcher_servers_item_recommended_ic" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintDimensionRatio="1:1" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.18" />
+</androidx.constraintlayout.widget.ConstraintLayout>

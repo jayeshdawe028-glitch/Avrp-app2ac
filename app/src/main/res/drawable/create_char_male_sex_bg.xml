@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt"
+    android:height="126dp"
+    android:width="127dp"
+    android:viewportWidth="127"
+    android:viewportHeight="126">
+    <path
+        android:fillColor="@drawable/_create_char_male_sex_bg__0_res_0x7f080231"
+        android:pathData="M13.12,0L114.08,0A12.52,12.52 0,0 1,126.6 12.52L126.6,113.48A12.52,12.52 0,0 1,114.08 126L13.12,126A12.52,12.52 0,0 1,0.6 113.48L0.6,12.52A12.52,12.52 0,0 1,13.12 0z"/>
+    <path
+        android:fillColor="@drawable/_create_char_male_sex_bg__1_res_0x7f080232"
+        android:pathData="M13.2,126L125.77,126C126.23,126 126.6,125.63 126.6,125.17C126.6,124.71 126.23,124.33 125.77,124.33L14.53,124.67C6.98,124.67 1.9,119.78 1.9,112.07L1.9,0.65C1.9,0.29 1.61,0 1.25,0C0.89,-0 0.6,0.29 0.6,0.65L0.6,113.4C0.6,120.36 6.24,126 13.2,126Z"/>
+    <path
+        android:fillColor="@drawable/_create_char_male_sex_bg__2_res_0x7f080233"
+        android:pathData="M114,0L1.43,0C0.97,0 0.6,0.37 0.6,0.83C0.6,1.29 0.98,1.67 1.44,1.67L112.67,1.33C120.23,1.33 125.31,6.22 125.31,13.93L125.31,125.35C125.31,125.71 125.6,126 125.95,126C126.31,126 126.6,125.71 126.6,125.35L126.6,12.6C126.6,5.64 120.96,0 114,0Z"/>
+</vector>

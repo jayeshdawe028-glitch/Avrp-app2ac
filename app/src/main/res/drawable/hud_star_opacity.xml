@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="26.0dip" android:width="26.0dip" android:viewportWidth="26.0" android:viewportHeight="26.0"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt">
+    <path android:fillColor="@drawable/hud_star_opacity__0" android:pathData="M12.266,1.703C12.545,1.061 13.455,1.061 13.734,1.703L16.235,7.471C16.583,8.273 17.339,8.823 18.209,8.906L24.468,9.502C25.165,9.569 25.446,10.435 24.921,10.898L20.209,15.059C19.553,15.638 19.265,16.527 19.455,17.38L20.822,23.517C20.974,24.2 20.237,24.736 19.634,24.379L14.22,21.183C13.467,20.739 12.533,20.739 11.78,21.183L6.366,24.379C5.763,24.736 5.026,24.2 5.178,23.517L6.545,17.38C6.735,16.527 6.446,15.638 5.791,15.059L1.078,10.898C0.554,10.435 0.835,9.569 1.532,9.502L7.791,8.906C8.661,8.823 9.417,8.273 9.765,7.471L12.266,1.703Z" android:strokeColor="@drawable/hud_star_opacity__1" android:strokeWidth="1.6" />
+</vector>

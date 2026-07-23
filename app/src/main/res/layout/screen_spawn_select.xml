@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dark_stub"
+    android:padding="24dp">
+
+    <!-- 25% сверху пусто -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/g_content_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="286dp" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardStation"
+        android:layout_width="233dp"
+        android:layout_height="126dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/card_bg_stub"
+        android:padding="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardOrg"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/g_content_top">
+
+        <ImageView
+            android:id="@+id/imgStation"
+            android:layout_width="87dp"
+            android:layout_height="100dp"
+            android:background="@drawable/vokzal"
+            android:padding="14dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvStationTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="ВОКЗАЛ"
+            android:textColor="#FFFFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgStation"
+            app:layout_constraintTop_toTopOf="@+id/imgStation" />
+
+        <TextView
+            android:id="@+id/tvStationStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1dp"
+            android:text="ДОСТУПНО"
+            android:textColor="#FFDE3B3B"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgStation"
+            app:layout_constraintTop_toBottomOf="@+id/tvStationTitle" />
+
+        <Button
+            android:id="@+id/btnStation"
+            android:layout_width="94dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/launcher_btn_play_premium"
+            android:text="ВЫБРАТЬ"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imgStation"
+            app:layout_constraintTop_toBottomOf="@+id/tvStationStatus" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ===================== RIGHT: ПОСЛЕДНЕЕ (на 2 ряда) ===================== -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardOrg"
+        android:layout_width="233dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/card_bg_stub"
+        android:padding="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardLastExit"
+        app:layout_constraintStart_toEndOf="@+id/cardStation"
+        app:layout_constraintTop_toTopOf="@+id/g_content_top">
+
+        <ImageView
+            android:id="@+id/imgOrg"
+            android:layout_width="87dp"
+            android:layout_height="100dp"
+            android:background="@drawable/org"
+            android:padding="14dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvOrgTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="ФРАКЦИЯ"
+            android:textColor="#FFFFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgOrg"
+            app:layout_constraintTop_toTopOf="@+id/imgOrg" />
+
+        <TextView
+            android:id="@+id/tvOrgStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1dp"
+            android:text="ДОСТУПНО"
+            android:textColor="#FFDE3B3B"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgOrg"
+            app:layout_constraintTop_toBottomOf="@+id/tvOrgTitle" />
+
+        <Button
+            android:id="@+id/btnOrg"
+            android:layout_width="94dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/launcher_btn_play_premium"
+            android:text="ВЫБРАТЬ"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imgOrg"
+            app:layout_constraintTop_toBottomOf="@+id/tvOrgStatus" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardLastExit"
+        android:layout_width="203dp"
+        android:layout_height="283dp"
+        android:background="@drawable/card_bg_stub"
+        android:padding="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/g_content_top">
+
+        <ImageView
+            android:id="@+id/imgLastExit"
+            android:layout_width="145dp"
+            android:layout_height="144dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/last"
+            android:padding="20dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toTopOf="@+id/tvLastExitTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLastExitTitle"
+            android:layout_width="141dp"
+            android:layout_height="38dp"
+            android:layout_marginBottom="14dp"
+            android:gravity="start"
+            android:lineSpacingExtra="2dp"
+            android:text="МЕСТО ВЫХОДА"
+            android:textColor="#55FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btnLastExit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnLastExit"
+            android:layout_width="138dp"
+            android:layout_height="39dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/launcher_btn_play_premium"
+            android:enabled="false"
+            android:text="ВЫБРАТЬ"
+            android:textAllCaps="false"
+            android:textColor="#66FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.437"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ===================== BOTTOM LEFT: ДОМ ===================== -->
+
+    <!-- ===================== BOTTOM CENTER: ДОМ СЕМЬИ (disabled) ===================== -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardHome"
+        android:layout_width="233dp"
+        android:layout_height="126dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/card_bg_stub"
+        android:padding="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardFamilyHome"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardStation"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:id="@+id/imgHome"
+            android:layout_width="87dp"
+            android:layout_height="100dp"
+            android:background="@drawable/huse"
+            android:padding="14dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvHomeTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="ДОМ"
+            android:textColor="#FFFFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgHome"
+            app:layout_constraintTop_toTopOf="@+id/imgHome" />
+
+        <TextView
+            android:id="@+id/tvHomeStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1dp"
+            android:text="НЕДОСТУПНО"
+            android:textColor="#FFDE3B3B"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgHome"
+            app:layout_constraintTop_toBottomOf="@+id/tvHomeTitle" />
+
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="94dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/launcher_btn_play_premium"
+            android:text="ВЫБРАТЬ"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imgHome"
+            app:layout_constraintTop_toBottomOf="@+id/tvHomeStatus" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardFamilyHome"
+        android:layout_width="233dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/card_bg_stub"
+        android:padding="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardLastExit"
+        app:layout_constraintStart_toEndOf="@+id/cardHome"
+        app:layout_constraintTop_toBottomOf="@+id/cardOrg"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:id="@+id/imgFamilyHome"
+            android:layout_width="87dp"
+            android:layout_height="100dp"
+            android:background="@drawable/fam_huse"
+            android:padding="14dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFamilyTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="ДОМ СЕМЬИ"
+            android:textColor="#66FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgFamilyHome"
+            app:layout_constraintTop_toTopOf="@+id/imgFamilyHome" />
+
+        <TextView
+            android:id="@+id/tvFamilyStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1dp"
+            android:text="НЕДОСТУПНО"
+            android:textColor="#55FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgFamilyHome"
+            app:layout_constraintTop_toBottomOf="@+id/tvFamilyTitle" />
+
+        <Button
+            android:id="@+id/btnFamilyHome"
+            android:layout_width="94dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/launcher_btn_play_premium"
+            android:enabled="false"
+            android:text="ВЫБРАТЬ"
+            android:textAllCaps="false"
+            android:textColor="#66FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imgFamilyHome"
+            app:layout_constraintTop_toBottomOf="@+id/tvFamilyStatus" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

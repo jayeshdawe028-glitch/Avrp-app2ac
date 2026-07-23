@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_fon">
+
+    <!-- Персонаж слева -->
+    <ImageView
+        android:id="@+id/login_person"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_235sdp"
+        android:src="@drawable/login_pers"
+        android:contentDescription="@string/empty"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.1" />
+
+    <!-- Ник персонажа (немного правее головы) -->
+
+    <!-- Контейнер по центру -->
+
+    <TextView
+        android:id="@+id/tv_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akrobat_extra_bold"
+        android:text="Nick_Name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/login_person"
+        app:layout_constraintEnd_toStartOf="@+id/center_container"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toEndOf="@+id/login_person"
+        app:layout_constraintTop_toTopOf="@+id/login_person"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/center_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Заголовок -->
+        <TextView
+            android:id="@+id/pass_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:text="Введите пароль"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Поле ввода пароля -->
+        <EditText
+            android:id="@+id/pass_input"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/login_paas"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:hint="Введите пароль"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_10sdp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintTop_toBottomOf="@id/pass_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Восстановить пароль -->
+        <TextView
+            android:id="@+id/tv_recover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:alpha="0.8"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:text="Восстановить пароль"
+            android:textColor="#B0B0B0"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintTop_toBottomOf="@id/pass_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Кнопка "ВОЙТИ" внизу экрана по центру -->
+    <ImageView
+        android:id="@+id/btn_login"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:src="@drawable/spawnvhod"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/empty"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

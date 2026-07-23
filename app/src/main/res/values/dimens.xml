@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="_13ssp">13.0sp</dimen>
+    <dimen name="_8ssp">8.0sp</dimen>
+    <dimen name="_1sdp">1.0dip</dimen>
+    <dimen name="_8sdp">8.0dip</dimen>
+</resources>

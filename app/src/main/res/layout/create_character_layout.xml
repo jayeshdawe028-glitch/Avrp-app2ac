@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_character_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/create_char_main_bg"
+        app:layout_constraintHeight_percent="0.9027"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top_line"
+        app:layout_constraintWidth_percent="0.2885">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="29dp"
+            android:elevation="@dimen/_11sdp"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:letterSpacing="0.005"
+            android:shadowColor="#CC000000"
+            android:shadowDx="0"
+            android:shadowDy="1.2"
+            android:shadowRadius="3.5"
+            android:text="СОЗДАНИЕ ПЕРСОНАЖА"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintBottom_toTopOf="@+id/random_name_top_line"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/first_step_ic"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/create_char_circle_bg"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/random_name_button"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintHeight_percent="0.065"
+            app:layout_constraintLeft_toLeftOf="@+id/create_char_button"
+            app:layout_constraintTop_toTopOf="@+id/random_name_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:letterSpacing="0.005"
+            android:text="Укажите имя"
+            android:textColor="#d6d6d6"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/first_step_ic"
+            app:layout_constraintLeft_toRightOf="@+id/first_step_ic"
+            app:layout_constraintTop_toTopOf="@+id/first_step_ic" />
+
+        <ImageView
+            android:id="@+id/random_name_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/create_char_dice_ic"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintHeight_percent="0.0738"
+            app:layout_constraintRight_toRightOf="@+id/create_char_button"
+            app:layout_constraintTop_toTopOf="@+id/random_name_top_line" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/random_name_top_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1292" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/name_top_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2266" />
+
+        <EditText
+            android:id="@+id/input_name"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/create_char_surname_bg"
+            android:fontFamily="@font/akrobat_bold"
+            android:gravity="center"
+            android:hint="@string/character_input_hint"
+            android:imeOptions="flagNoExtractUi|flagNoFullscreen|actionDone"
+            android:inputType="textVisiblePassword"
+            android:text=""
+            android:textColor="@color/white"
+            android:textColorHint="#7e7e7e"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/create_char_button"
+            app:layout_constraintHeight_percent="0.1388"
+            app:layout_constraintStart_toStartOf="@+id/create_char_button"
+            app:layout_constraintTop_toBottomOf="@+id/name_top_line" />
+
+        <ImageView
+            android:id="@+id/input_name_status"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:src="@drawable/create_char_correct_ic"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/input_name"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/input_name"
+            app:layout_constraintHeight_percent="0.058"
+            app:layout_constraintTop_toTopOf="@+id/input_name" />
+
+        <TextView
+            android:id="@+id/second_step_ic"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/create_char_circle_bg"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:gravity="center"
+            android:text="2"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/input_surname"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintHeight_percent="0.065"
+            app:layout_constraintLeft_toLeftOf="@+id/create_char_button"
+            app:layout_constraintTop_toBottomOf="@+id/input_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:letterSpacing="0.005"
+            android:text="Укажите фамилию"
+            android:textColor="#d6d6d6"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/second_step_ic"
+            app:layout_constraintLeft_toRightOf="@+id/second_step_ic"
+            app:layout_constraintTop_toTopOf="@+id/second_step_ic" />
+
+        <ImageView
+            android:id="@+id/random_surname_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/create_char_dice_ic"
+            app:layout_constraintBottom_toTopOf="@+id/input_surname"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintHeight_percent="0.0738"
+            app:layout_constraintRight_toRightOf="@+id/create_char_button"
+            app:layout_constraintTop_toBottomOf="@+id/input_name" />
+
+        <EditText
+            android:id="@+id/input_surname"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/create_char_surname_bg"
+            android:fontFamily="@font/akrobat_bold"
+            android:gravity="center"
+            android:hint="@string/character_input_hint"
+            android:imeOptions="flagNoExtractUi|flagNoFullscreen|actionDone"
+            android:inputType="textVisiblePassword"
+            android:textColor="@color/white"
+            android:textColorHint="#7e7e7e"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/create_char_button"
+            app:layout_constraintHeight_percent="0.1388"
+            app:layout_constraintStart_toStartOf="@+id/create_char_button"
+            app:layout_constraintTop_toBottomOf="@+id/surname_top_line" />
+
+        <ImageView
+            android:id="@+id/input_surname_status"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:src="@drawable/create_char_correct_ic"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/input_surname"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/input_surname"
+            app:layout_constraintHeight_percent="0.058"
+            app:layout_constraintTop_toTopOf="@+id/input_surname" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/surname_top_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4707" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:letterSpacing="0.005"
+            android:lineSpacingMultiplier="0.934"
+            android:text="выберите пол"
+            android:textAllCaps="true"
+            android:textColor="#d6d6d6"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/male_sex_button"
+            app:layout_constraintLeft_toLeftOf="@+id/create_char_button"
+            app:layout_constraintTop_toTopOf="@+id/male_sex_button" />
+
+        <!-- FEMALE -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/female_sex_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/create_char_inactive_sex_bg"
+            app:layout_constraintBottom_toTopOf="@+id/create_char_button"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintHeight_percent="0.1284"
+            app:layout_constraintRight_toRightOf="@+id/create_char_button"
+            app:layout_constraintTop_toBottomOf="@+id/input_surname">
+
+            <ImageView
+                android:id="@+id/female_sex_icon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/create_char_female_sex_ic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.5999"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- MALE -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/male_sex_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:background="@drawable/create_char_male_sex_bg"
+            app:layout_constraintBottom_toTopOf="@+id/create_char_button"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintHeight_percent="0.1284"
+            app:layout_constraintRight_toLeftOf="@+id/female_sex_button"
+            app:layout_constraintTop_toBottomOf="@+id/input_surname">
+
+            <ImageView
+                android:id="@+id/male_sex_icon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/create_char_male_sex_ic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.5999"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/create_char_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/create_char_inactive_button"
+            android:enabled="false"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:gravity="center"
+            android:letterSpacing="0.005"
+            android:lineSpacingMultiplier="0.934"
+            android:text="СОЗДАТЬ"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintHeight_percent="0.1507"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/create_button_top_line"
+            app:layout_constraintWidth_percent="0.8555" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/create_button_top_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.8061" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.0574" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/next_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/create_char_next_button_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/previous_btn"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintHeight_percent="0.1342"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintStart_toEndOf="@+id/previous_btn"
+        app:layout_constraintTop_toTopOf="@+id/previous_btn"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintWidth_percent="0.1416">
+
+        <ImageView
+            android:id="@+id/next_btn_a"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/create_char_next_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.7103"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5367" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/previous_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="132dp"
+        android:background="@drawable/create_char_next_button_bg"
+        app:layout_constraintHeight_percent="0.1342"
+        app:layout_constraintRight_toLeftOf="@+id/next_button_left_line"
+        app:layout_constraintTop_toTopOf="@+id/next_button_top_line"
+        app:layout_constraintWidth_percent="0.1416">
+
+        <ImageView
+            android:id="@+id/previous_btn_a"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:scaleX="-1"
+            android:src="@drawable/create_char_next_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.7103"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5367" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/next_button_top_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8351" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/next_button_left_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3583" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/create_char_shadow"
+        app:layout_constraintHeight_percent="0.2203"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/exitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/create_character_exit_btn"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.1333"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/miner_indicator_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="0dp"
+    android:layout_marginTop="@dimen/_14sdp"
+    android:clickable="false"
+    android:focusable="false"
+    android:visibility="gone"
+
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/miner_indicator_panel"
+        android:layout_width="@dimen/_152sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_miner_indicator_v2"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_9sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/miner_indicator_icon"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:src="@drawable/ic_miner"
+            android:alpha="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/miner_indicator_title" />
+
+        <TextView
+            android:id="@+id/miner_indicator_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ШАХТА"
+            android:textSize="@dimen/_11sdp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:letterSpacing="0.06"
+            android:includeFontPadding="false"
+            android:layout_marginStart="@dimen/_6sdp"
+            app:layout_constraintStart_toEndOf="@+id/miner_indicator_icon"
+            app:layout_constraintEnd_toStartOf="@+id/miner_indicator_status"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/miner_indicator_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="В РАБОТЕ"
+            android:textSize="@dimen/_9sdp"
+            android:textColor="#BFFFFFFF"
+            android:fontFamily="@font/akrobat_semi_bold"
+            android:includeFontPadding="false"
+            android:background="@drawable/bg_miner_badge"
+            android:paddingStart="@dimen/_6sdp"
+            android:paddingEnd="@dimen/_6sdp"
+            android:paddingTop="@dimen/_3sdp"
+            android:paddingBottom="@dimen/_3sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/miner_indicator_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Переноси руду и плавь слитки"
+            android:textSize="@dimen/_9sdp"
+            android:textColor="#99FFFFFF"
+            android:fontFamily="@font/halvar_medium"
+            android:includeFontPadding="false"
+            android:layout_marginTop="@dimen/_4sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/miner_indicator_title" />
+
+        <View
+            android:id="@+id/miner_indicator_divider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:background="#22FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/miner_indicator_subtitle" />
+
+        <LinearLayout
+            android:id="@+id/miner_row_ore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/miner_indicator_divider">
+
+            <ImageView
+                android:id="@+id/miner_icon_ore"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_ore"
+                android:alpha="0.95" />
+
+            <TextView
+                android:id="@+id/miner_label_ore"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Перенесено руды"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="#CCFFFFFF"
+                android:fontFamily="@font/akrobat_semi_bold"
+                android:includeFontPadding="false"
+                android:layout_marginStart="@dimen/_7sdp" />
+
+            <TextView
+                android:id="@+id/miner_indicator_ore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:background="@drawable/bg_miner_value"
+                android:paddingStart="@dimen/_7sdp"
+                android:paddingEnd="@dimen/_7sdp"
+                android:paddingTop="@dimen/_3sdp"
+                android:paddingBottom="@dimen/_3sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/miner_row_ingot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_7sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/miner_row_ore">
+
+            <ImageView
+                android:id="@+id/miner_icon_ingot"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_ingot"
+                android:alpha="0.95" />
+
+            <TextView
+                android:id="@+id/miner_label_ingot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Переплавлено слитков"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="#CCFFFFFF"
+                android:fontFamily="@font/akrobat_semi_bold"
+                android:includeFontPadding="false"
+                android:layout_marginStart="@dimen/_7sdp" />
+
+            <TextView
+                android:id="@+id/miner_indicator_ingot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:background="@drawable/bg_miner_value"
+                android:paddingStart="@dimen/_7sdp"
+                android:paddingEnd="@dimen/_7sdp"
+                android:paddingTop="@dimen/_3sdp"
+                android:paddingBottom="@dimen/_3sdp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

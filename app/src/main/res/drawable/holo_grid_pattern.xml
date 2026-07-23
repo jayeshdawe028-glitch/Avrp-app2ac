@@ -1,0 +1,55 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- Фон -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M0,0h512v512h-512z" />
+
+    <!-- Вертикальные линии -->
+    <path
+        android:strokeColor="#11FFFFFF"
+        android:strokeWidth="1"
+        android:pathData="
+            M32,0L32,512
+            M64,0L64,512
+            M96,0L96,512
+            M128,0L128,512
+            M160,0L160,512
+            M192,0L192,512
+            M224,0L224,512
+            M256,0L256,512
+            M288,0L288,512
+            M320,0L320,512
+            M352,0L352,512
+            M384,0L384,512
+            M416,0L416,512
+            M448,0L448,512
+            M480,0L480,512
+        " />
+
+    <!-- Горизонтальные линии -->
+    <path
+        android:strokeColor="#11FFFFFF"
+        android:strokeWidth="1"
+        android:pathData="
+            M0,32L512,32
+            M0,64L512,64
+            M0,96L512,96
+            M0,128L512,128
+            M0,160L512,160
+            M0,192L512,192
+            M0,224L512,224
+            M0,256L512,256
+            M0,288L512,288
+            M0,320L512,320
+            M0,352L512,352
+            M0,384L512,384
+            M0,416L512,416
+            M0,448L512,448
+            M0,480L512,480
+        " />
+</vector>

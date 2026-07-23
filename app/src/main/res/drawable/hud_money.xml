@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Мягкая тень снизу -->
+    <item android:bottom="0dp" android:top="10dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="22dp" />
+            <gradient
+                android:type="radial"
+                android:centerX="0.5"
+                android:centerY="0.15"
+                android:gradientRadius="140dp"
+                android:startColor="#00000000"
+                android:centerColor="#12000000"
+                android:endColor="#33000000" />
+        </shape>
+    </item>
+
+    <!-- Основная плашка -->
+    <item android:bottom="8dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="22dp" />
+
+            <!-- красный слева-сверху -> тёмный справа-снизу -->
+            <gradient
+                android:type="linear"
+                android:angle="315"
+                android:startColor="#7A3B3B"
+                android:centerColor="#3A3335"
+                android:endColor="#2A2B2F" />
+
+        </shape>
+    </item>
+
+</layer-list>

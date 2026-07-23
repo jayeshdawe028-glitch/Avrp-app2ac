@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dark_stub">
+
+    <!-- Центральный контейнер с кнопками -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/spawn_buttons_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Вокзал -->
+        <ImageView
+            android:id="@+id/vokzal_btn"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_180sdp"
+            android:src="@drawable/spawnvokzal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/vokzal_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/lock_spawn_icon"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/vokzal_btn"
+            app:layout_constraintBottom_toBottomOf="@id/vokzal_btn"
+            app:layout_constraintStart_toStartOf="@id/vokzal_btn"
+            app:layout_constraintEnd_toEndOf="@id/vokzal_btn" />
+
+        <!-- Организация -->
+        <ImageView
+            android:id="@+id/org_btn"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:src="@drawable/spawnorg"
+            app:layout_constraintStart_toEndOf="@id/vokzal_btn"
+            app:layout_constraintTop_toTopOf="@id/vokzal_btn"
+            app:layout_constraintBottom_toBottomOf="@id/vokzal_btn" />
+
+        <ImageView
+            android:id="@+id/org_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/lock_spawn_icon"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/org_btn"
+            app:layout_constraintBottom_toBottomOf="@id/org_btn"
+            app:layout_constraintStart_toStartOf="@id/org_btn"
+            app:layout_constraintEnd_toEndOf="@id/org_btn" />
+
+        <!-- Дом -->
+        <ImageView
+            android:id="@+id/home_btn"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:src="@drawable/spawnhome"
+            app:layout_constraintStart_toEndOf="@id/org_btn"
+            app:layout_constraintTop_toTopOf="@id/org_btn"
+            app:layout_constraintBottom_toBottomOf="@id/org_btn" />
+
+        <ImageView
+            android:id="@+id/home_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/lock_spawn_icon"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/home_btn"
+            app:layout_constraintBottom_toBottomOf="@id/home_btn"
+            app:layout_constraintStart_toStartOf="@id/home_btn"
+            app:layout_constraintEnd_toEndOf="@id/home_btn" />
+
+        <!-- Дом семьи -->
+        <ImageView
+            android:id="@+id/family_home_btn"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:src="@drawable/spawnfam"
+            app:layout_constraintStart_toEndOf="@id/home_btn"
+            app:layout_constraintTop_toTopOf="@id/home_btn"
+            app:layout_constraintBottom_toBottomOf="@id/home_btn" />
+
+        <ImageView
+            android:id="@+id/family_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/lock_spawn_icon"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/family_home_btn"
+            app:layout_constraintBottom_toBottomOf="@id/family_home_btn"
+            app:layout_constraintStart_toStartOf="@id/family_home_btn"
+            app:layout_constraintEnd_toEndOf="@id/family_home_btn" />
+
+        <!-- Место выхода -->
+        <ImageView
+            android:id="@+id/pos_btn"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:src="@drawable/spawnlast"
+            app:layout_constraintStart_toEndOf="@id/family_home_btn"
+            app:layout_constraintTop_toTopOf="@id/family_home_btn"
+            app:layout_constraintBottom_toBottomOf="@id/family_home_btn" />
+
+        <ImageView
+            android:id="@+id/pos_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/lock_spawn_icon"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/pos_btn"
+            app:layout_constraintBottom_toBottomOf="@id/pos_btn"
+            app:layout_constraintStart_toStartOf="@id/pos_btn"
+            app:layout_constraintEnd_toEndOf="@id/pos_btn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Кнопка входа -->
+    <Button
+        android:id="@+id/spawn_btn"
+        android:layout_width="214dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/launcher_btn_play_premium"
+        android:contentDescription="@string/empty"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        android:text="ВЫБРАТЬ"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spawn_buttons_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

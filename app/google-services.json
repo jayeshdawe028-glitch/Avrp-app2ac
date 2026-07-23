@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "341693929191",
+    "project_id": "eliviyacrmp",
+    "storage_bucket": "eliviyacrmp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341693929191:android:fa6ce8430f5c219450f442",
+        "android_client_info": {
+          "package_name": "com.multirium.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9TSiU8ak5Xr-GAMFMt-EL4rWBRqbHlJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/launcherServers" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/launcher_servers_bg" android:scaleType="centerCrop" />
+    <ImageView android:id="@+id/exitBtn" android:layout_width="wrap_content" android:layout_height="0.0dip" android:src="@drawable/launcher_servers_back_btn" android:adjustViewBounds="true" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.125" app:layout_constraintHorizontal_bias="0.011" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.028" />
+    <TextView android:textSize="@dimen/_17sdp" android:textColor="@color/white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ВЫБОР СЕРВЕРА" android:textAllCaps="true" android:fontFamily="@font/akrobat_black" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.056" />
+
+    <TextView
+        android:id="@+id/serversFavouriteTitle"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:fontFamily="@font/akrobat_extra_bold"
+        android:gravity="center_vertical"
+        android:text="Избранные сервера:"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.165"
+        app:layout_constraintWidth_percent="0.2161" />
+    <com.multirium.mobile.common.eliviya_view.PercentRecyclerView android:orientation="horizontal" android:id="@+id/serversFavouriteRc" android:layout_width="0.0dip" android:layout_height="0.0dip" app:itemHeightPercent="1.0" app:itemWidthPercent="0.3" app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.174" app:layout_constraintHorizontal_bias="0.42" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.286" app:layout_constraintWidth_percent="0.8791" app:marginRightPercent="0.035" />
+    <TextView android:textSize="@dimen/_11sdp" android:textColor="@color/white" android:gravity="center_vertical" android:id="@+id/serversAllTitle" android:layout_width="0.0dip" android:layout_height="0.0dip" android:text="Все сервера:" android:fontFamily="@font/akrobat_extra_bold" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.08" app:layout_constraintHorizontal_bias="0.064" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.458" app:layout_constraintWidth_percent="0.2161" />
+    <com.multirium.mobile.common.eliviya_view.PercentRecyclerView android:orientation="vertical" android:id="@+id/serversAllRc" android:clipToPadding="false" android:layout_width="0.0dip" android:layout_height="0.0dip" app:itemHeightPercent="0.48" app:itemWidthPercent="0.3" app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.3712" app:layout_constraintHorizontal_bias="0.42" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.808" app:layout_constraintWidth_percent="0.8791" app:marginBottomPercent="0.04" app:marginRightPercent="0.035" app:spanCount="3" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0.0dip"
+        android:adjustViewBounds="true"
+        android:src="@drawable/launcher_servers_recommended_ic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.0925"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0.0dip"
+        android:layout_marginStart="@dimen/_3sdp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/launcher_servers_created_chars_ic"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.0925"
+        app:layout_constraintStart_toStartOf="@id/centerVerticalLine" />
+    <androidx.constraintlayout.widget.Guideline android:orientation="vertical" android:id="@+id/centerVerticalLine" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintGuide_percent="0.4471" />
+</androidx.constraintlayout.widget.ConstraintLayout>

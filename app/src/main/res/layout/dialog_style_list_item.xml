@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/dialog_style_list_item" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="@dimen/_9sdp" android:textColor="@color/white" android:id="@+id/text" android:background="@drawable/dialog_list_item_passive_bg" android:paddingTop="@dimen/_6sdp" android:paddingBottom="@dimen/_6sdp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/_3sdp" android:text="1. Загрузить транспорт на месте хуесте выгрузки" android:maxLines="1" android:fontFamily="@font/manrope_medium" android:paddingStart="@dimen/_5sdp" android:paddingEnd="@dimen/_5sdp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintWidth_percent="1.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

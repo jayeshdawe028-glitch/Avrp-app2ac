@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:keepScreenOn="true"
+    android:background="#FF000000">
+
+    <!-- 1) Абсолютно чёрная подложка (чтобы ничего GTA/SAMP не просвечивало) -->
+    <View
+        android:id="@+id/solidBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FF000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 2) Основной фон -->
+    <ImageView
+        android:id="@+id/bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/game_loads"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 3) Мягкий dim поверх фона (чтобы текст/лого читались + скрывает любые артефакты) -->
+    <View
+        android:id="@+id/dimOverlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#4A000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 4) Градиентный нижний “подвал” для текста -->
+    <View
+        android:id="@+id/bottomGradient"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_bottom_gradient"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 5) Виньетка (темнее края) -->
+    <View
+        android:id="@+id/vignette"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_vignette"
+        android:alpha="0.85"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 6) Shimmer-блик, который “скользит” по экрану -->
+    <View
+        android:id="@+id/shimmer"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_shimmer_sweep"
+        android:alpha="0.0"
+        android:rotation="18"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- 7) Glow под логотипом -->
+    <View
+        android:id="@+id/logoGlow"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:alpha="0.0"
+        android:background="@drawable/bg_logo_glow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="150dp"/>
+
+    <!-- 8) Логотип (въезжает снизу, потом лёгкая пульсация) -->
+    <ImageView
+        android:id="@+id/hudLogo"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:adjustViewBounds="true"
+        android:alpha="0"
+        android:scaleType="fitCenter"
+        android:src="@drawable/hud_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 9) Статус -->
+    <TextView
+        android:id="@+id/gameStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="92dp"
+        android:fontFamily="@font/akrobat_bold"
+        android:text="Загрузка игры"
+        android:textColor="#FFFFFFFF"
+        android:textSize="16sp"
+        android:letterSpacing="0.04"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 10) Под-статус -->
+    <TextView
+        android:id="@+id/gameSubStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="66dp"
+        android:fontFamily="@font/akrobat_extra_bold"
+        android:text=""
+        android:textColor="#AAFFFFFF"
+        android:textSize="12sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 11) Тонкий “индикатор” (псевдо-прогресс, дышит) -->
+    <View
+        android:id="@+id/progressLine"
+        android:layout_width="160dp"
+        android:layout_height="3dp"
+        android:layout_marginBottom="42dp"
+        android:alpha="0.0"
+        android:background="@drawable/bg_progress_line"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

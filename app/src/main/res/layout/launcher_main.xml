@@ -1,0 +1,1006 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Echo Cross
+Telegram: @tasjJson
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/launcher_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <ImageView
+        android:id="@+id/overlayBottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/launcher_overlay_bottom"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- CONTENT (ТОЛЬКО ЭТО БУДЕМ БЛЮРИТЬ В КОДЕ) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/launcherContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/launcherOnlineCard"
+            android:layout_width="109dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/launcher_online_card_one_bg"
+            android:paddingStart="16dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/ivOnlineIcon"
+                android:layout_width="33dp"
+                android:layout_height="29dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_users_placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvOnlineCount"
+                android:layout_width="31dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="200"
+                android:textColor="#CFCFCF"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivOnlineIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvOnlineLabel"
+                android:layout_width="79dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="-4dp"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="ОБЩИЙ ОНЛАЙН"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/slot1"
+            android:layout_width="195dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/launcher_slot_bg"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/slot2"
+            app:layout_constraintEnd_toEndOf="@+id/slot2"
+            app:layout_constraintStart_toStartOf="@+id/slot2">
+
+            <ImageView
+                android:id="@+id/slot1Icon"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_user_placeholder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/slot1Nick"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="Echo Cross"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/slot1Bind"
+                app:layout_constraintStart_toEndOf="@id/slot1Icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/slot1Bind"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:alpha="0.95"
+                android:src="@drawable/tg"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/slot1Clear"
+                app:layout_constraintEnd_toStartOf="@+id/slot1Clear"
+                app:layout_constraintTop_toTopOf="@+id/slot1Clear" />
+
+            <ImageButton
+                android:id="@+id/slot1Clear"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@drawable/launcher_round_btn_bg"
+                android:padding="2dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_slot_clear"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/slot2"
+            android:layout_width="195dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/launcher_slot_bg"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/slot3"
+            app:layout_constraintEnd_toEndOf="@+id/slot3"
+            app:layout_constraintStart_toStartOf="@+id/slot3">
+
+            <ImageView
+                android:id="@+id/slot2Icon"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_user_placeholder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/slot2Nick"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:text="Echo Cross"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/slot2Bind"
+                app:layout_constraintStart_toEndOf="@id/slot2Icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/slot2Bind"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="100dp"
+                android:alpha="0.95"
+                android:src="@drawable/tg"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/slot2Clear"
+                app:layout_constraintEnd_toStartOf="@+id/slot2Clear"
+                app:layout_constraintStart_toEndOf="@id/slot1Nick"
+                app:layout_constraintTop_toTopOf="@+id/slot2Clear"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <ImageButton
+                android:id="@+id/slot2Clear"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@drawable/launcher_round_btn_bg"
+                android:padding="2dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_slot_clear"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/slot3"
+            android:layout_width="195dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/launcher_slot_bg"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/launcherCharacterWrap"
+            app:layout_constraintEnd_toEndOf="@+id/launcherCharacterWrap"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/launcherCharacterWrap">
+
+            <ImageView
+                android:id="@+id/slot3Icon"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_user_placeholder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/slot3Nick"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:text="Echo Cross"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/slot3Bind"
+                app:layout_constraintStart_toEndOf="@id/slot3Icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/slot3Bind"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:alpha="0.95"
+                android:src="@drawable/tg"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/slot3Clear"
+                app:layout_constraintEnd_toStartOf="@+id/slot3Clear"
+                app:layout_constraintTop_toTopOf="@+id/slot3Clear" />
+
+
+            <ImageButton
+                android:id="@+id/slot3Clear"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@drawable/launcher_round_btn_bg"
+                android:padding="2dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_slot_clear"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/launcherCharacterWrap"
+            android:layout_width="173dp"
+            android:layout_height="82dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_play"
+            app:layout_constraintEnd_toStartOf="@+id/btn_play"
+            app:layout_constraintHorizontal_bias="0.975"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_play"
+            app:layout_constraintVertical_bias="0.88">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/launcherCharacterCard"
+                android:layout_width="0dp"
+                android:layout_height="62dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/launcher_character_card_bg"
+                android:paddingStart="12dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/tvCharacterTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/akrobat_extra_bold"
+                    android:includeFontPadding="false"
+                    android:text="ВЫБРАН ПЕРСОНАЖ"
+                    android:textAllCaps="true"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:letterSpacing="0.03"
+                    android:shadowColor="#CC000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1.2"
+                    android:shadowRadius="3.5"
+                    app:layout_constraintEnd_toStartOf="@id/btnChangeCharacter"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tvCharacterNick"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/akrobat_extra_bold"
+                    android:includeFontPadding="false"
+                    android:text="JOHN AISTOV"
+                    android:textAllCaps="true"
+                    android:textColor="#B3FFFFFF"
+                    android:textSize="10sp"
+
+                    app:layout_constraintEnd_toStartOf="@id/btnChangeCharacter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvCharacterTitle" />
+
+                <ImageView
+                    android:id="@+id/btnChangeCharacter"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/launcher_round_btn_bg"
+                    android:padding="9dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_swap_placeholder"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/chipAdmin"
+                android:layout_width="80dp"
+                android:layout_height="22dp"
+                android:background="@drawable/launcher_btn_play_premium"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Админ 13"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="8.9sp"
+                app:layout_constraintEnd_toEndOf="@+id/launcherCharacterCard"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="5dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/launcherVipCard"
+            android:layout_width="152dp"
+            android:layout_height="63dp"
+            android:background="@drawable/launcher_vip_card_bg"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/launcherCharacterWrap"
+            app:layout_constraintEnd_toStartOf="@+id/launcherCharacterWrap"
+            app:layout_constraintHorizontal_bias="0.595"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/launcherCharacterWrap"
+            app:layout_constraintVertical_bias="1.0">
+
+            <ImageView
+                android:id="@+id/ivVipIcon"
+                android:layout_width="41dp"
+                android:layout_height="41dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_vip_crown_placeholder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvVipTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/akrobat_extrabold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.06"
+                android:shadowColor="#CC000000"
+                android:shadowDx="0"
+                android:shadowDy="1.3"
+                android:shadowRadius="4.2"
+                android:text="VIP СТАТУС"
+                android:textAllCaps="true"
+                android:textColor="#FFD34D"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/ivVipIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tvVipDays"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.05"
+                android:shadowColor="#B3000000"
+                android:shadowDx="0"
+                android:shadowDy="1.1"
+                android:shadowRadius="3.3"
+                android:text="Vip Gold"
+                android:textAllCaps="true"
+                android:textColor="#CCFFFFFF"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivVipIcon"
+                app:layout_constraintTop_toBottomOf="@id/tvVipTitle" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/launcherSocialButtons"
+            android:layout_width="52dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="92dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnTg"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/launcher_social_btn_bg"
+                android:contentDescription="Telegram"
+                android:padding="14dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_tg_placeholder" />
+
+            <ImageButton
+                android:id="@+id/btnVk"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/launcher_social_btn_bg"
+                android:contentDescription="VK"
+                android:padding="14dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_vk_placeholder" />
+
+            <ImageButton
+                android:id="@+id/btnSupport"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/launcher_social_btn_bg"
+                android:contentDescription="Support"
+                android:padding="14dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_site_placeholder" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="87dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter"
+            android:src="@drawable/hud_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/balanceWrap"
+            android:layout_width="134dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="8dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="@id/logo"
+            app:layout_constraintStart_toEndOf="@id/logo"
+            app:layout_constraintTop_toTopOf="@id/logo">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/balanceCard"
+                android:layout_width="0dp"
+                android:layout_height="51dp"
+                android:background="@drawable/balance_background"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/btnBalancePlus"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/launcher_plus_btn_bg"
+                    android:padding="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_plus_placeholder"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvBalanceTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/akrobat_extra_bold"
+                    android:includeFontPadding="false"
+                    android:text="ВАШ БАЛАНС"
+                    android:textAllCaps="true"
+                    android:textColor="#B3FFFFFF"
+                    android:textSize="11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnBalancePlus"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivNkBg"
+                    android:layout_width="15dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/launcher_nk_circle_bg"
+                    app:layout_constraintStart_toEndOf="@id/btnBalancePlus"
+                    app:layout_constraintTop_toBottomOf="@id/tvBalanceTitle" />
+
+                <ImageView
+                    android:id="@+id/ivNkIcon"
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_nk_placeholder"
+                    app:layout_constraintBottom_toBottomOf="@id/ivNkBg"
+                    app:layout_constraintEnd_toEndOf="@id/ivNkBg"
+                    app:layout_constraintStart_toStartOf="@id/ivNkBg"
+                    app:layout_constraintTop_toTopOf="@id/ivNkBg" />
+
+                <TextView
+                    android:id="@+id/tvBalanceValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/akrobat_extra_bold"
+                    android:includeFontPadding="false"
+                    android:text="200 c"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ivNkBg"
+                    app:layout_constraintTop_toBottomOf="@id/tvBalanceTitle" />
+
+                <TextView
+                    android:id="@+id/badgeX3"
+                    android:layout_width="19dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="-6dp"
+                    android:layout_marginEnd="-6dp"
+                    android:background="@drawable/launcher_badge_x3_bg"
+                    android:fontFamily="@font/akrobat_extra_bold"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="X3"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="9sp"
+                    android:translationX="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/userLoginWrap" android:layout_width="wrap_content" android:layout_height="56dp" android:layout_marginTop="16dp" android:layout_marginEnd="16dp" android:clipChildren="false" android:clipToPadding="false" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"> <TextView android:id="@+id/tvLoginBadge" android:layout_width="103dp" android:layout_height="25dp" android:layout_marginEnd="10dp" android:background="@drawable/launcher_login_badge_bg" android:fontFamily="@font/akrobat_extra_bold" android:gravity="center" android:includeFontPadding="false" android:paddingStart="14dp" android:paddingEnd="14dp" android:text="ИГРОВОЙ ЛОГИН" android:textAllCaps="true" android:textColor="#1A1A1A" android:textSize="10sp" app:layout_constraintEnd_toStartOf="@id/avatarCard" app:layout_constraintTop_toTopOf="parent" /> <TextView android:id="@+id/tvLoginValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:layout_marginEnd="10dp" android:fontFamily="@font/akrobat_extra_bold" android:includeFontPadding="false" android:text="Echo Cross_Game_Dev" android:textColor="@color/white" android:textSize="12sp" app:layout_constraintEnd_toStartOf="@id/avatarCard" app:layout_constraintTop_toBottomOf="@id/tvLoginBadge" /> <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/avatarCard" android:layout_width="56dp" android:layout_height="56dp" android:background="@drawable/launcher_avatar_card_bg" android:clipChildren="false" android:clipToPadding="false" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" /> </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_play"
+            android:layout_width="178dp"
+            android:layout_height="57dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/launcher_btn_play_premium"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:letterSpacing="0.06"
+            android:text="Начать игру"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:shadowColor="#B3000000"
+            android:shadowDx="0"
+            android:shadowDy="1.5"
+            android:shadowRadius="6"
+            android:stateListAnimator="@null"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/launcherMainCurrentServer"
+            android:layout_width="179dp"
+            android:layout_height="49dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_glass_subtle"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_play"
+            app:layout_constraintEnd_toEndOf="@+id/btn_play"
+            app:layout_constraintStart_toStartOf="@+id/btn_play">
+
+            <!-- #1 badge -->
+            <TextView
+                android:id="@+id/launcherMainCurrentServerNum"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:background="@drawable/launcher_server_badge_bg"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="#1"
+                android:textColor="@color/yellow"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Name -->
+
+            <!-- online dot -->
+
+            <TextView
+                android:id="@+id/launcherMainCurrentServerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.04"
+                android:maxLines="1"
+                android:shadowColor="#CC000000"
+                android:shadowDx="0"
+                android:shadowDy="1.2"
+                android:shadowRadius="4"
+                android:text="MOSCOW"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/launcherMainCurrentServerNum"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/serverOnlineDot"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/dot_online_green"
+                app:layout_constraintStart_toStartOf="@id/launcherMainCurrentServerName"
+                app:layout_constraintTop_toBottomOf="@id/launcherMainCurrentServerName" />
+
+            <!-- sub -->
+            <TextView
+                android:id="@+id/launcher_main_current_server_online_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.03"
+                android:maxLines="1"
+                android:shadowColor="#CC000000"
+                android:shadowDx="0"
+                android:shadowDy="1.1"
+                android:shadowRadius="3.5"
+                android:text="ОНЛАЙН: 0/1000"
+                android:textAllCaps="true"
+                android:textColor="#E6FFFFFF"
+                android:textSize="8sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/serverOnlineDot"
+                app:layout_constraintTop_toBottomOf="@id/launcherMainCurrentServerName" />
+
+            <!-- progress -->
+            <ProgressBar
+                android:id="@+id/launcherMainCurrentServerProgress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="115dp"
+                android:layout_height="4dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="4dp"
+                android:indeterminate="false"
+                android:max="1000"
+                android:progress="300"
+                android:progressDrawable="@drawable/launcher_server_progress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/launcherMainCurrentServerNum"
+                app:layout_constraintTop_toBottomOf="@id/launcher_main_current_server_online_info" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- /CONTENT -->
+
+    <!-- NICK OVERLAY (НЕ БЛЮРИТСЯ) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nickOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/launcher_overlay_dim_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/nickCard"
+            android:layout_width="366dp"
+            android:layout_height="293dp"
+            android:background="@drawable/launcher_overlay_card_bg"
+            android:paddingStart="18dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.62">
+
+            <TextView
+                android:id="@+id/tvNickTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:text="СМЕНА НИКА"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/btnNickClose"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btnNickClose"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:background="@drawable/launcher_round_btn_bg"
+                android:padding="9dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/auth_back_button_ic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvNickSub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:text="Введите имя и фамилию (латиница)."
+                android:textColor="#B3FFFFFF"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvNickTitle" />
+
+            <EditText
+                android:id="@+id/etNickFirst"
+                android:layout_width="253dp"
+                android:layout_height="43dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/launcher_input_bg"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:hint="ИМЯ"
+                android:includeFontPadding="false"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:singleLine="true"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="#66FFFFFF"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvNickSub" />
+
+            <EditText
+                android:id="@+id/etNickLast"
+                android:layout_width="257dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/launcher_input_bg"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:hint="ФАМИЛИЯ"
+                android:includeFontPadding="false"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:singleLine="true"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="#66FFFFFF"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etNickFirst" />
+
+            <TextView
+                android:id="@+id/tvNickNote"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="Пример: Echo_Cross"
+                android:textColor="#80FFFFFF"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etNickLast" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNickSave"
+                android:layout_width="186dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/launcher_btn_red_bg"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:text="СОХРАНИТЬ"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvNickNote" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLogout"
+                android:layout_width="162dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/launcher_btn_red_bg"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:text="ВЫЙТИ ИЗ АККАУНТА"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/btnNickSave"
+                app:layout_constraintStart_toStartOf="@+id/btnNickSave"
+                app:layout_constraintTop_toBottomOf="@+id/btnNickSave" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNickSendLogs"
+                android:layout_width="148dp"
+                android:layout_height="26dp"
+                android:background="@drawable/launcher_btn_dark_bg"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:includeFontPadding="false"
+                android:text="ОТПРАВИТЬ ЛОГИ"
+                android:textAllCaps="true"
+                android:textColor="#E6FFFFFF"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/btnLogout"
+                app:layout_constraintStart_toStartOf="@+id/btnLogout"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loader"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#e6000000"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loaderProgress"
+            android:layout_width="0.0dip"
+            android:layout_height="0.0dip"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.07"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loader_screen_progress" />
+
+        <TextView
+            android:id="@+id/loaderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_13sdp"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:text="оЖИДАНИЕ загрузки"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintEnd_toEndOf="@+id/loaderProgress"
+            app:layout_constraintStart_toStartOf="@+id/loaderProgress"
+            app:layout_constraintTop_toBottomOf="@+id/loaderProgress" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1425" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

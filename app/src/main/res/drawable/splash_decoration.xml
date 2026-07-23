@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Золотые брызги/пятна для декоративного фона
+  Использовать в res/drawable/
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <path
+        android:pathData="M50,42 C44.5,42 42,46.5 42,50 C42,55.5 46.5,58 50,58 C55.5,58 58,53.5 58,50 C58,44.5 53.5,42 50,42 Z"
+        android:fillColor="#C5A253"
+        android:fillAlpha="0.6"/>
+
+    <path
+        android:pathData="M80,18 C72,18 68,22 68,30 C68,38 72,42 80,42 C88,42 92,38 92,30 C92,22 88,18 80,18 Z"
+        android:fillColor="#D4AF37"
+        android:fillAlpha="0.8"/>
+
+    <path
+        android:pathData="M100,64 C97,64 94,67 94,70 C94,73 97,76 100,76 C103,76 106,73 106,70 C106,67 103,64 100,64 Z"
+        android:fillColor="#FFD700"
+        android:fillAlpha="0.5"/>
+
+    <path
+        android:pathData="M30,80 C25,80 20,85 20,90 C20,95 25,100 30,100 C35,100 40,95 40,90 C40,85 35,80 30,80 Z"
+        android:fillColor="#D4AF37"
+        android:fillAlpha="0.7"/>
+
+    <!-- Ромб -->
+    <path
+        android:pathData="M60,60 L70,50 L80,60 L70,70 Z"
+        android:fillColor="#FFA500"
+        android:fillAlpha="0.6"/>
+
+    <!-- Ромб 2 -->
+    <path
+        android:pathData="M90,80 L100,70 L110,80 L100,90 Z"
+        android:fillColor="#C5A253"
+        android:fillAlpha="0.5"/>
+
+    <path
+        android:pathData="M120,33 C116.5,33 113,36.5 113,40 C113,43.5 116.5,47 120,47 C123.5,47 127,43.5 127,40 C127,36.5 123.5,33 120,33 Z"
+        android:fillColor="#FFD700"
+        android:fillAlpha="0.6"/>
+</vector>

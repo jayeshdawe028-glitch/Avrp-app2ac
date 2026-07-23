@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="982.0dip" android:width="231.0dip" android:viewportWidth="231.0" android:viewportHeight="982.0"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt">
+    <path android:fillColor="@drawable/spawn_selection_gradient__0" android:pathData="M230.41,981.35L0.71,981.35L0.71,-0L230.41,-0L230.41,981.35Z" />
+</vector>

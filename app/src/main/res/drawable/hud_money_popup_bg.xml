@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Мягкая тень вниз (всплывает сверху) -->
+    <item android:top="32dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="22dp"/>
+            <gradient
+                android:type="radial"
+                android:centerX="0.60"
+                android:centerY="0.0"
+                android:gradientRadius="220dp"
+                android:startColor="#2E000000"
+                android:centerColor="#14000000"
+                android:endColor="#00000000"/>
+        </shape>
+    </item>
+
+    <!-- Рассеивающая "рамка" (ореол) -->
+    <item android:bottom="10dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="22dp"/>
+            <gradient
+                android:type="radial"
+                android:centerX="0.50"
+                android:centerY="0.50"
+                android:gradientRadius="180dp"
+                android:startColor="#00FFFFFF"
+                android:centerColor="#08FFFFFF"
+                android:endColor="#26FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- Основная плашка -->
+    <item android:bottom="10dp" android:left="1dp" android:top="1dp" android:right="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="21dp"/>
+            <gradient
+                android:type="linear"
+                android:angle="315"
+                android:startColor="#7A3B3B"
+                android:centerColor="#3A3335"
+                android:endColor="#2A2B2F"/>
+        </shape>
+    </item>
+
+</layer-list>

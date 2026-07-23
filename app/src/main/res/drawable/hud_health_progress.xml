@@ -1,0 +1,19 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@android:id/background">
+            <shape xmlns:android="http://schemas.android.com/apk/res/android">
+                <solid android:color="#E0E0E0"/>
+                <corners android:radius="65dp"/>
+            </shape>
+        </item>
+
+        <item
+            android:id="@android:id/progress">
+            <shape xmlns:android="http://schemas.android.com/apk/res/android">
+                <solid android:color="#FF6A6A"/>
+                <corners android:radius="65dp"/>
+            </shape>
+        </item>
+    </layer-list>
+</selector>

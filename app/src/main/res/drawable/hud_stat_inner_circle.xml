@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- База: средний серый (не выгоревший) -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#8A8F96"/>
+        </shape>
+    </item>
+
+    <!-- Очень лёгкий красный сверху (почти незаметно) -->
+    <!-- Красный оттенок сверху (заметнее, но не кислотный) -->
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#33FF3B3B"
+                android:centerColor="#14FF3B3B"
+                android:endColor="#00FF3B3B" />
+        </shape>
+    </item>
+
+
+    <!-- Лёгкая виньетка по краю, чтобы убрать пересвет -->
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="28dp"
+                android:centerX="0.5"
+                android:centerY="0.5"
+                android:startColor="#00000000"
+                android:centerColor="#00000000"
+                android:endColor="#1A000000"/>
+        </shape>
+    </item>
+
+    <!-- Светлая окантовка по кругу -->
+    <item>
+        <shape android:shape="oval">
+            <stroke android:width="1dp" android:color="#66FFFFFF"/>
+        </shape>
+    </item>
+
+</layer-list>

@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/testSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akrobat_bold"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20.0dip"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/layer_blackout_hud"
+        app:layout_constraintBottom_toBottomOf="@+id/container_speedometer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/container_speedometer"
+        app:layout_constraintWidth_percent="0.4" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_speedometer"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_info_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akrobat_bold"
+            android:text="км/ч"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toTopOf="@+id/tv_hub_speed_1"
+            app:layout_constraintBottom_toTopOf="@+id/tv_hub_speed_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_marginBaseline="5.0dip" />
+
+        <LinearLayout
+            android:id="@+id/container_current_fuel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.0"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hub_speed_1"
+            app:layout_constraintEnd_toEndOf="@+id/progress_amount_fuel"
+            app:layout_constraintStart_toStartOf="@+id/progress_amount_fuel"
+            app:layout_constraintTop_toTopOf="@+id/tv_hub_speed_1">
+
+            <TextView
+                android:id="@+id/tv_current_fuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/akrobat_bold"
+                android:text="52"
+                android:textColor="#ffffcd60"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2.0dip"
+                android:background="#ffb0b0b0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akrobat_bold"
+                android:gravity="center"
+                android:text="100"
+                android:textColor="#ffb0b0b0"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_amount_fuel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28.0dip"
+            android:elevation="3.0dip"
+            android:indeterminate="false"
+            app:indicatorColor="#ffffce4f"
+            app:indicatorDirectionCircular="counterclockwise"
+            app:indicatorSize="32.0dip"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hub_speed_1"
+            app:layout_constraintEnd_toStartOf="@+id/tv_info_speed"
+            app:layout_constraintTop_toTopOf="@+id/tv_hub_speed_1"
+            app:trackColor="#40ffffff"
+            app:trackThickness="4.0dip" />
+
+        <ImageView
+            android:id="@+id/ic_fuel"
+            android:layout_width="0.0dip"
+            android:layout_height="0.0dip"
+            android:padding="14.0dip"
+            android:src="@drawable/ic_fuel"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_amount_fuel"
+            app:layout_constraintEnd_toEndOf="@+id/progress_amount_fuel"
+            app:layout_constraintStart_toStartOf="@+id/progress_amount_fuel"
+            app:layout_constraintTop_toTopOf="@+id/progress_amount_fuel" />
+
+        <TextView
+            android:id="@+id/tv_hub_speed_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-8.0dip"
+            android:elevation="2.0dip"
+            android:fontFamily="@font/akrobat_bold"
+            android:text="0"
+            android:textAllCaps="true"
+            android:textColor="#59ffffff"
+            android:textSize="48.0dip"
+            app:layout_constraintBottom_toTopOf="@+id/tv_hud_speedometer"
+            app:layout_constraintEnd_toStartOf="@+id/tv_hub_speed_2"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_hub_speed_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-8.0dip"
+            android:elevation="2.0dip"
+            android:fontFamily="@font/akrobat_bold"
+            android:text="0"
+            android:textAllCaps="true"
+            android:textColor="#59ffffff"
+            android:textSize="48.0dip"
+            app:layout_constraintBottom_toTopOf="@+id/tv_hud_speedometer"
+            app:layout_constraintEnd_toStartOf="@+id/tv_hub_speed_3"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/tv_hub_speed_1" />
+
+        <TextView
+            android:id="@+id/tv_hub_speed_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-8.0dip"
+            android:elevation="2.0dip"
+            android:fontFamily="@font/akrobat_bold"
+            android:text="0"
+            android:textAllCaps="true"
+            android:textColor="#59ffffff"
+            android:textSize="48.0dip"
+            app:layout_constraintBottom_toTopOf="@+id/tv_hud_speedometer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/tv_hub_speed_2" />
+
+        <LinearLayout
+            android:id="@+id/container_current_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.0"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hub_speed_3"
+            app:layout_constraintEnd_toEndOf="@+id/progress_hp"
+            app:layout_constraintStart_toStartOf="@+id/progress_hp"
+            app:layout_constraintTop_toTopOf="@+id/tv_hub_speed_3">
+
+            <TextView
+                android:id="@+id/tv_current_hp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/akrobat_bold"
+                android:text="52"
+                android:textColor="#ffffcd60"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2.0dip"
+                android:background="#ffb0b0b0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akrobat_bold"
+                android:gravity="center"
+                android:text="100"
+                android:textColor="#ffb0b0b0"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_hp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28.0dip"
+            android:elevation="3.0dip"
+            android:indeterminate="false"
+            app:indicatorColor="@color/white"
+            app:indicatorDirectionCircular="counterclockwise"
+            app:indicatorSize="32.0dip"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hub_speed_3"
+            app:layout_constraintStart_toEndOf="@+id/tv_info_speed"
+            app:layout_constraintTop_toTopOf="@+id/tv_hub_speed_3"
+            app:trackColor="#40ffffff"
+            app:trackThickness="4.0dip" />
+
+        <ImageView
+            android:id="@+id/ic_car"
+            android:layout_width="0.0dip"
+            android:layout_height="0.0dip"
+            android:padding="14.0dip"
+            android:src="@drawable/ic_car"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_hp"
+            app:layout_constraintEnd_toEndOf="@+id/progress_hp"
+            app:layout_constraintStart_toStartOf="@+id/progress_hp"
+            app:layout_constraintTop_toTopOf="@+id/progress_hp" />
+
+        <TextView
+            android:id="@+id/tv_hud_speedometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4.0dip"
+            android:fontFamily="@font/akrobat_bold"
+            android:gravity="center"
+            android:text="нажмите"
+            android:textAllCaps="true"
+            android:textColor="#59ffffff"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_actions_car_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0.0dip"
+            android:layout_marginEnd="8.0dip"
+            android:alpha="1"
+            android:elevation="1.0dip"
+            android:paddingTop="4.0dip"
+            android:paddingBottom="4.0dip"
+            android:translationX="0.0dip"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_amount_fuel"
+            app:layout_constraintEnd_toStartOf="@+id/progress_amount_fuel"
+            app:layout_constraintTop_toTopOf="@+id/progress_amount_fuel">
+
+            <View
+                android:id="@+id/container_car_right_turn_signal"
+                android:layout_width="0.0dip"
+                android:layout_height="0.0dip"
+                android:layout_marginEnd="8.0dip"
+                android:background="@drawable/background_disabled_car"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintEnd_toStartOf="@+id/container_car_alarm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ic_left_turn_signal"
+                android:layout_width="wrap_content"
+                android:layout_height="0.0dip"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_left_turn_signal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/container_car_right_turn_signal"
+                app:layout_constraintHeight_percent="0.4"
+                app:layout_constraintStart_toStartOf="@+id/container_car_right_turn_signal"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/container_car_alarm"
+                android:layout_width="0.0dip"
+                android:layout_height="0.0dip"
+                android:layout_marginEnd="8.0dip"
+                android:background="@drawable/background_disabled_car"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintEnd_toStartOf="@+id/container_car_left_turn_signal"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ic_alarm"
+                android:layout_width="wrap_content"
+                android:layout_height="0.0dip"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_alarm"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/container_car_alarm"
+                app:layout_constraintHeight_percent="0.4"
+                app:layout_constraintStart_toStartOf="@+id/container_car_alarm"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/container_car_left_turn_signal"
+                android:layout_width="0.0dip"
+                android:layout_height="0.0dip"
+                android:background="@drawable/background_disabled_car"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ic_right_turn_signal"
+                android:layout_width="wrap_content"
+                android:layout_height="0.0dip"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_right_turn_signal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/container_car_left_turn_signal"
+                app:layout_constraintHeight_percent="0.4"
+                app:layout_constraintStart_toStartOf="@+id/container_car_left_turn_signal"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_actions_car_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0.0dip"
+            android:layout_marginStart="8.0dip"
+            android:alpha="1"
+            android:elevation="1.0dip"
+            android:paddingTop="4.0dip"
+            android:paddingBottom="4.0dip"
+            android:translationX="0.0dip"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_hp"
+            app:layout_constraintStart_toEndOf="@+id/progress_hp"
+            app:layout_constraintTop_toTopOf="@+id/progress_hp">
+
+            <View
+                android:id="@+id/container_enabled_car"
+                android:layout_width="0.0dip"
+                android:layout_height="0.0dip"
+                android:background="@drawable/background_disabled_car"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ic_enabled_car"
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_enabled_car"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/container_enabled_car"
+                app:layout_constraintHeight_percent="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/container_car_doors"
+                android:layout_width="0.0dip"
+                android:layout_height="0.0dip"
+                android:layout_marginStart="8.0dip"
+                android:background="@drawable/background_enabled_car"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintStart_toEndOf="@+id/container_enabled_car"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ic_door"
+                android:layout_width="wrap_content"
+                android:layout_height="0.0dip"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_door"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/container_car_doors"
+                app:layout_constraintHeight_percent="0.4"
+                app:layout_constraintStart_toStartOf="@+id/container_car_doors"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/container_car_headlights"
+                android:layout_width="0.0dip"
+                android:layout_height="0.0dip"
+                android:layout_marginStart="8.0dip"
+                android:background="@drawable/background_disabled_car"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/container_car_doors"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ic_headlights"
+                android:layout_width="wrap_content"
+                android:layout_height="0.0dip"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_headlights"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/container_car_headlights"
+                app:layout_constraintHeight_percent="0.4"
+                app:layout_constraintStart_toStartOf="@+id/container_car_headlights"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

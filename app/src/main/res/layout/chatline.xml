@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:strokeAttrs="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/chat_line">
+
+    <com.multirium.mobile.gui.util.StrokedTextView
+        android:id="@+id/chat_line_shadow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gotham_pro_bold"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.02"
+        android:paddingBottom="0.1dp"
+        android:text=" new java chat "
+        android:textColor="#DDDDDD"
+        android:textSize="@dimen/_5sdp" />
+
+    <TextView
+        android:id="@+id/chat_line_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gotham_pro_bold"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.02"
+        android:paddingBottom="0.1dp"
+        android:text=" new java chat "
+        android:textColor="#E6E6E6"
+        android:textSize="@dimen/_5sdp" />
+
+</FrameLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Echo Cross
+Telegram: @tasjJson
+Mini overlay confirm slot delete (forced anims in code)
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/deleteOverlayRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="#B3000000"
+    android:padding="18dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/deleteCard"
+        android:layout_width="370dp"
+        android:layout_height="203dp"
+        android:background="@drawable/bg_confirm_card"
+        android:elevation="14dp"
+        android:padding="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="360dp">
+
+        <TextView
+            android:id="@+id/deleteTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:includeFontPadding="false"
+            android:text="Очистить слот?"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/deleteDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/akrobat_extrabold"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="2dp"
+            android:text="Ник: Nick_Name\n\nСлот в лаунчере будет очищен. Персонаж на сервере не удаляется."
+            android:textColor="#CCFFFFFF"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deleteTitle" />
+
+        <LinearLayout
+            android:id="@+id/deleteButtons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="end"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deleteDesc">
+
+            <TextView
+                android:id="@+id/deleteCancel"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_cancel"
+                android:fontFamily="@font/akrobat_extrabold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="Отмена"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+
+            <TextView
+                android:id="@+id/deleteConfirm"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_delete"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="Удалить"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

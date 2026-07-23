@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/launcherMain" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/game_loading_screen" />
+    <ImageView android:layout_width="0.0dip" android:layout_height="fill_parent" android:src="@drawable/launcher_main_fade" android:scaleType="fitXY" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintWidth_percent="0.28125" />
+
+    <ImageView
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/launcher_main_login_fade"
+        android:visibility="visible"
+        app:layout_constraintHeight_percent="0.1648"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.2072" />
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/showControlScreenButton" android:layout_width="0.0dip" android:layout_height="0.0dip" app:layout_constraintHeight_percent="0.1" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintWidth_percent="0.35">
+        <ImageView android:id="@+id/mainAccountShield" android:layout_width="wrap_content" android:layout_height="0.0dip" android:src="@drawable/launcher_servers_account_shield" android:adjustViewBounds="true" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.6" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.5" />
+        <ImageView android:id="@+id/mainAccountIc" android:layout_width="0.0dip" android:layout_height="0.0dip" android:src="@drawable/launcher_servers_account_ic" android:layout_marginEnd="@dimen/_4sdp" app:layout_constraintBottom_toBottomOf="@+id/mainAccountShield" app:layout_constraintDimensionRatio="1:1" app:layout_constraintEnd_toStartOf="@+id/mainAccountShield" app:layout_constraintHeight_percent="0.5" app:layout_constraintTop_toTopOf="@+id/mainAccountShield" />
+        <TextView android:textSize="@dimen/_8sdp" android:textColor="#80ffffff" android:id="@+id/mainAccountTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ВАШ АККАУНТ" android:includeFontPadding="false" android:textAllCaps="true" android:fontFamily="@font/akrobat_extra_bold" android:textAlignment="textEnd" android:layout_marginEnd="@dimen/_5sdp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@+id/mainAccountIc" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.28" />
+
+        <TextView
+            android:id="@+id/mainAccountName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:includeFontPadding="false"
+            android:text="Установить Ник"
+            android:textAlignment="textEnd"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/mainAccountIc"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.7" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/newsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="0.0dip"
+        android:adjustViewBounds="true"
+        android:src="@drawable/launcher_main_news"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.125"
+        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.028" />
+    <TextView android:textSize="@dimen/_10sdp" android:textColor="@color/white" android:id="@+id/launcherMainServerTitle" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="ВЫБОР СЕРВЕРА" android:textAllCaps="true" android:fontFamily="@font/akrobat_extra_bold" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.0314" app:layout_constraintHorizontal_bias="0.023" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.04" app:layout_constraintWidth_percent="0.1843" />
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/launcherMainCurrentServer" android:background="@drawable/launcher_servers_item_bg" android:layout_width="@dimen/_117sdp" android:layout_height="0.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHeight_percent="0.1388" app:layout_constraintStart_toStartOf="@+id/launcherMainServerTitle" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.108" app:layout_constraintWidth_percent="0.226">
+
+        <TextView android:textSize="@dimen/_18sdp" android:textColor="#ff4d3709" android:gravity="center" android:id="@+id/launcherMainCurrentServerNum" android:background="@drawable/launcher_servers_item_gold_bg" android:layout_width="@dimen/_31sdp" android:layout_height="@dimen/_31sdp" android:text="\#1" android:fontFamily="@font/akrobat_black" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintDimensionRatio="1:1" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.7659" app:layout_constraintHorizontal_bias="0.06" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/launcherMainCurrentServerName"
+            android:layout_width="0.0dip"
+            android:layout_height="0.0dip"
+            android:autoSizeMaxTextSize="@dimen/_9sdp"
+            android:autoSizeMinTextSize="@dimen/_7sdp"
+            android:autoSizeStepGranularity="@dimen/_1sdp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:includeFontPadding="false"
+            android:text="КРОСС #1"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2393"
+            app:layout_constraintHorizontal_bias="0.678"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.255"
+            app:layout_constraintWidth_percent="0.4597" />
+
+        <TextView
+            android:id="@+id/launcher_main_current_server_online_info"
+            android:layout_width="0.0dip"
+            android:layout_height="0.0dip"
+            android:autoSizeMaxTextSize="@dimen/_6sdp"
+            android:autoSizeMinTextSize="@dimen/_4sdp"
+            android:autoSizeStepGranularity="@dimen/_1sdp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:includeFontPadding="false"
+            android:text="ОНЛАЙН СЕРВЕРА: %s из %s"
+            android:textAllCaps="true"
+            android:textColor="#80ffffff"
+            android:textSize="@dimen/_6sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1436"
+            app:layout_constraintHorizontal_bias="0.68"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/launcherMainCurrentServerName"
+            app:layout_constraintWidth_percent="0.4615" />
+
+        <TextView
+            android:id="@+id/launcher_main_server_busy"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:autoSizeMaxTextSize="@dimen/_7sdp"
+            android:autoSizeMinTextSize="@dimen/_5sdp"
+            android:autoSizeStepGranularity="@dimen/_1sdp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="ТОП"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_7sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/launcherMainCurrentServerProgress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/launcherMainCurrentServerProgress"
+            app:layout_constraintWidth_percent="0.249" />
+        <ProgressBar android:id="@+id/launcherMainCurrentServerProgress" android:layout_width="0.0dip" android:layout_height="0.0dip" android:layout_marginBottom="@dimen/_4sdp" android:max="1000" android:progress="300" android:indeterminate="false" android:progressDrawable="@drawable/launcher_server_online_low_progress_bar" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.0466" app:layout_constraintHorizontal_bias="0.51" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.83" app:layout_constraintWidth_percent="0.288" style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/launcherMainNewsTitle"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akrobat_extra_bold"
+        android:text="НОВОСТИ"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.0314"
+        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.276"
+        app:layout_constraintWidth_percent="0.1843" />
+    <com.multirium.mobile.common.eliviya_view.PercentRecyclerView android:scrollbarThumbVertical="@drawable/launcher_main_thumb" android:scrollbarTrackVertical="@drawable/launcher_main_track" android:scrollbarAlwaysDrawVerticalTrack="true" android:scrollbarStyle="insideInset" android:orientation="vertical" android:id="@+id/launcherMainNewsRc" android:scrollbars="vertical" android:layout_width="0.0dip" android:layout_height="0.0dip" android:fadeScrollbars="false" android:verticalScrollbarPosition="left" app:itemHeightPercent="0.38" app:itemWidthPercent="0.98" app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHeight_percent="0.5755" app:layout_constraintHorizontal_bias="0.024" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.755" app:layout_constraintWidth_percent="0.2135" app:marginBottomPercent="0.02" app:marginLeftPercent="0.02" />
+
+    <ImageView
+        android:id="@+id/launcherMainShadow"
+        android:layout_width="wrap_content"
+        android:layout_height="0.0dip"
+        android:adjustViewBounds="true"
+        android:alpha="0.6"
+        android:scaleType="fitXY"
+        android:scaleX="3.0"
+        android:scaleY="3.0"
+        android:src="@drawable/launcher_main_shadow"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/launcherMainGo"
+        app:layout_constraintEnd_toEndOf="@+id/launcherMainGo"
+        app:layout_constraintHeight_percent="0.0814"
+        app:layout_constraintStart_toStartOf="@+id/launcherMainGo"
+        app:layout_constraintTop_toTopOf="@+id/launcherMainGo" />
+    <TextView android:textSize="@dimen/_10sdp" android:textColor="@color/white" android:gravity="center" android:id="@+id/launcherMainGo" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginTop="@dimen/_8sdp" android:text="@string/launcher_main_go" android:fontFamily="@font/akrobat_bold" app:layout_constraintEnd_toEndOf="@+id/launcherMainNewsRc" app:layout_constraintStart_toStartOf="@+id/launcherMainNewsRc" app:layout_constraintTop_toBottomOf="@+id/launcherMainNewsRc" />
+    <ImageView android:id="@+id/launcherMainPlayBtn" android:layout_width="0.0dip" android:layout_height="wrap_content" android:src="@drawable/launcher_main_play_btn" android:adjustViewBounds="true" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintWidth_percent="0.3526" />
+
+    <ImageView
+        android:id="@+id/launcherMainMultiplierBg"
+        android:layout_width="wrap_content"
+        android:layout_height="0.0dip"
+        android:adjustViewBounds="true"
+        android:src="@drawable/launcher_main_multiplier_bg"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.1925"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.178" />
+
+    <com.multirium.mobile.common.custom_view.ColorizedTextView
+        android:id="@+id/launcherMainMultiplierText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:fontFamily="@font/akrobat_extra_bold"
+        android:text="{FFFFFF}Акция {AEE135}x2"
+        android:textAllCaps="true"
+        android:textSize="@dimen/_17sdp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/launcherMainMultiplierBg" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loader"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#e6000000"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loaderProgress"
+            android:layout_width="0.0dip"
+            android:layout_height="0.0dip"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.07"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loader_screen_progress" />
+
+        <TextView
+            android:id="@+id/loaderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_13sdp"
+            android:fontFamily="@font/akrobat_extra_bold"
+            android:text="оЖИДАНИЕ загрузки"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintEnd_toEndOf="@+id/loaderProgress"
+            app:layout_constraintStart_toStartOf="@+id/loaderProgress"
+            app:layout_constraintTop_toBottomOf="@+id/loaderProgress" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.Guideline android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintGuide_percent="0.1425" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/accountControlScreen"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/launcher_account_control_bg"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/accountControlPopUp"
+            android:layout_width="@dimen/_236sdp"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/launcher_auth_pop_up_bg"
+            android:minHeight="@dimen/_151sdp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/accountControlExitButton"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_6sdp"
+                android:src="@drawable/launcher_control_exit_button"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/launcherControlTitle"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Управление аккаунтом"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.09"
+                app:layout_constraintWidth_percent="0.871" />
+
+            <TextView
+                android:id="@+id/launcherControlDescription"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="Выберите действие"
+                android:textColor="#ffdedede"
+                android:textSize="@dimen/_7sdp"
+                app:layout_constraintStart_toStartOf="@+id/launcherControlTitle"
+                app:layout_constraintTop_toBottomOf="@+id/launcherControlTitle"
+                app:layout_constraintWidth_percent="0.8705" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/controlButtonsContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/launcherControlDescription">
+
+                <EditText
+                    android:id="@+id/changeLastNameBox"
+                    android:layout_width="0.0dip"
+                    android:layout_height="@dimen/_32sdp"
+                    android:background="@drawable/launcher_pop_up_control_bg"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:fontFamily="@font/akrobat_bold"
+                    android:gravity="center"
+                    android:hint="Введите фамилию"
+                    android:imeOptions="actionDone|flagNoFullscreen"
+                    android:inputType="textCapSentences"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white15"
+                    android:textSize="@dimen/_11sdp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/changeNickNameButt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.2096"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/changeFirstNameBox"
+                    app:layout_constraintWidth_percent="0.8705" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/changeNickNameButt"
+                    android:layout_width="0.0dip"
+                    android:layout_height="@dimen/_32sdp"
+                    android:background="@drawable/launcher_pop_up_control_bg"
+                    android:fontFamily="@font/akrobat_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="СОХРАНИТЬ"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11sdp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="@+id/changeLastNameBox"
+                    app:layout_constraintHeight_percent="0.2096"
+                    app:layout_constraintStart_toStartOf="@+id/changeLastNameBox"
+                    app:layout_constraintTop_toTopOf="@+id/exitAccountButton"
+                    app:layout_constraintWidth_percent="0.8705" />
+
+                <EditText
+                    android:id="@+id/changeFirstNameBox"
+                    android:layout_width="0.0dip"
+                    android:layout_height="@dimen/_32sdp"
+                    android:background="@drawable/launcher_pop_up_control_bg"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:fontFamily="@font/akrobat_bold"
+                    android:gravity="center"
+                    android:hint="Введите имя"
+                    android:imeOptions="actionDone|flagNoFullscreen"
+                    android:inputType="textCapSentences"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white15"
+                    android:textSize="@dimen/_11sdp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.2096"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.8705" />
+
+                <TextView
+                    android:id="@+id/changeNickNameButton"
+                    android:layout_width="0.0dip"
+                    android:layout_height="@dimen/_32sdp"
+                    android:background="@drawable/launcher_pop_up_control_bg"
+                    android:fontFamily="@font/akrobat_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="Сменить никнейм"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11sdp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.2096"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.8705" />
+
+                <TextView
+                    android:id="@+id/sendLogsButton"
+                    android:layout_width="0.0dip"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/launcher_pop_up_control_bg"
+                    android:fontFamily="@font/akrobat_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="Отправить логи"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11sdp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.2096"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/changeNickNameButton"
+                    app:layout_constraintWidth_percent="0.8705" />
+
+                <TextView
+                    android:id="@+id/exitAccountButton"
+                    android:layout_width="0.0dip"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/launcher_pop_up_red_bg"
+                    android:fontFamily="@font/akrobat_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="Выйти из аккаунта"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11sdp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.2096"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sendLogsButton"
+                    app:layout_constraintWidth_percent="0.8705" />
+
+                <TextView
+                    android:id="@+id/reinstallGameButton"
+                    android:layout_width="0.0dip"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/launcher_pop_up_red_bg"
+                    android:fontFamily="@font/akrobat_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="Переустановить игру"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11sdp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.2096"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sendLogsButton"
+                    app:layout_constraintWidth_percent="0.8705" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/resetPasswordPopUp"
+            android:layout_width="@dimen/_236sdp"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/launcher_auth_pop_up_bg"
+            android:minHeight="@dimen/_151sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/launcherLoginTitle"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Смена пароля"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.09"
+                app:layout_constraintWidth_percent="0.871" />
+
+            <TextView
+                android:id="@+id/launcherLoginDescription"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="Заполните данные указанные в полях ниже"
+                android:textColor="#ffdedede"
+                android:textSize="@dimen/_7sdp"
+                app:layout_constraintStart_toStartOf="@+id/launcherLoginTitle"
+                app:layout_constraintTop_toBottomOf="@+id/launcherLoginTitle"
+                app:layout_constraintWidth_percent="0.8705" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/inputContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:layout_constraintBottom_toTopOf="@+id/popUpYesBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/launcherLoginDescription">
+
+                <TextView
+                    android:id="@+id/launcherLoginInput"
+                    android:layout_width="0.0dip"
+                    android:layout_height="@dimen/_32sdp"
+                    android:background="@drawable/launcher_pop_up_input_bg"
+                    android:fontFamily="@font/inter_bold"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/_32sdp"
+                    android:paddingEnd="@dimen/_11sdp"
+                    android:text="denny11"
+                    android:textColor="#ff9d9fa2"
+                    android:textSize="@dimen/_7sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.2096"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.8705" />
+
+                <ImageView
+                    android:id="@+id/launcherLoginIc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/launcher_human_disabled_pop_up_ic"
+                    app:layout_constraintBottom_toBottomOf="@+id/launcherLoginInput"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.1146"
+                    app:layout_constraintStart_toStartOf="@+id/launcherLoginInput"
+                    app:layout_constraintTop_toTopOf="@+id/launcherLoginInput" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/passwordRow"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/launcherLoginInput">
+
+                    <EditText
+                        android:id="@+id/launcherPasswordInput"
+                        android:layout_width="0.0dip"
+                        android:layout_height="@dimen/_32sdp"
+                        android:background="@drawable/launcher_pop_up_input_bg"
+                        android:fontFamily="@font/inter_bold"
+                        android:hint="Введите новый пароль"
+                        android:imeOptions="actionDone|flagNoExtractUi|flagNoFullscreen"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/_32sdp"
+                        android:paddingEnd="@dimen/_11sdp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="@dimen/_7sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.2096"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.8705" />
+
+                    <ImageView
+                        android:id="@+id/launcherPasswordIc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_17sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/launcher_password_pop_up_ic"
+                        app:layout_constraintBottom_toBottomOf="@+id/launcherPasswordInput"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintHeight_percent="0.1146"
+                        app:layout_constraintStart_toStartOf="@+id/launcherPasswordInput"
+                        app:layout_constraintTop_toTopOf="@+id/launcherPasswordInput" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/repeatPasswordRow"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/passwordRow">
+
+                    <EditText
+                        android:id="@+id/launcherRepeatPasswordInput"
+                        android:layout_width="0.0dip"
+                        android:layout_height="@dimen/_32sdp"
+                        android:background="@drawable/launcher_pop_up_input_bg"
+                        android:fontFamily="@font/inter_bold"
+                        android:hint="Повторите новый пароль"
+                        android:imeOptions="actionDone|flagNoExtractUi|flagNoFullscreen"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/_32sdp"
+                        android:paddingEnd="@dimen/_11sdp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="@dimen/_7sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.8705" />
+
+                    <ImageView
+                        android:id="@+id/launcherRepeatPasswordIc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_17sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/launcher_password_pop_up_ic"
+                        app:layout_constraintBottom_toBottomOf="@+id/launcherRepeatPasswordInput"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintHeight_percent="0.1146"
+                        app:layout_constraintStart_toStartOf="@+id/launcherRepeatPasswordInput"
+                        app:layout_constraintTop_toTopOf="@+id/launcherRepeatPasswordInput" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/popUpYesBtn"
+                android:layout_width="0.0dip"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_14sdp"
+                android:background="@drawable/launcher_long_gold_btn"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:gravity="center"
+                android:text="Продолжить"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="#ff4d3709"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.481" />
+
+            <TextView
+                android:id="@+id/popUpNoBtn"
+                android:layout_width="0.0dip"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_14sdp"
+                android:fontFamily="@font/akrobat_extra_bold"
+                android:gravity="center"
+                android:text="назад"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="#ffe3e3e3"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.2168"
+                app:layout_constraintWidth_percent="0.3974" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

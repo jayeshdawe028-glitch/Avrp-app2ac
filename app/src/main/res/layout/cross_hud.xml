@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hud"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hud_bg_vignette_top_right">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chat_feed_container"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:clipToPadding="false"
+        app:layout_constraintStart_toEndOf="@id/stars_container"
+        app:layout_constraintEnd_toStartOf="@id/top_right_bar"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chat_feed_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_chat_feed"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/radar_disk"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/hud_radar_circle"
+        app:layout_constraintHeight_percent="0.28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fist_container"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintEnd_toEndOf="@id/radar_disk"
+        app:layout_constraintBottom_toBottomOf="@id/radar_disk">
+
+        <ImageView
+            android:id="@+id/fist_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/back_radar" />
+
+        <ImageView
+            android:id="@+id/fist_icon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/hud_fust" />
+    </FrameLayout>
+
+    <View
+        android:id="@+id/radar_anchor_center"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintStart_toStartOf="@id/radar_disk"
+        app:layout_constraintEnd_toEndOf="@id/radar_disk"
+        app:layout_constraintTop_toTopOf="@id/radar_disk"
+        app:layout_constraintBottom_toBottomOf="@id/radar_disk" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/stars_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:translationX="@dimen/_6sdp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/radar_disk"
+        app:layout_constraintEnd_toEndOf="@id/radar_disk"
+        app:layout_constraintHeight_percent="0.2046"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toEndOf="@id/radar_disk"
+        app:layout_constraintTop_toTopOf="@id/radar_disk"
+        app:layout_constraintVertical_bias="0.387"
+        app:layout_constraintWidth_percent="0.04">
+
+        <ImageView
+            android:id="@+id/star_6"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/hud_star_yellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1447"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/star_5"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/hud_star_yellow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1447"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <ImageView
+            android:id="@+id/star_4"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/hud_star_opacity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1447"
+            app:layout_constraintHorizontal_bias="0.62"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <ImageView
+            android:id="@+id/star_3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/hud_star_opacity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1447"
+            app:layout_constraintHorizontal_bias="0.62"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.61" />
+
+        <ImageView
+            android:id="@+id/star_2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/hud_star_opacity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1447"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.82" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/hp_container"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        app:layout_constraintCircle="@id/radar_anchor_center"
+        app:layout_constraintCircleRadius="75dp"
+        app:layout_constraintCircleAngle="310">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/hp_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="false"
+            app:indicatorInset="0dp"
+            app:indicatorSize="38dp"
+            app:trackThickness="4dp"
+            app:trackCornerRadius="20dp"
+            app:trackColor="@color/hud_ring_track"
+            app:indicatorColor="@color/hud_hp_color" />
+
+        <ImageView
+            android:id="@+id/hp_inner"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:src="@drawable/hud_stat_inner_circle" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/hp_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/hud_hp" />
+
+            <TextView
+                android:id="@+id/hp_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/halvar_medium"
+                android:includeFontPadding="false"
+                android:text="75"
+                android:textColor="@android:color/white"
+                android:textSize="9sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/armor_container"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        app:layout_constraintCircle="@id/radar_anchor_center"
+        app:layout_constraintCircleRadius="80dp"
+        app:layout_constraintCircleAngle="270">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/armor_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="false"
+            app:indicatorInset="0dp"
+            app:indicatorSize="38dp"
+            app:trackThickness="4dp"
+            app:trackCornerRadius="20dp"
+            app:trackColor="@color/hud_ring_track"
+            app:indicatorColor="@color/hud_armor_color" />
+
+        <ImageView
+            android:id="@+id/armor_inner"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:src="@drawable/hud_stat_inner_circle" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/armor_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/hud_armour" />
+
+            <TextView
+                android:id="@+id/armor_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/halvar_medium"
+                android:includeFontPadding="false"
+                android:text="60"
+                android:textColor="@android:color/white"
+                android:textSize="9sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/food_container"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        app:layout_constraintCircle="@id/radar_anchor_center"
+        app:layout_constraintCircleRadius="75dp"
+        app:layout_constraintCircleAngle="230">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/food_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="false"
+            app:indicatorInset="0dp"
+            app:indicatorSize="38dp"
+            app:trackThickness="4dp"
+            app:trackCornerRadius="20dp"
+            app:trackColor="@color/hud_ring_track"
+            app:indicatorColor="@color/red" />
+
+        <ImageView
+            android:id="@+id/food_inner"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:src="@drawable/hud_stat_inner_circle" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/food_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/hud_food" />
+
+            <TextView
+                android:id="@+id/food_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/halvar_medium"
+                android:includeFontPadding="false"
+                android:text="34"
+                android:textColor="@android:color/white"
+                android:textSize="9sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_right_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/money_container"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/money_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_money"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/money_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/halvar_medium"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:maxEms="10"
+                android:text="15.000.000.000"
+                android:textColor="#FFFFFFFF"
+                android:textSize="17sp"
+                app:layout_constraintStart_toEndOf="@id/money_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/menu_circle"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/hud_opacity_btn"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/money_container"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/menu_circle_icon"
+                android:layout_width="27dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/hud_menu_icon"
+                android:tint="#FFFFFFFF" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/hud_logo"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="10dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/hud_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/hud_bottom_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="14dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/hud_logo"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="4dp">
+
+            <ImageView
+                android:id="@+id/hud_user_icon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@drawable/ic_user"
+                android:tint="#FFFFFFFF"
+                android:layout_marginEnd="6dp" />
+
+            <TextView
+                android:id="@+id/hud_nick_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/halvar_medium"
+                android:includeFontPadding="false"
+                android:text="by Cross • ID: 34"
+                android:textColor="#FFFFFFFF"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/hud_date_icon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@drawable/ic_calendar"
+                android:layout_marginEnd="6dp" />
+
+            <TextView
+                android:id="@+id/hud_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/halvar_medium"
+                android:includeFontPadding="false"
+                android:text="00.00.0000"
+                android:textColor="#B3FFFFFF"
+                android:textSize="10sp" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+
+            <TextView
+                android:id="@+id/hud_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/halvar_medium"
+                android:includeFontPadding="false"
+                android:text="02:54"
+                android:textColor="#B3FFFFFF"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/voiceBtn"
+        android:layout_width="58dp"
+        android:layout_height="52dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/control_settings_voice_btn"
+        app:layout_constraintBottom_toTopOf="@+id/hud_bottom_info"
+        app:layout_constraintEnd_toEndOf="@+id/fist_container"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/fist_container"
+        app:layout_constraintTop_toBottomOf="@+id/fist_container"
+        app:layout_constraintVertical_bias="0.139" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

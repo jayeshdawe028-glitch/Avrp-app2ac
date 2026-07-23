@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="161.0dip" android:width="421.0dip" android:viewportWidth="421.0" android:viewportHeight="161.0"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt">
+    <path android:fillColor="@drawable/spawn_selection_active_button_bg__0" android:pathData="M0,0L0,161L340.5,161C384.96,161 421,124.96 421,80.5V80.5C421,36.04 384.96,0 340.5,0L0,0Z" />
+    <path android:fillColor="@drawable/spawn_selection_active_button_bg__1" android:pathData="M334.13,24.33C365.06,24.33 390.13,49.4 390.13,80.33V80.33C390.13,111.25 365.06,136.33 334.13,136.33L90.13,136.33C59.2,136.33 34.13,111.25 34.13,80.33V80.33C34.13,49.4 59.2,24.33 90.13,24.33L334.13,24.33Z" />
+</vector>

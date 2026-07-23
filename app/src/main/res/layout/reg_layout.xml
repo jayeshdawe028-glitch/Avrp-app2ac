@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reg_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gui.auth.Registration">
+
+    <ImageView
+        android:id="@+id/holo_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.035"
+        android:scaleType="centerCrop"
+        android:src="@drawable/holo_grid_pattern" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/left_panel"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/bg_panel_purple"
+        android:elevation="10dp"
+        android:padding="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akrobat_bold"
+            android:gravity="center"
+            android:text="СОЗДАНИЕ ГЕРОЯ"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/formContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/title">
+
+            <EditText
+                android:id="@+id/emailInput"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@drawable/input_purple"
+                android:fontFamily="@font/halvar_medium"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#66FFFFFF" />
+
+            <EditText
+                android:id="@+id/passInput"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/input_purple"
+                android:fontFamily="@font/halvar_medium"
+                android:hint="Пароль"
+                android:inputType="textPassword"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#66FFFFFF" />
+
+            <EditText
+                android:id="@+id/passInput2"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/input_purple"
+                android:fontFamily="@font/halvar_medium"
+                android:hint="Повторите пароль"
+                android:inputType="textPassword"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#66FFFFFF" />
+
+            <LinearLayout
+                android:id="@+id/genderContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/girlButton"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/chip_purple"
+                    android:fontFamily="@font/akrobat_bold"
+                    android:gravity="center"
+                    android:text="ЖЕН"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/boyButton"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/chip_purple"
+                    android:fontFamily="@font/akrobat_bold"
+                    android:gravity="center"
+                    android:text="МУЖ"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnContinue"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/btn_purple"
+                android:fontFamily="@font/akrobat_bold"
+                android:text="ПОДТВЕРДИТЬ"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/novaContainer"
+        android:layout_width="401dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/bg_nova_purple"
+        android:elevation="12dp"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/skipButton"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:background="@drawable/chip_purple_small"
+            android:fontFamily="@font/halvar_medium"
+            android:text="Пропустить"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:id="@+id/novaScroll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="8dp"
+            android:overScrollMode="never"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/skipButton">
+
+            <TextView
+                android:id="@+id/novaText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/halvar_medium"
+                android:lineSpacingExtra="3dp"
+                android:textColor="#EDE7FF"
+                android:textSize="12sp" />
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/novaAvatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/avatar_purple"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/nova_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/btn_skin_left"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="56dp"
+        android:alpha="0.92"
+        android:src="@drawable/ic_arrow_left_purple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.794" />
+
+    <ImageView
+        android:id="@+id/btn_skin_right"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="112dp"
+        android:alpha="0.92"
+        android:src="@drawable/ic_arrow_right_purple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.794" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gta_dialog_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Нижняя плашка + синяя подсветка -->
+    <FrameLayout
+        android:id="@+id/gta_dialog_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="22dp">
+
+        <!-- Синяя подсветка снизу -->
+        <View
+            android:id="@+id/gta_dialog_glow"
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_gta5rp_dialog_glow" />
+
+        <!-- Панель -->
+        <LinearLayout
+            android:id="@+id/gta_dialog_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@drawable/bg_gta5rp_dialog_panel">
+
+            <TextView
+                android:id="@+id/gta_dialog_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#BEE6F3"
+                android:textSize="13sp"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:includeFontPadding="false" />
+
+            <TextView
+                android:id="@+id/gta_dialog_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#EFFFFFFF"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="4"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="1dp" />
+
+            <LinearLayout
+                android:id="@+id/gta_dialog_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/gta_dialog_btn_left"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_gta5rp_btn_left"
+                    android:clickable="true"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:text="Хорошо"
+                    android:textColor="#EFFFFFFF"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:alpha="0.35"
+                    android:background="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/gta_dialog_btn_right"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Не надо"
+                    android:gravity="center"
+                    android:textColor="#EFFFFFFF"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:background="@drawable/sel_gta5rp_btn_right"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorAccent">#ff0000ee</item>
+    </style>
+    <style name="SampKeyboardEditText" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:textColorHighlight">#40ffffff</item>
+        <item name="android:textSelectHandleLeft">@drawable/samp_custom_text_select_handle_left</item>
+        <item name="android:textSelectHandleRight">@drawable/samp_custom_text_select_handle_right</item>
+        <item name="android:textSelectHandle">@drawable/samp_custom_text_select_handle</item>
+        <item name="android:textCursorDrawable">@drawable/samp_custom_cursor</item>
+    </style>
+    <style name="PopupWindowAnimation" parent="">
+        <item name="android:windowEnterAnimation">@anim/popup_show</item>
+        <item name="android:windowExitAnimation">@anim/popup_hide</item>
+    </style>
+    <style name="MontserratBold13spOr10ssp">
+        <item name="android:textSize">@dimen/_13ssp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+    <style name="MontserratRegular10spOr8ssp">
+        <item name="android:textSize">@dimen/_8ssp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+    <style name="MontserratRegular14sp"><item name="android:textSize">14.0sp</item><item name="android:textColor">@android:color/white</item><item name="android:fontFamily">@font/montserrat_regular</item></style>
+
+    <style name="MontserratRegular12sp"><item name="android:textSize">12.0sp</item><item name="android:textColor">@android:color/white</item><item name="android:fontFamily">@font/montserrat_regular</item></style>
+
+</resources>

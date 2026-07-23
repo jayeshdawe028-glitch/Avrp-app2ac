@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_menu_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/main_menu_bg"
+    android:clickable="true">
+
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menu_rc"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5416" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/game_menu_static"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:adjustViewBounds="true"
+        android:background="@drawable/main_menu_shield_bg"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.1092"
+        app:layout_constraintStart_toStartOf="@+id/start_v_line"
+        app:layout_constraintWidth_percent="0.2125">
+
+        <TextView
+            android:id="@+id/game_menu_static_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akrobat_bold"
+            android:text="ИГРОВОЕ МЕНЮ"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/game_menu_afk"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:adjustViewBounds="true"
+        android:background="@drawable/main_menu_shield_bg"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/end_v_line"
+        app:layout_constraintHeight_percent="0.1092"
+        app:layout_constraintWidth_percent="0.1828">
+
+        <ImageView
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/main_menu_afk_icon" />
+
+        <TextView
+            android:id="@+id/game_menu_afk_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akrobat_bold"
+            android:text="НА ПАУЗЕ: 01:30"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/back_home_btn"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:adjustViewBounds="true"
+        android:background="@drawable/main_menu_rounded_btn_selector"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintHeight_percent="0.0768"
+        app:layout_constraintStart_toStartOf="@+id/start_btn_v_line"
+        app:layout_constraintTop_toTopOf="@+id/start_btn_h_line"
+        app:layout_constraintWidth_percent="0.24375">
+
+        <ImageView
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/main_menu_home_icon" />
+
+        <TextView
+            android:id="@+id/back_home_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akrobat_bold"
+            android:text="ВЕРНУТЬСЯ В МЕНЮ ВХОДА"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_btn_v_line"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1625" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_btn_v_line"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8373" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_btn_h_line"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.044" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_v_line"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2942" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_v_line"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.70625" />
+</androidx.constraintlayout.widget.ConstraintLayout>

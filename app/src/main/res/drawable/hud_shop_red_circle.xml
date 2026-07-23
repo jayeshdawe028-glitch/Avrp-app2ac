@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="26.0dip" android:width="26.0dip" android:viewportWidth="26.0" android:viewportHeight="26.0"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt">
+    <path android:fillColor="@drawable/hud_shop_red_circle__0" android:pathData="M13,13m-13,0a13,13 0,1 1,26 0a13,13 0,1 1,-26 0" />
+    <path android:fillColor="#ffffffff" android:pathData="M11.968,17.752L11.416,5.2H14.584L14.056,17.752H11.968ZM12.904,22C12.136,22 11.584,21.448 11.584,20.68V20.368C11.584,19.6 12.136,19.048 12.904,19.048H13.048C13.816,19.048 14.368,19.6 14.368,20.368V20.68C14.368,21.448 13.816,22 13.048,22H12.904Z" />
+</vector>

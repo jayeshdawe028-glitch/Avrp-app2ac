@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#88000000"
+    android:padding="10dp">
+
+
+
+        <!-- Notch / speaker -->
+        <View
+            android:id="@+id/notch"
+            android:layout_width="96dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/phone_notch_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- PHONE SCREEN -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/phoneScreen"
+        android:layout_width="213dp"
+        android:layout_height="333dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/phone_screen_bg"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notch"
+        app:layout_constraintVertical_bias="0.757">
+
+        <!-- HEADER -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:background="@drawable/btn_icon_bg"
+            android:padding="6dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:gravity="center"
+            android:text="Neon RGB"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/btnBack"
+            app:layout_constraintEnd_toStartOf="@id/btnGear"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="@id/btnBack" />
+
+        <ImageButton
+            android:id="@+id/btnGear"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:background="@drawable/btn_icon_bg"
+            android:padding="6dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_gear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- COLOR WHEEL CARD -->
+        <FrameLayout
+            android:id="@+id/colorWheelContainer"
+            android:layout_width="113dp"
+            android:layout_height="114dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/panel_card_bg"
+            android:padding="8dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnBack">
+
+            <ImageView
+                android:id="@+id/imgColorWheel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/color_wheel_stub" />
+        </FrameLayout>
+
+        <!-- POWER -->
+        <ImageButton
+            android:id="@+id/btnPower"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/btn_power_bg"
+            android:padding="7dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_power"
+            app:layout_constraintBottom_toBottomOf="@id/colorWheelContainer"
+            app:layout_constraintEnd_toEndOf="@id/colorWheelContainer" />
+
+        <!-- BRIGHTNESS -->
+
+        <!-- PRESET COLORS -->
+        <TextView
+            android:id="@+id/tvBrightness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="4dp"
+            android:text="Brightness"
+            android:textColor="#A8FFFFFF"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/colorWheelContainer" />
+
+        <SeekBar
+            android:id="@+id/seekBrightness"
+            android:layout_width="185dp"
+            android:layout_height="15dp"
+            android:max="100"
+            android:progress="100"
+            android:progressDrawable="@drawable/seek_progress_neon"
+            android:splitTrack="false"
+            android:thumb="@drawable/seek_thumb_neon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBrightness" />
+
+        <LinearLayout
+            android:id="@+id/presetRow"
+            android:layout_width="207dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seekBrightness">
+
+            <View
+                android:id="@+id/presetRed"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/preset_red" />
+
+            <View
+                android:id="@+id/presetGreen"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/preset_green" />
+
+            <View
+                android:id="@+id/presetBlue"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/preset_blue" />
+
+            <View
+                android:id="@+id/presetYellow"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/preset_yellow" />
+
+            <View
+                android:id="@+id/presetPink"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/preset_pink" />
+        </LinearLayout>
+
+        <!-- MODES -->
+        <LinearLayout
+            android:id="@+id/modeRow"
+            android:layout_width="201dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/presetRow">
+
+            <TextView
+                android:id="@+id/modeStatic"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/mode_btn_bg"
+                android:gravity="center"
+                android:text="STATIC"
+                android:textColor="#FFFFFF"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/modeBlink"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/mode_btn_bg"
+                android:gravity="center"
+                android:text="BLINK"
+                android:textColor="#FFFFFF"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/modeFade"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/mode_btn_bg"
+                android:gravity="center"
+                android:text="FADE"
+                android:textColor="#FFFFFF"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/modeRgb"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:background="@drawable/mode_btn_bg"
+                android:gravity="center"
+                android:text="RGB"
+                android:textColor="#FFFFFF"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- APPLY -->
+        <TextView
+            android:id="@+id/btnApply"
+            android:layout_width="142dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_apply_neon"
+            android:gravity="center"
+            android:text="APPLY"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/modeRow"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

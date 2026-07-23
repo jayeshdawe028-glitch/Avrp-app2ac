@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Echo Cross
+Telegram: @tasjJson
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <!-- TOP-LEFT RED GLOW -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="5%"
+                android:centerY="0%"
+                android:gradientRadius="200dp"
+                android:startColor="#28FF2A2A"
+                android:centerColor="#0CFF2A2A"
+                android:endColor="#00FF2A2A"/>
+        </shape>
+    </item>
+
+    <!-- BOTTOM-RIGHT RED GLOW -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="100%"
+                android:centerY="100%"
+                android:gradientRadius="220dp"
+                android:startColor="#28FF2A2A"
+                android:centerColor="#0CFF2A2A"
+                android:endColor="#00FF2A2A"/>
+        </shape>
+    </item>
+
+    <!-- CENTER TRANSPARENCY (makes center clearer) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="50%"
+                android:centerY="50%"
+                android:gradientRadius="380dp"
+                android:startColor="#000B0B0B"
+                android:centerColor="#180B0B0B"
+                android:endColor="#3A0B0B0B"/>
+        </shape>
+    </item>
+
+</layer-list>
