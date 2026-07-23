@@ -155,5 +155,5 @@ dependencies {
 
     implementation 'com.github.lopspower:CircularProgressBar:3.0.2'
     //noinspection Aligned16KB
-    implementation 'com.github.hzy3774:AndroidUn7zip:1.6.0'
+   // implementation 'com.github.hzy3774:AndroidUn7zip:1.6.0'
 }
