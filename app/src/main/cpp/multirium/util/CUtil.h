@@ -8,7 +8,7 @@
 #include "../main.h"
 #include <arm_neon.h>
 #include "game/core/SimpleTransform.h"
-#include "game/Entity/Entity.h"
+#include "game/entity/Entity.h"
 // что то новенькое
 #include "imgui.h"
 

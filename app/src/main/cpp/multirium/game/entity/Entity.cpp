@@ -4,7 +4,7 @@
 
 #include "Entity.h"
 #include "game/core/game.h"
-#include "game/Collision/ColStore.h"
+#include "game/collision/ColStore.h"
 #include "patch.h"
 #include "game/core/General.h"
 #include "game/modelinfo/BaseModelInfo.h"

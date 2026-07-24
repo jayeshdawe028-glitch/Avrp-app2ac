@@ -6,7 +6,7 @@
 
 #include "game/core/common.h"
 #include "RegisteredCorona.h"
-#include "game/Entity/Entity.h"
+#include "game/entity/Entity.h"
 
 class CCoronas {
 public:

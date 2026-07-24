@@ -9,7 +9,7 @@
 #include "game/buildings/Building.h"
 #include "game/peds/CopPed.h"
 #include "game/vehicles/Heli.h"
-#include "game/Entity/Dummy.h"
+#include "game/entity/Dummy.h"
 #include "game/objects/Object.h"
 #include "game/objects/CutsceneObject.h"
 
