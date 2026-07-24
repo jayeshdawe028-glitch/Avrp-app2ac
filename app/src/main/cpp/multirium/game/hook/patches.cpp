@@ -8,7 +8,7 @@ VehicleAudioPropertiesStruct VehicleAudioProperties[20000];
 #include "game.h"
 #include "World.h"
 #include "net/netgame.h"
-#include "game/Audio/CAudioSystem.h"
+#include "game/audio/CAudioSystem.h"
 
 extern CGame* pGame;
 void readVehiclesAudioSettings()

@@ -5,9 +5,9 @@
 #pragma once
 
 #include "main.h"
-#include "game/Tasks/TaskManager.h"
-#include "game/Events/EventHandler.h"
-#include "game/Events/EventGroup.h"
+#include "game/tasks/TaskManager.h"
+#include "game/events/EventHandler.h"
+#include "game/events/EventGroup.h"
 
 class CTaskSimpleJetPack;
 

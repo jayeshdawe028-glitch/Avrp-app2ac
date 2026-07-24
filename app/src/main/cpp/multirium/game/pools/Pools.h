@@ -10,14 +10,14 @@
 #include "game/objects/Object.h"
 #include "game/core/core/PtrNodeSingleLink.h"
 #include "game/core/core/PtrNodeDoubleLink.h"
-#include "game/Tasks/Task.h"
+#include "game/tasks/Task.h"
 #include "game/core/core/EntryInfoNode.h"
 #include "game/entity/Dummy.h"
 #include "game/buildings/Building.h"
 #include "game/peds/CopPed.h"
 #include "game/vehicles/Heli.h"
 #include "game/objects/CutsceneObject.h"
-#include "game/Tasks/TaskTypes/TaskSimpleSlideToCoord.h"
+#include "game/tasks/TaskTypes/TaskSimpleSlideToCoord.h"
 
 
 class CPools {

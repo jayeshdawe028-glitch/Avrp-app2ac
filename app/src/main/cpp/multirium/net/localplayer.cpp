@@ -10,7 +10,7 @@
 #include "../java/CHud.h"
 #include "../java/jniutil.h"
 #include "../voice/SpeakerList.h"
-#include "game/Tasks/TaskTypes/TaskComplexEnterCarAsDriver.h"
+#include "game/tasks/TaskTypes/TaskComplexEnterCarAsDriver.h"
 #include "java/CChat.h"
 #include "java/CJavaGui.h"
 #include "java/CPauseMenu.h"
