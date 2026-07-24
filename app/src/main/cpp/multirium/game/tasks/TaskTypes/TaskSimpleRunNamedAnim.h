@@ -7,7 +7,7 @@
 #pragma once
 
 #include "TaskSimpleAnim.h"
-#include "../../Animation/AnimBlendHierarchy.h"
+#include "../../animation/AnimBlendHierarchy.h"
 #include "../TaskTimer.h"
 
 class CTaskSimpleRunNamedAnim : public CTaskSimpleAnim {
