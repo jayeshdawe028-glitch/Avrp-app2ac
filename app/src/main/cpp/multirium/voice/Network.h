@@ -14,7 +14,7 @@
 #include <vector>
 
 #include "../vendor/raknet/BitStream.h"
-#include "../vendor/RakNet/RakClient.h"
+#include "../vendor/raknet/RakClient.h"
 
 #include "include/SPSCQueue.h"
 #include "include/util/Timer.h"
