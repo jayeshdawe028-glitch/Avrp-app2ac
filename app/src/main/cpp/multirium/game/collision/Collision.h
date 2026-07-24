@@ -8,7 +8,7 @@
 
 #include "ColModel.h"
 #include "ColPoint.h"
-#include "../Entity/Entity.h"
+#include "../entity/Entity.h"
 #include "game/core/core/LinkList.h"
 #include <array>
 
