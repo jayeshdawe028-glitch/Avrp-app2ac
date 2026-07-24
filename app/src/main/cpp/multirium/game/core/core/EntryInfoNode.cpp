@@ -1,5 +1,5 @@
 #include "EntryInfoNode.h"
-#include "game/pools/pools.h"
+#include "game/pools/Pools.h"
 
 void CEntryInfoNode::InjectHooks()
 {
