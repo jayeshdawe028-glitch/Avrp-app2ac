@@ -5,7 +5,7 @@
 #include "PtrNodeSingleLink.h"
 #include "PtrNode.h"
 #include "PtrListSingleLink.h"
-#include "game/pools/pools.h"
+#include "game/pools/Pools.h"
 
 void CPtrNodeSingleLink::InjectHooks() {
 //    RH_ScopedClass(CPtrNodeSingleLink);
