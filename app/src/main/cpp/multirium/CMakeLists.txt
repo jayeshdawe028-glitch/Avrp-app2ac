@@ -40,6 +40,10 @@ set(glosshook-path "${CMAKE_CURRENT_SOURCE_DIR}/vendor/GlossHook/lib/${ANDROID_A
 add_library(glosshook STATIC IMPORTED)
 set_target_properties(glosshook PROPERTIES IMPORTED_LOCATION ${glosshook-path})
 
+set(bass-path "${CMAKE_CURRENT_SOURCE_DIR}/vendor/bass/libs/${ANDROID_ABI}/libbass.so")
+add_library(bass SHARED IMPORTED)
+set_target_properties(bass PROPERTIES IMPORTED_LOCATION ${bass-path})
+
 # Opus
 #add_library(libopus STATIC IMPORTED)
 #set_target_properties(libopus PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/vendor/opus/libopus.a)
@@ -55,7 +59,7 @@ add_library(multirium-client SHARED
 )
 
 
-target_link_libraries(multirium-client log EGL GLESv3 opus glosshook ${CMAKE_CURRENT_SOURCE_DIR}/vendor/bass/libs/${ANDROID_ABI}/libbass.so)
+target_link_libraries(multirium-client log EGL GLESv3 opus glosshook bass)
 #add_library(imgui STATIC imgui.cpp imgui_draw.cpp imgui_widgets.cpp imgui_tables.cpp)
 # Set compilation flags
 #
