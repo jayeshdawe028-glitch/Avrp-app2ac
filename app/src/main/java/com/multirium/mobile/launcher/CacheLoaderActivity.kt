@@ -37,7 +37,7 @@ import kotlin.system.exitProcess
 class CacheLoaderActivity : AppCompatActivity() {
 
     companion object {
-        private const val CACHE_URL = "https://wh27264.web2.maze-tech.ru/cache.zip"
+        private const val CACHE_URL = "https://archive.org/download/cache.AVRP.V3/cache.zip"
         private const val MUSIC_URL = "https://wh27264.web2.maze-tech.ru/download.mp3"
     }
 
