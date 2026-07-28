@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "341693929191",
-    "project_id": "eliviyacrmp",
-    "storage_bucket": "eliviyacrmp.firebasestorage.app"
+    "project_number": "795075416",
+    "project_id": "authentic-vibe-rp",
+    "storage_bucket": "authentic-vibe-rp.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:341693929191:android:fa6ce8430f5c219450f442",
+        "mobilesdk_app_id": "1:795075416:android:9f9d985e3c149d121abb2d",
         "android_client_info": {
           "package_name": "com.multirium.mobile"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD9TSiU8ak5Xr-GAMFMt-EL4rWBRqbHlJc"
+          "current_key": "AIzaSyBs4XTalGQXojcZkmeo2nOHdZ6HV3ixIe0"
         }
       ],
       "services": {
