@@ -7,9 +7,11 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
@@ -33,13 +35,5 @@ jobs:
       - name: Make Gradle Wrapper Executable
         run: chmod +x ./gradlew
 
-      - name: Build Release APK
-        run: ./gradlew assembleRelease
-
-      - name: Upload Release APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: AVRP-Release-APK
-          path: |
-            app/build/outputs/apk/release/*.apk
-            **/build/outputs/apk/release/*.apk
+      - name: List All Gradle Tasks
+        run: ./gradlew tasks --all
