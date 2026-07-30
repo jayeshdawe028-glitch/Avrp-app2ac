@@ -1,8 +1,5 @@
 package com.multirium.mobile.launcher
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
 import android.media.AudioAttributes
 import android.media.MediaPlayer
@@ -242,24 +239,27 @@ class CacheLoaderActivity : AppCompatActivity() {
     }
 
     private fun restartSampHard() {
-        try { stopMusic() } catch (_: Throwable) {}
+    try {
+        stopMusic()
+    } catch (_: Throwable) {}
 
-        val intent = Intent(applicationContext, Samp::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+    val intent = Intent(applicationContext, Samp::class.java).apply {
+        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+    }
+
+    Handler(Looper.getMainLooper()).postDelayed({
+        try {
+            startActivity(intent)
+        } catch (_: Throwable) {
+        } finally {
+            try {
+                finishAffinity()
+            } catch (_: Throwable) {
+                finish()
+            }
+            exitProcess(0)
         }
-
-        val flags = PendingIntent.FLAG_CANCEL_CURRENT or
-                (if (Build.VERSION.SDK_INT >= 23) PendingIntent.FLAG_IMMUTABLE else 0)
-
-        val pi = PendingIntent.getActivity(applicationContext, 101, intent, flags)
-
-        val am = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        am.setExact(AlarmManager.RTC, System.currentTimeMillis() + 350L, pi)
-
-        try { finishAffinity() } catch (_: Throwable) { finish() }
-
-        android.os.Process.killProcess(android.os.Process.myPid())
-        exitProcess(0)
+    }, 300)
     }
 
     // ------------------------------------------------------------
