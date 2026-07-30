@@ -37,7 +37,7 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Build Release APK
-  run: ./gradlew assembleRelease uploadCrashlyticsSymbolFileRelease --stacktrace
+       run: ./gradlew assembleRelease uploadCrashlyticsSymbolFileRelease --stacktrace
 
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
