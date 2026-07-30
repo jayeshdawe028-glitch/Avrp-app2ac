@@ -35,7 +35,15 @@ jobs:
       - name: Make Gradle Wrapper Executable
         run: chmod +x ./gradlew
 
+      - name: Restore Release Keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > release-keystore.jks
+
       - name: Build Release APK & Upload NDK Symbols
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew assembleRelease app:uploadCrashlyticsSymbolFileRelease
 
       - name: Upload Release APK
