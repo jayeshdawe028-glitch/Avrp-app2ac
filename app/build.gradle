@@ -6,6 +6,12 @@ plugins {
 }
 android {
     signingConfigs {
+    release {
+        storeFile file("$rootDir/release-keystore.jks")
+        storePassword System.getenv("KEYSTORE_PASSWORD")
+        keyAlias System.getenv("KEY_ALIAS")
+        keyPassword System.getenv("KEY_PASSWORD")
+    }
     }
 
     compileSdk 34
@@ -65,7 +71,7 @@ android {
             jniDebuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            //signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
         }
 
         all {
