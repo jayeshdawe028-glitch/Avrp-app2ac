@@ -650,17 +650,28 @@ bool CGame::InitialiseRenderWare() {
     TextureDatabaseRuntime::Load("gui", false, TextureDatabaseFormat::DF_DXT);
 
     TextureDatabaseRuntime* gtasa = TextureDatabaseRuntime::Load("gtasa", false, TextureDatabaseFormat::DF_DXT);
+if (gtasa)
     TextureDatabaseRuntime::Register(gtasa);
+else
+    Log("ERROR: failed to load gtasa");
 
-    TextureDatabaseRuntime* radar = TextureDatabaseRuntime::Load("radar", false, TextureDatabaseFormat::DF_ETC);
+TextureDatabaseRuntime* radar = TextureDatabaseRuntime::Load("radar", false, TextureDatabaseFormat::DF_ETC);
+if (radar)
     TextureDatabaseRuntime::Register(radar);
+else
+    Log("ERROR: failed to load radar");
 
-    TextureDatabaseRuntime* cars = TextureDatabaseRuntime::Load("cars", false, TextureDatabaseFormat::DF_DXT);
+TextureDatabaseRuntime* cars = TextureDatabaseRuntime::Load("cars", false, TextureDatabaseFormat::DF_DXT);
+if (cars)
     TextureDatabaseRuntime::Register(cars);
+else
+    Log("ERROR: failed to load cars");
 
-    TextureDatabaseRuntime* skins = TextureDatabaseRuntime::Load("skins", false, TextureDatabaseFormat::DF_DXT);
+TextureDatabaseRuntime* skins = TextureDatabaseRuntime::Load("skins", false, TextureDatabaseFormat::DF_DXT);
+if (skins)
     TextureDatabaseRuntime::Register(skins);
-
+else
+    Log("ERROR: failed to load skins");
     Log("InitialiseRenderWare-3");
     const auto camera = RwCameraCreate();
     if (!camera) {
