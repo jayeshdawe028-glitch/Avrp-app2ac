@@ -63,4 +63,4 @@ target_link_libraries(multirium-client log EGL GLESv3 opus glosshook bass)
 #add_library(imgui STATIC imgui.cpp imgui_draw.cpp imgui_widgets.cpp imgui_tables.cpp)
 # Set compilation flags
 #
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -s -g -fvisibility=default -pthread -Wall -O3 -fexceptions")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -g -fvisibility=default -pthread -Wall -O3 -fexceptions")
