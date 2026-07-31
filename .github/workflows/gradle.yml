@@ -1,8 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Java CI with Gradle
 
 on:
@@ -70,3 +65,11 @@ jobs:
           path: |
             app/build/outputs/apk/release/*.apk
             **/build/outputs/apk/release/*.apk
+
+      - name: Upload Native Debug Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: Native-Debug
+          path: |
+            app/build/intermediates/cxx/**/obj/**/*.so
+            app/build/intermediates/native_symbol_tables/**/*.sym
