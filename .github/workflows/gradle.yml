@@ -48,8 +48,11 @@ jobs:
 
       - name: Debug Native Symbols
         run: |
-          echo "========== BUILD ID =========="
-          find app/build -name "*.so" -exec readelf -n {} \; || true
+          echo "========== ARM64 BUILD ID =========="
+          readelf -n app/build/intermediates/cxx/RelWithDebInfo/*/obj/arm64-v8a/libmultirium-client.so || true
+
+          echo "========== ARMV7 BUILD ID =========="
+          readelf -n app/build/intermediates/cxx/RelWithDebInfo/*/obj/armeabi-v7a/libmultirium-client.so || true
 
           echo "========== SYMBOL FILES =========="
           find app/build -type f \( -name "*.so" -o -name "*.sym" -o -name "*.txt" \)
