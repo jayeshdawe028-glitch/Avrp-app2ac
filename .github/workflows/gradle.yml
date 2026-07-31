@@ -46,6 +46,20 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew assembleRelease app:uploadCrashlyticsSymbolFileRelease
 
+      - name: Debug Native Symbols
+        run: |
+          echo "========== BUILD ID =========="
+          find app/build -name "*.so" -exec readelf -n {} \; || true
+
+          echo "========== SYMBOL FILES =========="
+          find app/build -type f \( -name "*.so" -o -name "*.sym" -o -name "*.txt" \)
+
+          echo "========== STRIPPED =========="
+          ls -R app/build/intermediates/stripped_native_libs || true
+
+          echo "========== UNSTRIPPED =========="
+          ls -R app/build/intermediates/merged_native_libs || true
+
       - name: Upload Release APK
         uses: actions/upload-artifact@v4
         with:
