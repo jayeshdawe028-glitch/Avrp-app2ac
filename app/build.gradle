@@ -61,15 +61,11 @@ android {
         }
 
         release {
-            firebaseCrashlytics {
-                nativeSymbolUploadEnabled true
-            }
-
-            debuggable false
-            jniDebuggable false
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+    debuggable false
+    jniDebuggable false
+    minifyEnabled false
+    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    signingConfig signingConfigs.release
         }
 
         all {
