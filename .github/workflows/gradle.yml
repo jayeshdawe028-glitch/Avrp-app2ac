@@ -58,6 +58,31 @@ jobs:
           echo "========== UNSTRIPPED =========="
           ls -R app/build/intermediates/merged_native_libs || true
 
+      - name: Resolve Crash Address
+        run: |
+          SO=$(find app/build/intermediates/cxx -name libmultirium-client.so | head -n 1)
+
+          echo "SO FILE: $SO"
+
+          if [ -z "$SO" ]; then
+            echo "libmultirium-client.so not found!"
+            exit 1
+          fi
+
+          echo "========== ADDR2LINE =========="
+
+          if command -v llvm-addr2line >/dev/null 2>&1; then
+            llvm-addr2line -Cfpe "$SO" \
+              0x1f0ac4 \
+              0x1ead98
+          elif command -v addr2line >/dev/null 2>&1; then
+            addr2line -Cfpe "$SO" \
+              0x1f0ac4 \
+              0x1ead98
+          else
+            echo "addr2line not found!"
+          fi
+
       - name: Upload Release APK
         uses: actions/upload-artifact@v4
         with:
