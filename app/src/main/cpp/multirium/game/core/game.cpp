@@ -652,7 +652,7 @@ if (!txd) {
     return false;
 }
 
-TextureDatabaseRuntime* gta3 = TextureDatabaseRuntime::Load("gta3", false, TextureDatabaseFormat::DF_ETC);
+TextureDatabaseRuntime* gta3 = TextureDatabaseRuntime::Load("gta3", false, TextureDatabaseFormat::DF_DXT);
 if (!gta3) {
     Log("ERROR: gta3 failed");
     return false;
