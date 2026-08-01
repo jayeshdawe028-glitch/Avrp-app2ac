@@ -640,15 +640,47 @@ bool CGame::InitialiseRenderWare() {
     //CVisibilityPlugins::Initialise();
     Log("InitialiseRenderWare-2");
 
-    TextureDatabaseRuntime::Load("mobile", false, TextureDatabaseFormat::DF_DXT);
-    TextureDatabaseRuntime::Load("txd", false, TextureDatabaseFormat::DF_DXT);
-    TextureDatabaseRuntime::Load("gta3", false, TextureDatabaseFormat::DF_ETC);
-    TextureDatabaseRuntime::Load("gta_int", false, TextureDatabaseFormat::DF_ETC);
-   // TextureDatabaseRuntime::Load("player", false, TextureDatabaseFormat::DF_DXT);
-    TextureDatabaseRuntime::Load("menu", false, TextureDatabaseFormat::DF_DXT);
-    TextureDatabaseRuntime::Load("samp", false, TextureDatabaseFormat::DF_DXT);
-    TextureDatabaseRuntime::Load("gui", false, TextureDatabaseFormat::DF_DXT);
+    TextureDatabaseRuntime* mobile = TextureDatabaseRuntime::Load("mobile", false, TextureDatabaseFormat::DF_DXT);
+if (!mobile) {
+    Log("ERROR: mobile.txd failed");
+    return false;
+}
 
+TextureDatabaseRuntime* txd = TextureDatabaseRuntime::Load("txd", false, TextureDatabaseFormat::DF_DXT);
+if (!txd) {
+    Log("ERROR: txd failed");
+    return false;
+}
+
+TextureDatabaseRuntime* gta3 = TextureDatabaseRuntime::Load("gta3", false, TextureDatabaseFormat::DF_ETC);
+if (!gta3) {
+    Log("ERROR: gta3 failed");
+    return false;
+}
+
+TextureDatabaseRuntime* gta_int = TextureDatabaseRuntime::Load("gta_int", false, TextureDatabaseFormat::DF_ETC);
+if (!gta_int) {
+    Log("ERROR: gta_int failed");
+    return false;
+}
+
+TextureDatabaseRuntime* menu = TextureDatabaseRuntime::Load("menu", false, TextureDatabaseFormat::DF_DXT);
+if (!menu) {
+    Log("ERROR: menu failed");
+    return false;
+}
+
+TextureDatabaseRuntime* samp = TextureDatabaseRuntime::Load("samp", false, TextureDatabaseFormat::DF_DXT);
+if (!samp) {
+    Log("ERROR: samp failed");
+    return false;
+}
+
+TextureDatabaseRuntime* gui = TextureDatabaseRuntime::Load("gui", false, TextureDatabaseFormat::DF_DXT);
+if (!gui) {
+    Log("ERROR: gui failed");
+    return false;
+}
     TextureDatabaseRuntime* gtasa = TextureDatabaseRuntime::Load("gtasa", false, TextureDatabaseFormat::DF_DXT);
 if (gtasa)
     TextureDatabaseRuntime::Register(gtasa);
