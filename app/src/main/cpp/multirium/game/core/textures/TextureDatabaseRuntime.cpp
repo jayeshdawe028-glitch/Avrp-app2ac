@@ -5,31 +5,30 @@
 #include "TextureDatabaseRuntime.h"
 #include "../vendor/armhook/patch.h"
 
+extern void Log(const char* fmt, ...);
+
 TextureDatabaseRuntime* TextureDatabaseRuntime::Load(const char *withName, bool fullyLoad, TextureDatabaseFormat forcedFormat)
 {
-    return CHook::CallFunction<TextureDatabaseRuntime*>(g_libGTASA + (VER_x32 ? 0x001EA864 + 1 : 0x28771C), withName, fullyLoad, forcedFormat);
+    Log("========== Texture Load ==========");
+    Log("Name: %s", withName);
+    Log("g_libGTASA = %p", (void*)g_libGTASA);
+
+    TextureDatabaseRuntime* db =
+        CHook::CallFunction<TextureDatabaseRuntime*>(
+            g_libGTASA + (VER_x32 ? 0x001EA864 + 1 : 0x28771C),
+            withName,
+            fullyLoad,
+            forcedFormat
+        );
+
+    Log("Returned Pointer = %p", (void*)db);
+    Log("==================================");
+
+    return db;
 }
 
 void TextureDatabaseRuntime::Register(TextureDatabaseRuntime *toRegister) {
     CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x1E9B48 + 1 : 0x2865D8), toRegister);
-//    if (std::find(registered.dataPtr, registered.dataPtr + registered.numEntries, toRegister) != registered.dataPtr + registered.numEntries) {
-//        return; // ��� ���������������, �������
-//    }
-//
-//    if (registered.numAlloced < registered.numEntries + 1) {
-//        size_t newAlloc = ((3 * (registered.numEntries + 1)) >> 1) + 3;
-//        TextureDatabaseRuntime** newData = static_cast<TextureDatabaseRuntime**>(malloc(sizeof(TextureDatabaseRuntime*) * newAlloc));
-//
-//        if (registered.dataPtr) {
-//            std::memcpy(newData, registered.dataPtr, sizeof(TextureDatabaseRuntime*) * registered.numEntries);
-//            free(registered.dataPtr);
-//        }
-//
-//        registered.dataPtr = newData;
-//        registered.numAlloced = newAlloc;
-//    }
-//
-//    registered.dataPtr[registered.numEntries++] = toRegister;
 }
 
 void TextureDatabaseRuntime::Unregister(TextureDatabaseRuntime *toUnregister) {
@@ -46,21 +45,13 @@ void TextureDatabaseRuntime::UpdateStreaming(float deltaTime, bool flush) {
 
 TextureDatabaseRuntime* TextureDatabaseRuntime::GetDatabase(const char *dbName) {
     return CHook::CallFunction<TextureDatabaseRuntime*>(g_libGTASA + (VER_x32 ? 0x1EAC0C + 1 : 0x287AF4), dbName);
-//    for (unsigned int i = 0; i < TextureDatabaseRuntime::loaded.numEntries; ++i) {
-//        TextureDatabaseRuntime *currentDatabase = TextureDatabaseRuntime::loaded.dataPtr[i];
-//        if (strcmp(currentDatabase->name, dbName) == 0) {
-//            return currentDatabase;
-//        }
-//    }
-//
-//    return nullptr;
 }
 
 void TextureDatabaseRuntime::InjectHooks() {
-//    CHook::Write(g_libGTASA + (VER_x32 ? 0x675FCC : 0x84A020), &detailTextures);
+    // CHook::Write(g_libGTASA + (VER_x32 ? 0x675FCC : 0x84A020), &detailTextures);
     CHook::Write(g_libGTASA + (VER_x32 ? 0x676720 : 0x84AEB0), &storedTexels);
-//    CHook::Write(g_libGTASA + (VER_x32 ? 0x679768 : 0x850EE8), &loaded);
-//    CHook::Write(g_libGTASA + (VER_x32 ? 0x679E70 : 0x851CF8), &registered);
+    // CHook::Write(g_libGTASA + (VER_x32 ? 0x679768 : 0x850EE8), &loaded);
+    // CHook::Write(g_libGTASA + (VER_x32 ? 0x679E70 : 0x851CF8), &registered);
 }
 
 RwBool TextureAnnihilate(RwTexture *texture) {
