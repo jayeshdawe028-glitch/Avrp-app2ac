@@ -46,7 +46,7 @@ class LoaderActivity : AppCompatActivity() {
     private fun b(): LauncherDownloadBinding = requireNotNull(binding)
 
     // ====== INSTALLER CONFIG ======
-    private val cacheUrl = "https://archive.org/download/cache.AVRP.V3/cache.zip"
+    private val cacheUrl = "https://archive.org/download/cache_202608/cache.zip"
     private val gameCheckRelPath = "texdb/gta3.img"
 
     private var pathZip: File? = null
