@@ -646,17 +646,17 @@ if (!mobile) {
     return false;
 }
 
-TextureDatabaseRuntime* txd = TextureDatabaseRuntime::Load("txd", false, TextureDatabaseFormat::DF_DXT);
+	TextureDatabaseRuntime* txd = TextureDatabaseRuntime::Load("txd", false, TextureDatabaseFormat::DF_DXT);
 if (!txd) {
     Log("ERROR: txd failed");
     return false;
 }
 
-// TextureDatabaseRuntime* gta3 = TextureDatabaseRuntime::Load("gta3", false, TextureDatabaseFormat::DF_DXT);
-// if (!gta3) {
-//    Log("ERROR: gta3 failed");
-//    return false;
-// }
+ TextureDatabaseRuntime* gta3 = TextureDatabaseRuntime::Load("gta3", false, TextureDatabaseFormat::DF_DXT);
+ if (!gta3) {
+    Log("ERROR: gta3 failed");
+    return false;
+ }
 
 TextureDatabaseRuntime* gta_int = TextureDatabaseRuntime::Load("gta_int", false, TextureDatabaseFormat::DF_ETC);
 if (!gta_int) {
