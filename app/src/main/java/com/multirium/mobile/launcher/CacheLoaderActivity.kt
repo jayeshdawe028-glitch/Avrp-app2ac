@@ -34,7 +34,7 @@ import kotlin.system.exitProcess
 class CacheLoaderActivity : AppCompatActivity() {
 
     companion object {
-        private const val CACHE_URL = "https://archive.org/download/cache_202608/cache.zip"
+        private const val CACHE_URL = "https://archive.org/download/cache_AVRP_V0.1/cache.zip"
         private const val MUSIC_URL = "https://wh27264.web2.maze-tech.ru/download.mp3"
     }
 
@@ -89,7 +89,7 @@ class CacheLoaderActivity : AppCompatActivity() {
         pb?.progress = 0
         tvPct?.text = "0%"
 
-        setStatus("Проверка кеша…")
+        setStatus("Checking the cache…")
         startFancyAnimations()
         startMusic()
         startInstall()
@@ -164,7 +164,7 @@ class CacheLoaderActivity : AppCompatActivity() {
                 ui.post {
                     pb?.progress = 0
                     tvPct?.text = "0%"
-                    setStatus("Подключение…")
+                    setStatus("Connecting…")
                 }
 
                 // download with clean info (no ETA/HTTP)
@@ -176,14 +176,14 @@ class CacheLoaderActivity : AppCompatActivity() {
                     ui.post {
                         pb?.progress = pct
                         tvPct?.text = "$pct%"
-                        setStatus("Скачивание кеша…  $sizeStr  •  $speedStr")
+                        setStatus("Downloading cache…  $sizeStr  •  $speedStr")
                     }
                 }
 
                 ui.post {
                     pb?.progress = 0
                     tvPct?.text = "0%"
-                    val sz = if (totalBytesFromServer > 0L) "Архив: ${formatBytes(totalBytesFromServer)}" else "Архив: неизвестно"
+                    val sz = if (totalBytesFromServer > 0L) "Архив: ${formatBytes(totalBytesFromServer)}" else "Archive: unknown"
                     setStatus("Распаковка кеша…  $sz")
                 }
 
@@ -205,13 +205,13 @@ class CacheLoaderActivity : AppCompatActivity() {
                 waitForKeyFile(installDir)
 
                 if (!CachePaths.cacheExists(this)) {
-                    throw IllegalStateException("Кеш не установлен полностью (нет texdb/gta3.img)")
+                    throw IllegalStateException("The cache is not fully installed. (No texdb/gta3.img)")
                 }
 
                 ui.post {
                     pb?.progress = 100
                     tvPct?.text = "100%"
-                    setStatus("Готово! Перезапуск…")
+                    setStatus("Done! Restart…")
                 }
 
                 Thread.sleep(250)
@@ -221,7 +221,7 @@ class CacheLoaderActivity : AppCompatActivity() {
                 ui.post {
                     pb?.progress = 0
                     tvPct?.text = "0%"
-                    setStatus("Ошибка установки кеша:\n${t.message ?: t.javaClass.simpleName}")
+                    setStatus("Cache installation error:\n${t.message ?: t.javaClass.simpleName}")
                 }
             } finally {
                 try { tmpZip.delete() } catch (_: Throwable) {}
