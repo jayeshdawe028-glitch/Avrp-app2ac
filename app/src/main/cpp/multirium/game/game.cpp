@@ -664,11 +664,11 @@ if (!gta_int) {
     return false;
 }*/
 
-TextureDatabaseRuntime* menu = TextureDatabaseRuntime::Load("menu", false, TextureDatabaseFormat::DF_DXT);
+/*TextureDatabaseRuntime* menu = TextureDatabaseRuntime::Load("menu", false, TextureDatabaseFormat::DF_DXT);
 if (!menu) {
     Log("ERROR: menu failed");
     return false;
-}
+}*/
 
 TextureDatabaseRuntime* samp = TextureDatabaseRuntime::Load("samp", false, TextureDatabaseFormat::DF_DXT);
 if (!samp) {
