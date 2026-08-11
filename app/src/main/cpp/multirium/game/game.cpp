@@ -670,11 +670,11 @@ if (!menu) {
     return false;
 }*/
 
-TextureDatabaseRuntime* samp = TextureDatabaseRuntime::Load("samp", false, TextureDatabaseFormat::DF_DXT);
+/*TextureDatabaseRuntime* samp = TextureDatabaseRuntime::Load("samp", false, TextureDatabaseFormat::DF_DXT);
 if (!samp) {
     Log("ERROR: samp failed");
     return false;
-}
+}*/
 
 TextureDatabaseRuntime* gui = TextureDatabaseRuntime::Load("gui", false, TextureDatabaseFormat::DF_DXT);
 if (!gui) {
