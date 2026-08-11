@@ -658,11 +658,11 @@ if (!txd) {
     return false;
  }*/
 
-TextureDatabaseRuntime* gta_int = TextureDatabaseRuntime::Load("gta_int", false, TextureDatabaseFormat::DF_ETC);
+/*TextureDatabaseRuntime* gta_int = TextureDatabaseRuntime::Load("gta_int", false, TextureDatabaseFormat::DF_ETC);
 if (!gta_int) {
     Log("ERROR: gta_int failed");
     return false;
-}
+}*/
 
 TextureDatabaseRuntime* menu = TextureDatabaseRuntime::Load("menu", false, TextureDatabaseFormat::DF_DXT);
 if (!menu) {
