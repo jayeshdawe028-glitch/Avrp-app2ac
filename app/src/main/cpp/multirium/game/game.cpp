@@ -676,11 +676,11 @@ if (!samp) {
     return false;
 }*/
 
-TextureDatabaseRuntime* gui = TextureDatabaseRuntime::Load("gui", false, TextureDatabaseFormat::DF_DXT);
+/*TextureDatabaseRuntime* gui = TextureDatabaseRuntime::Load("gui", false, TextureDatabaseFormat::DF_DXT);
 if (!gui) {
     Log("ERROR: gui failed");
     return false;
-}
+}*/
     TextureDatabaseRuntime* gtasa = TextureDatabaseRuntime::Load("gtasa", false, TextureDatabaseFormat::DF_DXT);
 if (gtasa)
     TextureDatabaseRuntime::Register(gtasa);
