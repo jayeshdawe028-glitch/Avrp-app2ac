@@ -888,11 +888,32 @@ size_t OS_FileOpen_hook(uintptr_t a1, OSFile *a2, const char *a3, int a4)
 {
     size_t retn = OS_FileOpen(a1, a2, a3, a4);
 
+    Log("DEBUG: OS_FileOpen path=%s a2=%p result=%zu", 
+        a3 ? a3 : "<NULL>", 
+        (void*)a2, 
+        retn);
+
+    if (!a3)
+    {
+        Log("DEBUG: OS_FileOpen received NULL path");
+        return retn;
+    }
+
     if (isEncrypted(a3))
     {
+        Log("DEBUG: ENCRYPTED FILE DETECTED: %s", a3);
+
+        if (!a2)
+        {
+            Log("DEBUG: ERROR - encrypted file has NULL OSFile pointer");
+            return retn;
+        }
+
         lastOpenedFile = *a2;
+
+        Log("DEBUG: lastOpenedFile saved");
     }
-  //  Log("%s%s", g_pszStorage, a3);
+
     return retn;
 }
 
