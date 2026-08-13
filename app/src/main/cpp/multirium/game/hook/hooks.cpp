@@ -932,7 +932,7 @@ size_t OS_FileRead_hook(FILE *file, void *buffer, size_t numBytes)
     {
         lastOpenedFile = 0;
 
-        /*AES_ctx ctx;
+        AES_ctx ctx;
         InitCTX(ctx, &g_iEncryptionKeyTXD[0]);
 
         size_t retv = OS_FileRead(file, buffer, numBytes);
@@ -944,7 +944,7 @@ size_t OS_FileRead_hook(FILE *file, void *buffer, size_t numBytes)
             AES_CBC_decrypt_buffer(&ctx, (uint8_t *)pointer, PART_SIZE_TXD);
             pointer += PART_SIZE_TXD;
         }
-        return retv;*/
+        return retv;
     }
     return OS_FileRead(file, buffer, numBytes);
 }
