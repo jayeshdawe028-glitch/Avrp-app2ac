@@ -660,12 +660,9 @@ if (!gta3) {
 
 TextureDatabaseRuntime* menu = TextureDatabaseRuntime::Load("menu", false, TextureDatabaseFormat::DF_DXT);
 if (!menu) {
-    Log("ERROR: menu database failed to load");
+    Log("ERROR: menu failed");
     return false;
 }
-
-TextureDatabaseRuntime::Register(menu);
-Log("TextureDatabase: menu registered successfully: %p", (void*)menu);
 
 TextureDatabaseRuntime* samp = TextureDatabaseRuntime::Load("samp", false, TextureDatabaseFormat::DF_DXT);
 if (!samp) {
