@@ -658,17 +658,14 @@ if (!gta3) {
     return false;
 }
 
-TextureDatabaseRuntime* gta_int = TextureDatabaseRuntime::Load("gta_int", false, TextureDatabaseFormat::DF_ETC);
-if (!gta_int) {
-    Log("ERROR: gta_int failed");
+TextureDatabaseRuntime* menu = TextureDatabaseRuntime::Load("menu", false, TextureDatabaseFormat::DF_DXT);
+if (!menu) {
+    Log("ERROR: menu database failed to load");
     return false;
 }
 
-TextureDatabaseRuntime* menu = TextureDatabaseRuntime::Load("menu", false, TextureDatabaseFormat::DF_DXT);
-if (!menu) {
-    Log("ERROR: menu failed");
-    return false;
-}
+TextureDatabaseRuntime::Register(menu);
+Log("TextureDatabase: menu registered successfully: %p", (void*)menu);
 
 TextureDatabaseRuntime* samp = TextureDatabaseRuntime::Load("samp", false, TextureDatabaseFormat::DF_DXT);
 if (!samp) {
