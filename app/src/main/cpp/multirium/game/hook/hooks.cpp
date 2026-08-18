@@ -222,6 +222,10 @@ int GetMaxStorage(void) {
 #include "game/core/widgets/TouchInterface.h"
 
 void Render2dStuff() {
+    if (!pGUI || !pGame || !pNetGame) {
+        return;
+    }
+
     if (CHook::CallFunction<bool>(
             g_libGTASA + (VER_x32 ? 0x001BB7F4 + 1 : 0x24EA90))) // emu_IsAltRenderTarget()
         CHook::CallFunction<void>(

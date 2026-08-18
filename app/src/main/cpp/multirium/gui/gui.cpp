@@ -164,6 +164,10 @@ void ImGui_ImplRenderWare_NewFrame();
 
 void CGUI::Render()
 {
+    if (!pGUI || !pGame || !pNetGame) {
+        return;
+    }
+
     if(pNetGame) {
         PreProcessInput();
         ImGui_ImplRenderWare_NewFrame();
