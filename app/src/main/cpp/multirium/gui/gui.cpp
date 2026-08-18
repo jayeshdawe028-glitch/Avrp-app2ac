@@ -164,7 +164,7 @@ void ImGui_ImplRenderWare_NewFrame();
 
 void CGUI::Render()
 {
-    if (!pGUI || !pGame || !pNetGame) {
+    if (!pGame || !pNetGame) {
         return;
     }
 
