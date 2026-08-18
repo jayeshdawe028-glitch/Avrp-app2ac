@@ -58,6 +58,10 @@ void CFontRenderer::RenderText(const char* szText, CFontInstance* pFont, unsigne
 {
 	x = 0;
 	y_max = 0;
+
+    if (!pFont) {
+        return;
+    }
 	for (int i = 0; i < strlen(szText); ++i)
 	{
 		// how wide is this character

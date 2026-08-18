@@ -9,6 +9,8 @@ include_directories(
 # Optional dependencies
 # find_package(shadowhook REQUIRED CONFIG)
 
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--build-id")
+
 # Subprojects
 add_subdirectory(opus)
 add_subdirectory(multirium)
