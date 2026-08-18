@@ -182,7 +182,7 @@ void CGUI::Render()
         CDebugInfo::Draw();
         DebugModules::PreRenderUpdate();
 
-        if (pGame->FindPlayerPed()->IsInVehicle() && !pGame->FindPlayerPed()->IsAPassenger() && !CDialog::bIsShow) {
+        if (pGame && pGame->FindPlayerPed() && pGame->FindPlayerPed()->IsInVehicle() && !pGame->FindPlayerPed()->IsAPassenger() && !CDialog::bIsShow) {
             if (!CSpeedometr::bIsShow) {
                 CSpeedometr::show();
             }
