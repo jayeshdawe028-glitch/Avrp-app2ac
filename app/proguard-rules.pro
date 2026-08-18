@@ -14,7 +14,6 @@
 -dontwarn org.conscrypt.**
 -dontwarn org.bouncycastle.**
 -dontwarn org.openjsse.**
--keep class com.google.firebase.messaging.** { *; }
 -keep class com.google.firebase.** { *; }
 -keep class com.google.firebase.messaging.** { *; }
 -keep class com.google.firebase.crashlytics.** { *; }

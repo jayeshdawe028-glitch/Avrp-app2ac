@@ -56,20 +56,24 @@ android {
             debuggable false
             jniDebuggable false
             minifyEnabled false
+            shrinkResources false
+            ndk {
+                debugSymbolLevel 'FULL'
+            }
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         release {
-            debuggable false
-            jniDebuggable false
-            minifyEnabled false
+    debuggable false
+    jniDebuggable false
+    minifyEnabled false
             shrinkResources false
             ndk {
                 debugSymbolLevel 'FULL'
             }
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    signingConfig signingConfigs.release
 
             firebaseCrashlytics {
                 nativeSymbolUploadEnabled true
