@@ -282,7 +282,7 @@ void Render2dStuff() {
         if (pTextDrawPool) pTextDrawPool->Draw();
     }
 
-    if (pGUI) pGUI->Render();
+    if (pGUI && pGame) pGUI->Render();
 }
 
 /* =============================================================================== */
