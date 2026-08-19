@@ -283,7 +283,7 @@ void Render2dStuff() {
 
     if (pNetGame) {
         CTextDrawPool *pTextDrawPool = pNetGame->GetTextDrawPool();
-        if (pTextDrawPool) pTextDrawPool->Draw();
+        if (pTextDrawPool != nullptr) pTextDrawPool->Draw();
     }
 
     if (pGUI && pGame) pGUI->Render();
