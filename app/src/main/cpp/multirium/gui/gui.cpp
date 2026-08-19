@@ -164,10 +164,6 @@ void ImGui_ImplRenderWare_NewFrame();
 
 void CGUI::Render()
 {
-    if (!pGame || !pNetGame) {
-        return;
-    }
-
     if(pNetGame) {
         PreProcessInput();
         ImGui_ImplRenderWare_NewFrame();
@@ -186,7 +182,7 @@ void CGUI::Render()
         CDebugInfo::Draw();
         DebugModules::PreRenderUpdate();
 
-        if (pGame && pGame->FindPlayerPed() && pGame->FindPlayerPed()->IsInVehicle() && !pGame->FindPlayerPed()->IsAPassenger() && !CDialog::bIsShow) {
+        if (pGame->FindPlayerPed()->IsInVehicle() && !pGame->FindPlayerPed()->IsAPassenger() && !CDialog::bIsShow) {
             if (!CSpeedometr::bIsShow) {
                 CSpeedometr::show();
             }

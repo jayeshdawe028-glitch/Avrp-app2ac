@@ -129,7 +129,7 @@ public class Samp extends GTASA implements HeightProvider.HeightListener {
     public FrameLayout getBackUILayout() { return this.mBackUILayout; }
 
     public void exitGame() {
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false);
         finishAndRemoveTask();
         System.exit(0);
     }
