@@ -1,5 +1,9 @@
 #include "CFontRenderer.h"
 
+#include <android/log.h>
+#define LOG_TAG "MultiriumNative"
+#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
 #include <cstdlib>
 #include <cstring>
@@ -59,7 +63,9 @@ void CFontRenderer::RenderText(const char* szText, CFontInstance* pFont, unsigne
 	x = 0;
 	y_max = 0;
 
-    if (pFont == nullptr || !pFont->IsOk() || pFont->m_sFontInfo.data == nullptr) {
+    LOGD("RenderText: pFont=%p", pFont);
+    if (!pFont || !pFont->IsOk() || !pFont->m_sFontInfo.data) {
+        LOGE("RenderText: Aborted invalid font pointer or data");
         return;
     }
 	for (int i = 0; i < strlen(szText); ++i)

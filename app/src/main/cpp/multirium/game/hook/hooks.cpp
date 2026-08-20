@@ -1,4 +1,8 @@
 #include <GLES2/gl2.h>
+#include <android/log.h>
+#define LOG_TAG "MultiriumNative"
+#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 #include "main.h"
 #include "vendor/armhook/patch.h"
 #include "game.h"
@@ -154,7 +158,9 @@ PLAYERID FindActorIDFromGtaPtr(CPed *pPed) {
 /* =============================================================================== */
 
 void RenderEffects() {
+    LOGD("RenderEffects: pGUI=%p, pGame=%p, pNetGame=%p", pGUI, pGame, pNetGame);
     if (!pGUI || !pGame || !pNetGame) {
+        LOGE("RenderEffects: Aborted due to null pointer");
         return;
     }
 
@@ -225,7 +231,9 @@ int GetMaxStorage(void) {
 #include "game/core/widgets/TouchInterface.h"
 
 void Render2dStuff() {
+    LOGD("RenderEffects: pGUI=%p, pGame=%p, pNetGame=%p", pGUI, pGame, pNetGame);
     if (!pGUI || !pGame || !pNetGame) {
+        LOGE("RenderEffects: Aborted due to null pointer");
         return;
     }
 
