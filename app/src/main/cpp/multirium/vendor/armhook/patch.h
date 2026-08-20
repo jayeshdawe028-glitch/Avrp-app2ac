@@ -159,6 +159,10 @@ public:
     template <typename Ret, typename... Args>
     static inline Ret CallFunction(uintptr address, Args... args)
     {
+        if (address == 0) {
+            LOGE("Hook CallFunction failed: null pointer/handle");
+            return (Ret)0;
+        }
         return (( Ret(*)(Args...))(address) )(args...);
     }
 
