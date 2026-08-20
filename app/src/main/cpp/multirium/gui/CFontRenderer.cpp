@@ -59,7 +59,7 @@ void CFontRenderer::RenderText(const char* szText, CFontInstance* pFont, unsigne
 	x = 0;
 	y_max = 0;
 
-    if (pFont == nullptr || !pFont->IsOk()) {
+    if (pFont == nullptr || !pFont->IsOk() || pFont->m_sFontInfo.data == nullptr) {
         return;
     }
 	for (int i = 0; i < strlen(szText); ++i)

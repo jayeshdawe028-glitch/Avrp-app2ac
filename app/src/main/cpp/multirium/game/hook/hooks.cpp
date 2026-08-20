@@ -154,6 +154,9 @@ PLAYERID FindActorIDFromGtaPtr(CPed *pPed) {
 /* =============================================================================== */
 
 void RenderEffects() {
+    if (!pGUI || !pGame || !pNetGame) {
+        return;
+    }
 
     CClouds::MovingFogRender();
     //CClouds::VolumetricCloudsRender();
