@@ -652,8 +652,11 @@ if (!txd) {
     return false;
 }
 
-TextureDatabaseRuntime* gta3 = TextureDatabaseRuntime::Load("gta3", false, TextureDatabaseFormat::DF_DXT);
+const char* dbName = "gta3";
+LOGE("Loading database: %s", dbName);
+TextureDatabaseRuntime* gta3 = TextureDatabaseRuntime::Load(dbName, false, TextureDatabaseFormat::DF_DXT);
 if (!gta3) {
+    LOGE("TextureDatabaseRuntime::Load failed: null pointer/handle");
     Log("ERROR: gta3 failed");
     return false;
 }
