@@ -164,18 +164,18 @@ public:
     {
         if constexpr (std::is_same_v<Ret, TextureDatabaseRuntime*>) {
             if constexpr (std::is_pointer_v<First>) {
-                if (address == 0 || first == nullptr) {
+                if (address <= 0x1000 || first == nullptr) {
                     LOGE("TextureDatabaseRuntime::Load failed: null pointer/handle");
                     return (Ret)0;
                 }
             } else {
-                if (address == 0) {
+                if (address <= 0x1000) {
                     LOGE("TextureDatabaseRuntime::Load failed: null pointer/handle");
                     return (Ret)0;
                 }
             }
         } else {
-            if (address == 0) {
+            if (address <= 0x1000) {
                 LOGE("Hook CallFunction failed: null pointer/handle");
                 return (Ret)0;
             }
@@ -187,12 +187,12 @@ public:
     static inline Ret CallFunction(uintptr address)
     {
         if constexpr (std::is_same_v<Ret, TextureDatabaseRuntime*>) {
-            if (address == 0) {
+            if (address <= 0x1000) {
                 LOGE("TextureDatabaseRuntime::Load failed: null pointer/handle");
                 return (Ret)0;
             }
         } else {
-            if (address == 0) {
+            if (address <= 0x1000) {
                 LOGE("Hook CallFunction failed: null pointer/handle");
                 return (Ret)0;
             }
