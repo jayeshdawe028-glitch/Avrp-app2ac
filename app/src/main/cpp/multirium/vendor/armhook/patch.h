@@ -7,6 +7,9 @@
 #include <ctype.h>
 #include "game/core/core/Link.h"
 #include <sys/cachectl.h>
+#include <type_traits>
+
+class TextureDatabaseRuntime;
 
 #ifdef __arm__
 #define __32BIT
@@ -156,14 +159,45 @@ public:
         }
         return res;
     }
-    template <typename Ret, typename... Args>
-    static inline Ret CallFunction(uintptr address, Args... args)
+    template <typename Ret, typename First, typename... Rest>
+    static inline Ret CallFunction(uintptr address, First first, Rest... rest)
     {
-        if (address == 0) {
-            LOGE("Hook CallFunction failed: null pointer/handle");
-            return (Ret)0;
+        if constexpr (std::is_same_v<Ret, TextureDatabaseRuntime*>) {
+            if constexpr (std::is_pointer_v<First>) {
+                if (address == 0 || first == nullptr) {
+                    LOGE("TextureDatabaseRuntime::Load failed: null pointer/handle");
+                    return (Ret)0;
+                }
+            } else {
+                if (address == 0) {
+                    LOGE("TextureDatabaseRuntime::Load failed: null pointer/handle");
+                    return (Ret)0;
+                }
+            }
+        } else {
+            if (address == 0) {
+                LOGE("Hook CallFunction failed: null pointer/handle");
+                return (Ret)0;
+            }
         }
-        return (( Ret(*)(Args...))(address) )(args...);
+        return (( Ret(*)(First, Rest...))(address) )(first, rest...);
+    }
+
+    template <typename Ret>
+    static inline Ret CallFunction(uintptr address)
+    {
+        if constexpr (std::is_same_v<Ret, TextureDatabaseRuntime*>) {
+            if (address == 0) {
+                LOGE("TextureDatabaseRuntime::Load failed: null pointer/handle");
+                return (Ret)0;
+            }
+        } else {
+            if (address == 0) {
+                LOGE("Hook CallFunction failed: null pointer/handle");
+                return (Ret)0;
+            }
+        }
+        return (( Ret(*)())(address) )();
     }
 
     template <typename Ret, typename... Args>
