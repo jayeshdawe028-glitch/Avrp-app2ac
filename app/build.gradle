@@ -78,6 +78,8 @@ android {
             firebaseCrashlytics {
                 nativeSymbolUploadEnabled true
                 mappingFileUploadEnabled false
+                strippedNativeLibsDir 'build/intermediates/stripped_native_libs/release/out/lib'
+                unstrippedNativeLibsDir 'build/intermediates/merged_native_libs/release/out/lib'
             }
         }
 
