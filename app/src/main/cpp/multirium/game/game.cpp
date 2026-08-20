@@ -658,7 +658,6 @@ TextureDatabaseRuntime* gta3 = TextureDatabaseRuntime::Load(dbName, false, Textu
 if (!gta3) {
     LOGE("TextureDatabaseRuntime::Load failed: null pointer/handle");
     Log("ERROR: gta3 failed");
-    return false;
 }
 
 TextureDatabaseRuntime* menu = TextureDatabaseRuntime::Load("menu", false, TextureDatabaseFormat::DF_DXT);
