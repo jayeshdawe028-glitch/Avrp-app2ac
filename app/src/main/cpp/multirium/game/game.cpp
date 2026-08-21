@@ -631,26 +631,8 @@ void LightsCreate(RpWorld* world) {
 void InitGui();
 
 bool CGame::InitialiseRenderWare() {
-    Log("InitialiseRenderWare ..");
     CCamera& TheCamera = *reinterpret_cast<CCamera*>(g_libGTASA + (VER_x32 ? 0x00951FA8 : 0xBBA8D0));
 
-    CTxdStore::Initialise();
-    Log("InitialiseRenderWare-1");
-    CHook::CallFunction<void>("_ZN18CVisibilityPlugins10InitialiseEv");
-    //CVisibilityPlugins::Initialise();
-    Log("InitialiseRenderWare-2");
-
-    if (g_libGTASA <= 0x1000 || RsGlobal == nullptr) {
-        LOGE("RenderWare not properly initialized");
-        return false;
-    }
-
-    // Safely defer TextureDatabaseRuntime::Load calls since native GTASA texture
-    // runtime is not fully initialized at this lifecycle stage.
-    // Executing them now causes a SIGSEGV at offset 0x14 inside libGTASA.
-    Log("Deferred TextureDatabaseRuntime::Load to avoid SIGSEGV in libGTASA");
-
-    Log("InitialiseRenderWare-3");
     const auto camera = RwCameraCreate();
     if (!camera) {
         CameraDestroy(camera);
@@ -668,11 +650,7 @@ bool CGame::InitialiseRenderWare() {
     Scene.m_pRwCamera = camera;
     TheCamera.Init();
     TheCamera.SetRwCamera(Scene.m_pRwCamera);
-    RwCameraSetFarClipPlane(Scene.m_pRwCamera, 2000.0f);
-    RwCameraSetNearClipPlane(Scene.m_pRwCamera, 0.9f);
-    CameraSize(Scene.m_pRwCamera, nullptr, 0.7f, 1.3333f);
 
-    Log("InitialiseRenderWare-4");
     RwBBox bb;
     bb.sup = { 10'000.0f,  10'000.0f,  10'000.0f};
     bb.inf = {-10'000.0f, -10'000.0f, -10'000.0f};
@@ -685,13 +663,9 @@ bool CGame::InitialiseRenderWare() {
     }
     RpWorldAddCamera(Scene.m_pRpWorld, Scene.m_pRwCamera);
     LightsCreate(Scene.m_pRpWorld);
-//	CreateDebugFont();
 
-    void* RwEngineInstance = *reinterpret_cast<void**>(g_libGTASA + (VER_x32 ? 0x6BCD38 : 0x89A358));
-    if (!RwEngineInstance || !RsGlobal || !Scene.m_pRwCamera) {
-        LOGW("RenderWare device/subsystem not fully initialized, skipping native UI init");
-        return true;
-    }
+    CGame::m_pWorkingMatrix1 = RwMatrixCreate();
+    CGame::m_pWorkingMatrix2 = RwMatrixCreate();
 
     return true;
 }
@@ -896,12 +870,6 @@ void CGame::Process() {
     static bool once = false;
     if (!once)
     {
-        CFont::Initialise();
-        CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x0046FF38 + 1 : 0x55C1C8)); // CHud::Initialise();
-        CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x005B1188 + 1 : 0x6D5970)); // CPlayerSkin::Initialise();
-        CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x005B28D4 + 1 : 0x6D6E30)); // CPostEffects::Initialise();
-        CGame::m_pWorkingMatrix1 = RwMatrixCreate();
-        CGame::m_pWorkingMatrix2 = RwMatrixCreate();
 
         InitGui();
 
