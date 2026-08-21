@@ -635,11 +635,6 @@ void InitGui();
 bool CGame::InitialiseRenderWare() {
     CCamera& TheCamera = *reinterpret_cast<CCamera*>(g_libGTASA + (VER_x32 ? 0x00951FA8 : 0xBBA8D0));
 
-    if (g_libGTASA <= 0x1000 || RsGlobal == nullptr) {
-        LOGE("RenderWare not properly initialized");
-        return false;
-    }
-
     const auto camera = RwCameraCreate();
     if (!camera) {
         CameraDestroy(camera);
@@ -673,12 +668,6 @@ bool CGame::InitialiseRenderWare() {
 
     CGame::m_pWorkingMatrix1 = RwMatrixCreate();
     CGame::m_pWorkingMatrix2 = RwMatrixCreate();
-
-    void* RwEngineInstance = *reinterpret_cast<void**>(g_libGTASA + (VER_x32 ? 0x6BCD38 : 0x89A358));
-    if (!RwEngineInstance || !RsGlobal || !Scene.m_pRwCamera) {
-        LOGW("RenderWare device/subsystem not fully initialized, skipping native UI init");
-        return true;
-    }
 
     return true;
 }
