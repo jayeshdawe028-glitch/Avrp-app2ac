@@ -47,6 +47,9 @@ void DrawRadarTexture(float x, float y, float size1, float size2)
     color.b = 255;
 
     radar->Draw(x, y, size1, size2, &color);
+
+    // hud_bg is owned by the database; don't let CSprite2d::~CSprite2d destroy it.
+    radar->m_pTexture = nullptr;
     delete radar;
 }
 
