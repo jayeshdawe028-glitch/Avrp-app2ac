@@ -11,6 +11,16 @@ import java.io.File
 object CachePaths {
     const val gameCheckRelPath: String = "texdb/gta3.img"
 
+    // A cache containing gta3.img alone is not considered a valid game install.
+    // The native client explicitly loads the SAMP texture database at startup.
+    private val requiredFiles = listOf(
+        "texdb/gta3.img",
+        "texdb/samp/samp.txt",
+        "texdb/samp/samp.dxt.tmb",
+        "texdb/samp/samp.dxt.dat",
+        "texdb/samp/samp.dxt.toc"
+    )
+
     /** Preferred install dir (app-scoped external files). */
     fun baseDir(context: Context): File {
         return context.getExternalFilesDir(null) ?: context.filesDir
@@ -33,14 +43,27 @@ object CachePaths {
         return listOf(appScoped, androidData, legacyRoot).distinct()
     }
 
-    fun cacheExists(context: Context): Boolean {
-        return candidateFiles(context).any { f ->
+    private fun isValidInstall(dir: File): Boolean {
+        return requiredFiles.all { rel ->
             try {
-                f.exists() && f.isFile && f.length() > 1024L
+                val file = File(dir, rel)
+                file.isFile && file.length() > 0L
             } catch (_: Throwable) {
                 false
             }
         }
+    }
+
+    fun cacheExists(context: Context): Boolean {
+        val candidates = linkedSetOf<File>()
+        candidates += baseDir(context)
+        candidates += File(
+            Environment.getExternalStorageDirectory(),
+            "Android/data/${context.packageName}/files"
+        )
+        candidates += Environment.getExternalStorageDirectory()
+
+        return candidates.any { isValidInstall(it) }
     }
 
     /** Where we will install downloaded cache (we install into baseDir by default). */
