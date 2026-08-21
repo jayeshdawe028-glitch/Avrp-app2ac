@@ -686,6 +686,13 @@ bool CGame::InitialiseRenderWare() {
     RpWorldAddCamera(Scene.m_pRpWorld, Scene.m_pRwCamera);
     LightsCreate(Scene.m_pRpWorld);
 //	CreateDebugFont();
+
+    void* RwEngineInstance = *reinterpret_cast<void**>(g_libGTASA + (VER_x32 ? 0x6BCD38 : 0x89A358));
+    if (!RwEngineInstance || !RsGlobal || !Scene.m_pRwCamera) {
+        LOGW("RenderWare device/subsystem not fully initialized, skipping native UI init");
+        return true;
+    }
+
     CFont::Initialise();
     CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x0046FF38 + 1 : 0x55C1C8)); // CHud::Initialise();
     CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x005B1188 + 1 : 0x6D5970)); // CPlayerSkin::Initialise();
