@@ -4,8 +4,8 @@
 
 #include "TextureDatabaseRuntime.h"
 #include "../vendor/armhook/patch.h"
-#include "../../TxdStore.h"
-#include "../../VisibilityPlugins.h"
+#include "../../RW/TxdStore.h"
+#include "../../RW/VisibilityPlugins.h"
 #include <atomic>
 
 extern void Log(const char* fmt, ...);
