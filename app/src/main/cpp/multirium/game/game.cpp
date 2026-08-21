@@ -645,66 +645,11 @@ bool CGame::InitialiseRenderWare() {
         return false;
     }
 
-    TextureDatabaseRuntime* mobile = TextureDatabaseRuntime::Load("mobile", false, TextureDatabaseFormat::DF_DXT);
-if (!mobile) {
-    Log("ERROR: mobile.txd failed");
-    return false;
-}
+    // Safely defer TextureDatabaseRuntime::Load calls since native GTASA texture
+    // runtime is not fully initialized at this lifecycle stage.
+    // Executing them now causes a SIGSEGV at offset 0x14 inside libGTASA.
+    Log("Deferred TextureDatabaseRuntime::Load to avoid SIGSEGV in libGTASA");
 
-TextureDatabaseRuntime* txd = TextureDatabaseRuntime::Load("txd", false, TextureDatabaseFormat::DF_DXT);
-if (!txd) {
-    Log("ERROR: txd failed");
-    return false;
-}
-
-const char* dbName = "gta3";
-LOGE("Loading database: %s", dbName);
-TextureDatabaseRuntime* gta3 = TextureDatabaseRuntime::Load(dbName, false, TextureDatabaseFormat::DF_DXT);
-if (!gta3) {
-    LOGE("TextureDatabaseRuntime::Load failed: null pointer/handle");
-    Log("ERROR: gta3 failed");
-}
-
-TextureDatabaseRuntime* menu = TextureDatabaseRuntime::Load("menu", false, TextureDatabaseFormat::DF_DXT);
-if (!menu) {
-    Log("ERROR: menu failed");
-    return false;
-}
-
-TextureDatabaseRuntime* samp = TextureDatabaseRuntime::Load("samp", false, TextureDatabaseFormat::DF_DXT);
-if (!samp) {
-    Log("ERROR: samp failed");
-    return false;
-}
-
-TextureDatabaseRuntime* gui = TextureDatabaseRuntime::Load("gui", false, TextureDatabaseFormat::DF_DXT);
-if (!gui) {
-    Log("ERROR: gui failed");
-    return false;
-}
-    TextureDatabaseRuntime* gtasa = TextureDatabaseRuntime::Load("gtasa", false, TextureDatabaseFormat::DF_DXT);
-if (gtasa)
-    TextureDatabaseRuntime::Register(gtasa);
-else
-    Log("ERROR: failed to load gtasa");
-
-TextureDatabaseRuntime* radar = TextureDatabaseRuntime::Load("radar", false, TextureDatabaseFormat::DF_ETC);
-if (radar)
-    TextureDatabaseRuntime::Register(radar);
-else
-    Log("ERROR: failed to load radar");
-
-TextureDatabaseRuntime* cars = TextureDatabaseRuntime::Load("cars", false, TextureDatabaseFormat::DF_DXT);
-if (cars)
-    TextureDatabaseRuntime::Register(cars);
-else
-    Log("ERROR: failed to load cars");
-
-TextureDatabaseRuntime* skins = TextureDatabaseRuntime::Load("skins", false, TextureDatabaseFormat::DF_DXT);
-if (skins)
-    TextureDatabaseRuntime::Register(skins);
-else
-    Log("ERROR: failed to load skins");
     Log("InitialiseRenderWare-3");
     const auto camera = RwCameraCreate();
     if (!camera) {

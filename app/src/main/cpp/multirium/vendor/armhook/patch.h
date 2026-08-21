@@ -132,7 +132,7 @@ public:
 
     template <typename Src>
     static Src Write(uintptr_t dest, Src src, size_t size = 0)
-    {   
+    {
 	    size = sizeof(Src);
         CHook::WriteMemory(dest, &src, size);
 	    return src;
@@ -162,6 +162,8 @@ public:
     template <typename Ret, typename First, typename... Rest>
     static inline Ret CallFunction(uintptr address, First first, Rest... rest)
     {
+        // Explicitly guard against null pointers or uninitialized library addresses (<= 0x1000)
+        // to prevent SIGSEGV when calling native game functions like TextureDatabaseRuntime::Load.
         if constexpr (std::is_same_v<Ret, TextureDatabaseRuntime*>) {
             if constexpr (std::is_pointer_v<First>) {
                 if (address <= 0x1000 || first == nullptr) {
@@ -186,6 +188,8 @@ public:
     template <typename Ret>
     static inline Ret CallFunction(uintptr address)
     {
+        // Explicitly guard against null pointers or uninitialized library addresses (<= 0x1000)
+        // to prevent SIGSEGV when calling native game functions like TextureDatabaseRuntime::Load.
         if constexpr (std::is_same_v<Ret, TextureDatabaseRuntime*>) {
             if (address <= 0x1000) {
                 LOGE("TextureDatabaseRuntime::Load failed: null pointer/handle");
