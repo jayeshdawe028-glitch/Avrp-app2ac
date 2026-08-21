@@ -42,6 +42,8 @@ CGame::CGame()
 	m_bCheckpointsEnabled = false;
 	m_bRaceCheckpointsEnabled = false;
 	m_dwRaceCheckpointHandle = 0;
+	m_dwCheckpointMarker = 0;
+	m_dwRaceCheckpointMarker = 0;
 
 	m_bClockEnabled = false;
 	m_bInputEnable = true;
@@ -671,6 +673,12 @@ bool CGame::InitialiseRenderWare() {
 
     CGame::m_pWorkingMatrix1 = RwMatrixCreate();
     CGame::m_pWorkingMatrix2 = RwMatrixCreate();
+
+    void* RwEngineInstance = *reinterpret_cast<void**>(g_libGTASA + (VER_x32 ? 0x6BCD38 : 0x89A358));
+    if (!RwEngineInstance || !RsGlobal || !Scene.m_pRwCamera) {
+        LOGW("RenderWare device/subsystem not fully initialized, skipping native UI init");
+        return true;
+    }
 
     return true;
 }
