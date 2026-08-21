@@ -258,7 +258,7 @@ bool CGame::IsGamePaused()
 
 bool CGame::IsGameLoaded()
 {
-	return true;
+	return *(uint8_t*)(g_libGTASA + (VER_x32 ? 0x00A7CFF8 : 0xD215B8)) == 1;
 }
 
 void CGame::DrawGangZone(float fPos[], uint32_t dwColor, uint32_t dwUnk)
@@ -635,6 +635,11 @@ void InitGui();
 bool CGame::InitialiseRenderWare() {
     CCamera& TheCamera = *reinterpret_cast<CCamera*>(g_libGTASA + (VER_x32 ? 0x00951FA8 : 0xBBA8D0));
 
+    if (g_libGTASA <= 0x1000 || RsGlobal == nullptr) {
+        LOGE("RenderWare not properly initialized");
+        return false;
+    }
+
     const auto camera = RwCameraCreate();
     if (!camera) {
         CameraDestroy(camera);
@@ -699,6 +704,7 @@ extern CGUI *pGUI;
 void MainLoop();
 void CGame::Process() {
     if(bIsGameExiting)return;
+    if(!IsGameLoaded())return;
 
     MainLoop();
     if (pNetGame)
