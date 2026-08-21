@@ -640,6 +640,11 @@ bool CGame::InitialiseRenderWare() {
     //CVisibilityPlugins::Initialise();
     Log("InitialiseRenderWare-2");
 
+    if (g_libGTASA <= 0x1000 || RsGlobal == nullptr) {
+        LOGE("RenderWare not properly initialized");
+        return false;
+    }
+
     TextureDatabaseRuntime* mobile = TextureDatabaseRuntime::Load("mobile", false, TextureDatabaseFormat::DF_DXT);
 if (!mobile) {
     Log("ERROR: mobile.txd failed");
