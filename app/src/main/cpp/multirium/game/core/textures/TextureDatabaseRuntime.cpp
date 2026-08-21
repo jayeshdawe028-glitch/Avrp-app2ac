@@ -56,7 +56,7 @@ namespace {
         bool anyLoaded = false;
         for (const auto& spec : databases)
         {
-            TextureDatabaseRuntime* db = Load(spec.name, false, spec.format);
+            TextureDatabaseRuntime* db = TextureDatabaseRuntime::Load(spec.name, false, spec.format);
             if (!db)
             {
                 Log("Texture DB bootstrap: %s failed", spec.name);
@@ -67,7 +67,7 @@ namespace {
             Log("Texture DB bootstrap: %s loaded (%p)", spec.name, (void*)db);
 
             if (spec.registerDb)
-                Register(db);
+                TextureDatabaseRuntime::Register(db);
         }
 
         if (anyLoaded)
