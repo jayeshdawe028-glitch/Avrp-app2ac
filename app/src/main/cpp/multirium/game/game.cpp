@@ -704,7 +704,7 @@ extern CGUI *pGUI;
 void MainLoop();
 void CGame::Process() {
     if(bIsGameExiting)return;
-    if(!IsGameLoaded())return;
+    if(!pGame || !pGame->IsGameLoaded())return;
 
     MainLoop();
     if (pNetGame)
