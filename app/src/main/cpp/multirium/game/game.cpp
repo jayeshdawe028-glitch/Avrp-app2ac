@@ -633,6 +633,11 @@ void InitGui();
 bool CGame::InitialiseRenderWare() {
     CCamera& TheCamera = *reinterpret_cast<CCamera*>(g_libGTASA + (VER_x32 ? 0x00951FA8 : 0xBBA8D0));
 
+    if (g_libGTASA <= 0x1000 || RsGlobal == nullptr) {
+        LOGE("RenderWare not properly initialized");
+        return false;
+    }
+
     const auto camera = RwCameraCreate();
     if (!camera) {
         CameraDestroy(camera);
@@ -870,11 +875,8 @@ void CGame::Process() {
     static bool once = false;
     if (!once)
     {
-
-        InitGui();
-
-       // DebugModules::CreateModules(GImGui);
         CCrossHair::Init();
+        InitGui();
         once = true;
         return;
     }
