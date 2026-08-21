@@ -693,15 +693,6 @@ bool CGame::InitialiseRenderWare() {
         return true;
     }
 
-    CFont::Initialise();
-    CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x0046FF38 + 1 : 0x55C1C8)); // CHud::Initialise();
-    CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x005B1188 + 1 : 0x6D5970)); // CPlayerSkin::Initialise();
-    CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x005B28D4 + 1 : 0x6D6E30)); // CPostEffects::Initialise();
-    CGame::m_pWorkingMatrix1 = RwMatrixCreate();
-    CGame::m_pWorkingMatrix2 = RwMatrixCreate();
-
-    InitGui();
-
     return true;
 }
 
@@ -905,6 +896,15 @@ void CGame::Process() {
     static bool once = false;
     if (!once)
     {
+        CFont::Initialise();
+        CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x0046FF38 + 1 : 0x55C1C8)); // CHud::Initialise();
+        CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x005B1188 + 1 : 0x6D5970)); // CPlayerSkin::Initialise();
+        CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x005B28D4 + 1 : 0x6D6E30)); // CPostEffects::Initialise();
+        CGame::m_pWorkingMatrix1 = RwMatrixCreate();
+        CGame::m_pWorkingMatrix2 = RwMatrixCreate();
+
+        InitGui();
+
        // DebugModules::CreateModules(GImGui);
         CCrossHair::Init();
         once = true;
