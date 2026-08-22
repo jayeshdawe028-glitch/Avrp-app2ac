@@ -4,100 +4,101 @@
 
 #include "TextureDatabaseRuntime.h"
 #include "../vendor/armhook/patch.h"
-#include "../../RW/TxdStore.h"
-#include "../../RW/VisibilityPlugins.h"
 #include <atomic>
+#include <cstring>
 
 extern void Log(const char* fmt, ...);
 
 namespace {
-    std::atomic<bool> g_textureDbBootstrapping{false};
-    std::atomic<bool> g_textureDbReady{false};
+    // Keep this fix deliberately narrow: MobileMenu is the first native
+    // consumer currently reaching GetTexture before its database is valid.
+    std::atomic<bool> g_menuDbPreparing{false};
+    std::atomic<bool> g_menuDbReady{false};
+
     using MobileMenuLoadFn = void(*)();
     MobileMenuLoadFn g_originalMobileMenuLoad = nullptr;
 
-    void EnsureStartupTextureDatabases()
+    bool IsRenderWareReady()
     {
-        if (g_textureDbReady.load(std::memory_order_acquire))
-            return;
+        return g_libGTASA > 0x1000 && RsGlobal != nullptr;
+    }
+
+    bool EnsureMenuTextureDatabase()
+    {
+        if (g_menuDbReady.load(std::memory_order_acquire))
+            return true;
+
+        if (!IsRenderWareReady()) {
+            Log("Texture DB: menu bootstrap deferred; RenderWare is not ready");
+            return false;
+        }
 
         bool expected = false;
-        if (!g_textureDbBootstrapping.compare_exchange_strong(
-                expected, true, std::memory_order_acq_rel))
-            return;
-
-        if (g_libGTASA <= 0x1000 || RsGlobal == nullptr) {
-            Log("Texture DB bootstrap skipped: RenderWare is not ready");
-            g_textureDbBootstrapping.store(false, std::memory_order_release);
-            return;
+        if (!g_menuDbPreparing.compare_exchange_strong(
+                expected, true, std::memory_order_acq_rel)) {
+            // Another thread/frame is doing the load. Do not enter the native
+            // texture path concurrently with that load.
+            return false;
         }
 
-        Log("Texture DB bootstrap: initializing native texture runtime");
-        CTxdStore::Initialise();
-        CHook::CallFunction<void>("_ZN18CVisibilityPlugins10InitialiseEv");
+        bool ready = false;
+        TextureDatabaseRuntime* menu = TextureDatabaseRuntime::GetDatabase("menu");
 
-        struct TextureDbSpec {
-            const char* name;
-            TextureDatabaseFormat format;
-            bool registerDb;
-        };
+        if (!menu) {
+            Log("Texture DB: loading required 'menu' database");
+            // Use a fully-loaded menu database. The previous bootstrap loaded
+            // it lazily and then immediately entered native GetTexture(), which
+            // left the native lookup without a guaranteed valid database.
+            menu = TextureDatabaseRuntime::Load(
+                    "menu",
+                    true,
+                    TextureDatabaseFormat::DF_DXT
+            );
+        }
 
-        static const TextureDbSpec databases[] = {
-            {"mobile", TextureDatabaseFormat::DF_DXT, false},
-            {"txd",    TextureDatabaseFormat::DF_DXT, false},
-            {"gta3",   TextureDatabaseFormat::DF_DXT, false},
-            {"menu",   TextureDatabaseFormat::DF_DXT, false},
-            {"samp",   TextureDatabaseFormat::DF_DXT, false},
-            {"gui",    TextureDatabaseFormat::DF_DXT, false},
-            {"gtasa",  TextureDatabaseFormat::DF_DXT, true},
-            {"radar",  TextureDatabaseFormat::DF_ETC, true},
-            {"cars",   TextureDatabaseFormat::DF_DXT, true},
-            {"skins",  TextureDatabaseFormat::DF_DXT, true},
-        };
-
-        bool menuLoaded = false;
-        for (const auto& spec : databases)
-        {
-            TextureDatabaseRuntime* db = TextureDatabaseRuntime::Load(spec.name, false, spec.format);
-            if (!db)
-            {
-                Log("Texture DB bootstrap: %s failed", spec.name);
-                continue;
+        if (menu) {
+            // Register only when the native lookup does not already expose the
+            // database. MobileMenu::Load itself performs Register(menu), so we
+            // avoid unconditional duplicate registration here.
+            TextureDatabaseRuntime* registeredMenu =
+                    TextureDatabaseRuntime::GetDatabase("menu");
+            if (!registeredMenu) {
+                Log("Texture DB: registering loaded 'menu' database (%p)", (void*)menu);
+                TextureDatabaseRuntime::Register(menu);
+                registeredMenu = TextureDatabaseRuntime::GetDatabase("menu");
             }
 
-            if (strcmp(spec.name, "menu") == 0)
-                menuLoaded = true;
-
-            Log("Texture DB bootstrap: %s loaded (%p)", spec.name, (void*)db);
-
-            if (spec.registerDb)
-                TextureDatabaseRuntime::Register(db);
+            ready = registeredMenu != nullptr;
+            Log("Texture DB: menu ready=%d ptr=%p", ready ? 1 : 0,
+                (void*)registeredMenu);
+        } else {
+            Log("Texture DB: required 'menu' database could not be loaded");
         }
 
-        if (menuLoaded)
-            g_textureDbReady.store(true, std::memory_order_release);
-        else
-            Log("Texture DB bootstrap: REQUIRED database 'menu' is unavailable");
+        if (ready)
+            g_menuDbReady.store(true, std::memory_order_release);
 
-        g_textureDbBootstrapping.store(false, std::memory_order_release);
+        g_menuDbPreparing.store(false, std::memory_order_release);
+        return ready;
     }
 
     void MobileMenuLoadHook()
     {
-        Log("MobileMenu::Load hook: preparing texture databases");
-        EnsureStartupTextureDatabases();
+        Log("MobileMenu::Load: validating texture DB lifecycle");
 
-        TextureDatabaseRuntime* menu = TextureDatabaseRuntime::GetDatabase("menu");
-        if (!menu)
-        {
-            Log("MobileMenu::Load aborted: required 'menu' texture database is missing");
+        if (!EnsureMenuTextureDatabase()) {
+            // Do not call native MobileMenu::Load while its required texture
+            // database is unavailable. This converts the current native
+            // SIGSEGV into a retryable state instead of corrupting game state.
+            Log("MobileMenu::Load deferred: 'menu' texture database unavailable");
             return;
         }
 
-        if (g_originalMobileMenuLoad)
+        if (g_originalMobileMenuLoad) {
             g_originalMobileMenuLoad();
-        else
-            Log("MobileMenu::Load aborted: original function is unavailable");
+        } else {
+            Log("MobileMenu::Load deferred: original function unavailable");
+        }
     }
 }
 
@@ -122,8 +123,10 @@ TextureDatabaseRuntime* TextureDatabaseRuntime::Load(const char *withName, bool 
 }
 
 void TextureDatabaseRuntime::Register(TextureDatabaseRuntime *toRegister) {
-    if (!toRegister)
+    if (!toRegister) {
+        Log("Texture DB: Register skipped for null database");
         return;
+    }
     CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x1E9B48 + 1 : 0x2865D8), toRegister);
 }
 
@@ -134,8 +137,10 @@ void TextureDatabaseRuntime::Unregister(TextureDatabaseRuntime *toUnregister) {
 }
 
 RwTexture* TextureDatabaseRuntime::GetTexture(const char *name) {
-    EnsureStartupTextureDatabases();
-
+    // Do not bootstrap every texture database from this low-level wrapper.
+    // Native GetTexture is used by many systems and can be reached during
+    // startup; forcing global database initialization here creates re-entrancy
+    // and lifecycle problems. MobileMenu is guarded at its owning entry point.
     RwTexture* texture = ((RwTexture*(*)(const char*))(g_libGTASA + (VER_x32 ? 0x001E9C64 + 1 : 0x286718)))(name);
     if (!texture)
         Log("TextureDatabaseRuntime::GetTexture returned null: %s", name ? name : "<null>");
@@ -148,6 +153,8 @@ void TextureDatabaseRuntime::UpdateStreaming(float deltaTime, bool flush) {
 }
 
 TextureDatabaseRuntime* TextureDatabaseRuntime::GetDatabase(const char *dbName) {
+    if (!dbName || !*dbName)
+        return nullptr;
     return CHook::CallFunction<TextureDatabaseRuntime*>(g_libGTASA + (VER_x32 ? 0x1EAC0C + 1 : 0x287AF4), dbName);
 }
 
@@ -166,7 +173,7 @@ void TextureDatabaseRuntime::InjectHooks() {
             &g_originalMobileMenuLoad
         );
         mobileMenuHookInstalled = true;
-        Log("MobileMenu::Load hook installed");
+        Log("MobileMenu::Load lifecycle hook installed");
     }
 }
 
