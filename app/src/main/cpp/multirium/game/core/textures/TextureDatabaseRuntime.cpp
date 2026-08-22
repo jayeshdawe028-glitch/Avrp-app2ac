@@ -14,20 +14,20 @@ namespace {
     std::atomic<bool> g_textureDbBootstrapping{false};
     std::atomic<bool> g_textureDbReady{false};
 
-    void EnsureStartupTextureDatabases()
+    bool EnsureStartupTextureDatabases()
     {
         if (g_textureDbReady.load(std::memory_order_acquire))
-            return;
+            return true;
 
         bool expected = false;
         if (!g_textureDbBootstrapping.compare_exchange_strong(
                 expected, true, std::memory_order_acq_rel))
-            return;
+            return false;
 
         if (g_libGTASA <= 0x1000 || RsGlobal == nullptr) {
             Log("Texture DB bootstrap skipped: RenderWare is not ready");
             g_textureDbBootstrapping.store(false, std::memory_order_release);
-            return;
+            return false;
         }
 
         Log("Texture DB bootstrap: initializing native texture runtime");
@@ -53,7 +53,9 @@ namespace {
             {"skins",  TextureDatabaseFormat::DF_DXT, true},
         };
 
-        bool anyLoaded = false;
+        bool menuLoaded = false;
+        bool sampLoaded = false;
+
         for (const auto& spec : databases)
         {
             TextureDatabaseRuntime* db = TextureDatabaseRuntime::Load(spec.name, false, spec.format);
@@ -63,17 +65,25 @@ namespace {
                 continue;
             }
 
-            anyLoaded = true;
             Log("Texture DB bootstrap: %s loaded (%p)", spec.name, (void*)db);
+
+            if (strcmp(spec.name, "menu") == 0)
+                menuLoaded = true;
+            else if (strcmp(spec.name, "samp") == 0)
+                sampLoaded = true;
 
             if (spec.registerDb)
                 TextureDatabaseRuntime::Register(db);
         }
 
-        if (anyLoaded)
-            g_textureDbReady.store(true, std::memory_order_release);
-
+        const bool ready = menuLoaded && sampLoaded;
+        g_textureDbReady.store(ready, std::memory_order_release);
         g_textureDbBootstrapping.store(false, std::memory_order_release);
+
+        Log("Texture DB bootstrap finished: menu=%d samp=%d ready=%d",
+            menuLoaded ? 1 : 0, sampLoaded ? 1 : 0, ready ? 1 : 0);
+
+        return ready;
     }
 }
 
@@ -110,11 +120,19 @@ void TextureDatabaseRuntime::Unregister(TextureDatabaseRuntime *toUnregister) {
 }
 
 RwTexture* TextureDatabaseRuntime::GetTexture(const char *name) {
-    EnsureStartupTextureDatabases();
+    if (!name || g_libGTASA <= 0x1000 || RsGlobal == nullptr) {
+        Log("TextureDatabaseRuntime::GetTexture blocked: runtime not ready");
+        return nullptr;
+    }
+
+    if (!EnsureStartupTextureDatabases()) {
+        Log("TextureDatabaseRuntime::GetTexture blocked until texture DBs are ready: %s", name);
+        return nullptr;
+    }
 
     RwTexture* texture = ((RwTexture*(*)(const char*))(g_libGTASA + (VER_x32 ? 0x001E9C64 + 1 : 0x286718)))(name);
     if (!texture)
-        Log("TextureDatabaseRuntime::GetTexture returned null: %s", name ? name : "<null>");
+        Log("TextureDatabaseRuntime::GetTexture returned null: %s", name);
 
     return texture;
 }
@@ -124,6 +142,8 @@ void TextureDatabaseRuntime::UpdateStreaming(float deltaTime, bool flush) {
 }
 
 TextureDatabaseRuntime* TextureDatabaseRuntime::GetDatabase(const char *dbName) {
+    if (!dbName || g_libGTASA <= 0x1000 || RsGlobal == nullptr)
+        return nullptr;
     return CHook::CallFunction<TextureDatabaseRuntime*>(g_libGTASA + (VER_x32 ? 0x1EAC0C + 1 : 0x287AF4), dbName);
 }
 
