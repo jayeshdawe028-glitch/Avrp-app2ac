@@ -7,6 +7,7 @@
 #include "../../RW/TxdStore.h"
 #include "../../RW/VisibilityPlugins.h"
 #include <atomic>
+#include <cstring>
 
 extern void Log(const char* fmt, ...);
 
