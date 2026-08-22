@@ -8,10 +8,11 @@
 #include <cstring>
 
 extern void Log(const char* fmt, ...);
+extern void InstallMobileMenuCrashGuardHooks();
 
 namespace {
-    // Keep this fix deliberately narrow: MobileMenu is the first native
-    // consumer currently reaching GetTexture before its database is valid.
+    // Keep the texture fix narrow: MobileMenu is the first native consumer
+    // currently reaching GetTexture before its database is valid.
     std::atomic<bool> g_menuDbPreparing{false};
     std::atomic<bool> g_menuDbReady{false};
 
@@ -46,9 +47,6 @@ namespace {
 
         if (!menu) {
             Log("Texture DB: loading required 'menu' database");
-            // Use a fully-loaded menu database. The previous bootstrap loaded
-            // it lazily and then immediately entered native GetTexture(), which
-            // left the native lookup without a guaranteed valid database.
             menu = TextureDatabaseRuntime::Load(
                     "menu",
                     true,
@@ -57,9 +55,6 @@ namespace {
         }
 
         if (menu) {
-            // Register only when the native lookup does not already expose the
-            // database. MobileMenu::Load itself performs Register(menu), so we
-            // avoid unconditional duplicate registration here.
             TextureDatabaseRuntime* registeredMenu =
                     TextureDatabaseRuntime::GetDatabase("menu");
             if (!registeredMenu) {
@@ -87,9 +82,6 @@ namespace {
         Log("MobileMenu::Load: validating texture DB lifecycle");
 
         if (!EnsureMenuTextureDatabase()) {
-            // Do not call native MobileMenu::Load while its required texture
-            // database is unavailable. This converts the current native
-            // SIGSEGV into a retryable state instead of corrupting game state.
             Log("MobileMenu::Load deferred: 'menu' texture database unavailable");
             return;
         }
@@ -137,10 +129,9 @@ void TextureDatabaseRuntime::Unregister(TextureDatabaseRuntime *toUnregister) {
 }
 
 RwTexture* TextureDatabaseRuntime::GetTexture(const char *name) {
-    // Do not bootstrap every texture database from this low-level wrapper.
-    // Native GetTexture is used by many systems and can be reached during
-    // startup; forcing global database initialization here creates re-entrancy
-    // and lifecycle problems. MobileMenu is guarded at its owning entry point.
+    // Keep this wrapper low-level. Global database bootstrap from GetTexture()
+    // caused re-entrancy and startup ordering problems; the owning menu path is
+    // guarded at its entry point instead.
     RwTexture* texture = ((RwTexture*(*)(const char*))(g_libGTASA + (VER_x32 ? 0x001E9C64 + 1 : 0x286718)))(name);
     if (!texture)
         Log("TextureDatabaseRuntime::GetTexture returned null: %s", name ? name : "<null>");
@@ -175,6 +166,11 @@ void TextureDatabaseRuntime::InjectHooks() {
         mobileMenuHookInstalled = true;
         Log("MobileMenu::Load lifecycle hook installed");
     }
+
+    // Install the broader defensive menu lifecycle once the native hook table
+    // is being initialized. The guard itself is isolated in MobileMenu.cpp so
+    // the texture subsystem does not own menu rendering logic.
+    InstallMobileMenuCrashGuardHooks();
 }
 
 RwBool TextureAnnihilate(RwTexture *texture) {
