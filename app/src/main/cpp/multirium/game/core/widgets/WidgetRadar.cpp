@@ -8,6 +8,7 @@
 #include "gui/gui.h"
 #include "imgui.h"
 #include "java/CPauseMenu.h"
+#include "game.h"
 
 void (*CWidgetRadar__Update)(CWidgetRadar* thiz);
 void CWidgetRadar__Update_hook(CWidgetRadar* thiz)
@@ -22,6 +23,12 @@ void CWidgetRadar__Update_hook(CWidgetRadar* thiz)
 RwTexture* hud_bg = nullptr;
 
 void CWidgetRadar::LoadRadarTexture() {
+    // StartGame() can run before the GTA texture database/streaming state is ready.
+    // Do not enter the native TextureDatabaseRuntime::GetTexture() path until the
+    // game reports itself loaded. The function is retried from RenderRadarTexture().
+    if (hud_bg || !CGame::IsGameLoaded())
+        return;
+
     hud_bg = CUtil::LoadTextureFromDB("samp", "hud_back");
     if (!hud_bg)
         Log("Radar texture disabled: SAMP texture database is unavailable");
@@ -55,6 +62,9 @@ void DrawRadarTexture(float x, float y, float size1, float size2)
 
 void CWidgetRadar::RenderRadarTexture()
 {
+    if (!hud_bg)
+        LoadRadarTexture();
+
     if (CHud::bIsShow && hud_bg)
     {
         DrawRadarTexture(CHud::radarBgPos1.x, CHud::radarBgPos1.y, CHud::radarBgPos2.x, CHud::radarBgPos2.y);
