@@ -15,10 +15,8 @@ extern void Log(const char* fmt, ...);
 
 namespace {
     using MobileMenuRenderFn = void (*)(MobileMenu*);
-    using MainMenuAddAllItemsFn = void (*)(void*);
 
     MobileMenuRenderFn g_originalMobileMenuRender = nullptr;
-    MainMenuAddAllItemsFn g_originalMainMenuAddAllItems = nullptr;
 
     bool IsPlausibleObject(const void* ptr)
     {
@@ -49,7 +47,7 @@ namespace {
             return;
         }
 
-        // Remove null entries from the top. This preserves all valid lower
+        // Remove invalid entries from the top. This preserves all valid lower
         // screens and prevents the native renderer from dereferencing null.
         while (menu->screenStack.numEntries > 0) {
             const unsigned int index = menu->screenStack.numEntries - 1;
@@ -134,25 +132,6 @@ namespace {
 
         g_originalMobileMenuRender(menu);
     }
-
-    void MainMenuAddAllItemsHook(void* screen)
-    {
-        if (!screen) {
-            Log("MobileMenu guard: MainMenuScreen::AddAllItems received null");
-            return;
-        }
-
-        // Do not call the native implementation when its required textures are
-        // unavailable: the original routine increments refCount immediately
-        // after GetTexture() without checking for nullptr.
-        if (!MenuDatabaseReady() || !RequiredMenuTexturesReady()) {
-            Log("MobileMenu guard: MainMenuScreen::AddAllItems deferred due to incomplete menu data");
-            return;
-        }
-
-        if (g_originalMainMenuAddAllItems)
-            g_originalMainMenuAddAllItems(screen);
-    }
 }
 
 void InstallMobileMenuCrashGuardHooks()
@@ -167,16 +146,6 @@ void InstallMobileMenuCrashGuardHooks()
             &g_originalMobileMenuRender
     );
 
-    // The native implementation dereferences the result of GetTexture() before
-    // checking it. Keep that path behind the same data validation used by the
-    // renderer. If the symbol is unavailable on a build, the rest of the guard
-    // remains useful and the linker/build can expose that mismatch immediately.
-    CHook::InlineHook(
-            "_ZN14MainMenuScreen11AddAllItemsEv",
-            &MainMenuAddAllItemsHook,
-            &g_originalMainMenuAddAllItems
-    );
-
     installed = true;
-    Log("MobileMenu crash guard: Render/AddAllItems hooks installed");
+    Log("MobileMenu crash guard: Render hook installed");
 }
