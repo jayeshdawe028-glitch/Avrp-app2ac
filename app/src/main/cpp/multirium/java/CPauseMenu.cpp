@@ -48,7 +48,9 @@ void CPauseMenu::InjectHooks() {
     CHook::RET(OBFUSCATE("_ZN14MainMenuScreen6OnBackEv")); // MainMenuScreen::OnBack
     CHook::RET(OBFUSCATE("_Z12ScreenToMenuRK9CVector2D")); // ScreenToMenu
     CHook::RET(OBFUSCATE("_ZN10MobileMenu6UnloadEv")); // MobileMenu::Unload
-    CHook::RET(OBFUSCATE("_ZN10MobileMenu15PrepareToRenderEv")); // MobileMenu::PrepareToRender
+    // MobileMenu::PrepareToRender is implemented in our client and must not be
+    // replaced with an unconditional native RET. The native Render path relies
+    // on the 2D RenderWare state being prepared before it draws the menu.
     CHook::RET(OBFUSCATE("_ZN10MenuScreen8DrawQuadE9CVector2DS0_P5CRGBA")); // MobileMenu::DrawQuad
     CHook::RET(OBFUSCATE("_ZN10MenuScreen10DrawSliderE9CVector2DS0_fbhb")); // MobileMenu::DrawSlider
     CHook::RET(OBFUSCATE("_ZN14MainMenuScreen11AddAllItemsEv")); // MainMenuScreen::AddAllItems
@@ -57,18 +59,16 @@ void CPauseMenu::InjectHooks() {
 #else
     CHook::NOP(g_libGTASA + 0x36A190, 1);
 
-    CHook::NOP(g_libGTASA + 0x36A090, 1); // темный фон снизу (для надписей городов)
+    CHook::NOP(g_libGTASA + 0x36A090, 1); // dark background below city labels
 
-    // скорость увелечения карты
-    //CHook::WriteMemory(g_libGTASA + 0x368F38, "\x00\x00\xF0\x41", 4);  // 12.0f
+    // map zoom speed
+    //CHook::WriteMemory(g_libGTASA + 0x368F38, "\x00\x00\xF0\x41", 4);
 
     // map zoom max
     // default: 1100.0f
- //   CHook::WriteMemory(g_libGTASA + 0x368F7C, "\x00\x80\xBB\x44", 4); // 1500.0f
-  //  CHook::WriteMemory(g_libGTASA + 0x368F88, "\x00\x80\xBB\x44", 4); // 1500.0f
-  //  CHook::WriteMemory(g_libGTASA + 0x368F80, "\x00\x80\xBB\x44", 4); // 1500.0f
-
-
+    //CHook::WriteMemory(g_libGTASA + 0x368F7C, "\x00\x80\xBB\x44", 4);
+    //CHook::WriteMemory(g_libGTASA + 0x368F88, "\x00\x80\xBB\x44", 4);
+    //CHook::WriteMemory(g_libGTASA + 0x368F80, "\x00\x80\xBB\x44", 4);
 
     uintptr_t viski_addr[] = {
             0x369CF8, 0x369CFC, 0x369D08,
@@ -81,9 +81,6 @@ void CPauseMenu::InjectHooks() {
     };
 
     const char* viski_src[] = {
-            "\x01\x00\x80\x52", // mov w1, #0x0
-            "\x62\x13\x80\x52", // mov w2, #0x9b
-            "\xC3\x1D\x80\x52", // mov w3, #0xee
             "\x01\x00\x80\x52",
             "\x62\x13\x80\x52",
             "\xC3\x1D\x80\x52",
@@ -99,8 +96,11 @@ void CPauseMenu::InjectHooks() {
             "\x01\x00\x80\x52",
             "\x62\x13\x80\x52",
             "\xC3\x1D\x80\x52",
-            "\xA1\x00\x80\x52", // mov w1, #0x5
-            "\xC1\x00\x80\x52"  // mov w1, #0x6
+            "\x01\x00\x80\x52",
+            "\x62\x13\x80\x52",
+            "\xC3\x1D\x80\x52",
+            "\xA1\x00\x80\x52",
+            "\xC1\x00\x80\x52"
     };
 
     for (int i = 0; i < 20; i++) {
@@ -157,21 +157,16 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_com_multirium_mobile_gui_main_1menu_utils_SettingGameButtonUtil_updateGameButton(JNIEnv *env,
                                                                                  jclass clazz,
-                                                                                 jint id, jfloat x,
-                                                                                 jfloat y,
-                                                                                 jfloat width,
-                                                                                 jfloat height) {
+                                                                                 jint id, jfloat x, jfloat y,
+                                                                                 jfloat width, jfloat height) {
     // TODO: implement updateGameButton()
 
     if(id <= 190) {
-    //    Log(OBFUSCATE("new Widget: %d, X: %f, Y: %f, size: %f"), id, x, y, width);
-
         if (!CTouchInterface::m_pWidgets[id]) return;
         CTouchInterface::m_pWidgets[id]->m_fOriginX = x;
         CTouchInterface::m_pWidgets[id]->m_fOriginY = y;
         CTouchInterface::m_pWidgets[id]->m_fScaleX = width;
         CTouchInterface::m_pWidgets[id]->m_fScaleY = height;
-
     }
 }
 void ApplyFPSPatch(uint8_t fps);
@@ -182,7 +177,6 @@ Java_com_multirium_mobile_gui_main_1menu_utils_SettingMenuUtil_updateMenuParam(J
     // TODO: implement updateMenuParam()
 
     if(id <= 49) {
-      //  Log(OBFUSCATE("new settings: id: %d value: %d \n old settings: id: %d value: %d"), id, value, id, CPauseMenu::Settings[id].value);
         CPauseMenu::Settings[id].value = value;
 
         switch (id) {
