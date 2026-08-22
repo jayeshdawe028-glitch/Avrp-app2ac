@@ -4,8 +4,102 @@
 
 #include "TextureDatabaseRuntime.h"
 #include "../vendor/armhook/patch.h"
+#include "../../RW/TxdStore.h"
+#include "../../RW/VisibilityPlugins.h"
+#include <atomic>
 
 extern void Log(const char* fmt, ...);
+
+namespace {
+    std::atomic<bool> g_textureDbBootstrapping{false};
+    std::atomic<bool> g_textureDbReady{false};
+    using MobileMenuLoadFn = void(*)();
+    MobileMenuLoadFn g_originalMobileMenuLoad = nullptr;
+
+    void EnsureStartupTextureDatabases()
+    {
+        if (g_textureDbReady.load(std::memory_order_acquire))
+            return;
+
+        bool expected = false;
+        if (!g_textureDbBootstrapping.compare_exchange_strong(
+                expected, true, std::memory_order_acq_rel))
+            return;
+
+        if (g_libGTASA <= 0x1000 || RsGlobal == nullptr) {
+            Log("Texture DB bootstrap skipped: RenderWare is not ready");
+            g_textureDbBootstrapping.store(false, std::memory_order_release);
+            return;
+        }
+
+        Log("Texture DB bootstrap: initializing native texture runtime");
+        CTxdStore::Initialise();
+        CHook::CallFunction<void>("_ZN18CVisibilityPlugins10InitialiseEv");
+
+        struct TextureDbSpec {
+            const char* name;
+            TextureDatabaseFormat format;
+            bool registerDb;
+        };
+
+        static const TextureDbSpec databases[] = {
+            {"mobile", TextureDatabaseFormat::DF_DXT, false},
+            {"txd",    TextureDatabaseFormat::DF_DXT, false},
+            {"gta3",   TextureDatabaseFormat::DF_DXT, false},
+            {"menu",   TextureDatabaseFormat::DF_DXT, false},
+            {"samp",   TextureDatabaseFormat::DF_DXT, false},
+            {"gui",    TextureDatabaseFormat::DF_DXT, false},
+            {"gtasa",  TextureDatabaseFormat::DF_DXT, true},
+            {"radar",  TextureDatabaseFormat::DF_ETC, true},
+            {"cars",   TextureDatabaseFormat::DF_DXT, true},
+            {"skins",  TextureDatabaseFormat::DF_DXT, true},
+        };
+
+        bool menuLoaded = false;
+        for (const auto& spec : databases)
+        {
+            TextureDatabaseRuntime* db = TextureDatabaseRuntime::Load(spec.name, false, spec.format);
+            if (!db)
+            {
+                Log("Texture DB bootstrap: %s failed", spec.name);
+                continue;
+            }
+
+            if (strcmp(spec.name, "menu") == 0)
+                menuLoaded = true;
+
+            Log("Texture DB bootstrap: %s loaded (%p)", spec.name, (void*)db);
+
+            if (spec.registerDb)
+                TextureDatabaseRuntime::Register(db);
+        }
+
+        if (menuLoaded)
+            g_textureDbReady.store(true, std::memory_order_release);
+        else
+            Log("Texture DB bootstrap: REQUIRED database 'menu' is unavailable");
+
+        g_textureDbBootstrapping.store(false, std::memory_order_release);
+    }
+
+    void MobileMenuLoadHook()
+    {
+        Log("MobileMenu::Load hook: preparing texture databases");
+        EnsureStartupTextureDatabases();
+
+        TextureDatabaseRuntime* menu = TextureDatabaseRuntime::GetDatabase("menu");
+        if (!menu)
+        {
+            Log("MobileMenu::Load aborted: required 'menu' texture database is missing");
+            return;
+        }
+
+        if (g_originalMobileMenuLoad)
+            g_originalMobileMenuLoad();
+        else
+            Log("MobileMenu::Load aborted: original function is unavailable");
+    }
+}
 
 TextureDatabaseRuntime* TextureDatabaseRuntime::Load(const char *withName, bool fullyLoad, TextureDatabaseFormat forcedFormat)
 {
@@ -28,15 +122,25 @@ TextureDatabaseRuntime* TextureDatabaseRuntime::Load(const char *withName, bool 
 }
 
 void TextureDatabaseRuntime::Register(TextureDatabaseRuntime *toRegister) {
+    if (!toRegister)
+        return;
     CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x1E9B48 + 1 : 0x2865D8), toRegister);
 }
 
 void TextureDatabaseRuntime::Unregister(TextureDatabaseRuntime *toUnregister) {
+    if (!toUnregister)
+        return;
     CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x1E9C00 + 1 : 0x2866A4), toUnregister);
 }
 
 RwTexture* TextureDatabaseRuntime::GetTexture(const char *name) {
-    return ((RwTexture*(*)(const char*))(g_libGTASA + (VER_x32 ? 0x001E9C64 + 1 : 0x286718)))(name);
+    EnsureStartupTextureDatabases();
+
+    RwTexture* texture = ((RwTexture*(*)(const char*))(g_libGTASA + (VER_x32 ? 0x001E9C64 + 1 : 0x286718)))(name);
+    if (!texture)
+        Log("TextureDatabaseRuntime::GetTexture returned null: %s", name ? name : "<null>");
+
+    return texture;
 }
 
 void TextureDatabaseRuntime::UpdateStreaming(float deltaTime, bool flush) {
@@ -52,6 +156,18 @@ void TextureDatabaseRuntime::InjectHooks() {
     CHook::Write(g_libGTASA + (VER_x32 ? 0x676720 : 0x84AEB0), &storedTexels);
     // CHook::Write(g_libGTASA + (VER_x32 ? 0x679768 : 0x850EE8), &loaded);
     // CHook::Write(g_libGTASA + (VER_x32 ? 0x679E70 : 0x851CF8), &registered);
+
+    static bool mobileMenuHookInstalled = false;
+    if (!mobileMenuHookInstalled)
+    {
+        CHook::InlineHook(
+            "_ZN10MobileMenu4LoadEv",
+            &MobileMenuLoadHook,
+            &g_originalMobileMenuLoad
+        );
+        mobileMenuHookInstalled = true;
+        Log("MobileMenu::Load hook installed");
+    }
 }
 
 RwBool TextureAnnihilate(RwTexture *texture) {
