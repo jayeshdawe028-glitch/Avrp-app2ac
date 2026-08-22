@@ -77,7 +77,7 @@ public:
 	}
 
 	bool IsGamePaused();
-	bool IsGameLoaded();
+	static bool IsGameLoaded();
 	void SetWantedLevel(uint8_t level);
 	void EnableStuntBonus(bool bEnable);
 	void DisplayGameText(const char* szStr, int iTime, int iSize);
