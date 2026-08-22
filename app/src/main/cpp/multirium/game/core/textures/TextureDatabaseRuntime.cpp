@@ -10,7 +10,7 @@ extern void Log(const char* fmt, ...);
 TextureDatabaseRuntime* TextureDatabaseRuntime::Load(const char *withName, bool fullyLoad, TextureDatabaseFormat forcedFormat)
 {
     Log("========== Texture Load ==========");
-    Log("Name: %s", withName);
+    Log("Name: %s", withName ? withName : "<null>");
     Log("g_libGTASA = %p", (void*)g_libGTASA);
 
     TextureDatabaseRuntime* db =
@@ -28,15 +28,35 @@ TextureDatabaseRuntime* TextureDatabaseRuntime::Load(const char *withName, bool 
 }
 
 void TextureDatabaseRuntime::Register(TextureDatabaseRuntime *toRegister) {
+    Log("TextureDB::Register db=%p", (void*)toRegister);
+    if (!g_libGTASA || !toRegister) {
+        Log("TextureDB::Register BLOCKED invalid state");
+        return;
+    }
     CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x1E9B48 + 1 : 0x2865D8), toRegister);
 }
 
 void TextureDatabaseRuntime::Unregister(TextureDatabaseRuntime *toUnregister) {
+    Log("TextureDB::Unregister db=%p", (void*)toUnregister);
+    if (!g_libGTASA || !toUnregister) {
+        Log("TextureDB::Unregister BLOCKED invalid state");
+        return;
+    }
     CHook::CallFunction<void>(g_libGTASA + (VER_x32 ? 0x1E9C00 + 1 : 0x2866A4), toUnregister);
 }
 
-RwTexture* TextureDatabaseRuntime::GetTexture(const char *name) {
-    return ((RwTexture*(*)(const char*))(g_libGTASA + (VER_x32 ? 0x001E9C64 + 1 : 0x286718)))(name);
+__attribute__((noinline)) RwTexture* TextureDatabaseRuntime::GetTexture(const char *name) {
+    Log("TextureDB::GetTexture ENTER name=%s g_libGTASA=%p", name ? name : "<null>", (void*)g_libGTASA);
+
+    if (!g_libGTASA || !name) {
+        Log("TextureDB::GetTexture BLOCKED invalid state");
+        return nullptr;
+    }
+
+    RwTexture* texture = ((RwTexture*(*)(const char*))(g_libGTASA + (VER_x32 ? 0x001E9C64 + 1 : 0x286718)))(name);
+
+    Log("TextureDB::GetTexture RETURN name=%s texture=%p", name, (void*)texture);
+    return texture;
 }
 
 void TextureDatabaseRuntime::UpdateStreaming(float deltaTime, bool flush) {
@@ -44,7 +64,15 @@ void TextureDatabaseRuntime::UpdateStreaming(float deltaTime, bool flush) {
 }
 
 TextureDatabaseRuntime* TextureDatabaseRuntime::GetDatabase(const char *dbName) {
-    return CHook::CallFunction<TextureDatabaseRuntime*>(g_libGTASA + (VER_x32 ? 0x1EAC0C + 1 : 0x287AF4), dbName);
+    Log("TextureDB::GetDatabase name=%s g_libGTASA=%p", dbName ? dbName : "<null>", (void*)g_libGTASA);
+    if (!g_libGTASA || !dbName) {
+        Log("TextureDB::GetDatabase BLOCKED invalid state");
+        return nullptr;
+    }
+
+    TextureDatabaseRuntime* db = CHook::CallFunction<TextureDatabaseRuntime*>(g_libGTASA + (VER_x32 ? 0x1EAC0C + 1 : 0x287AF4), dbName);
+    Log("TextureDB::GetDatabase RETURN name=%s db=%p", dbName, (void*)db);
+    return db;
 }
 
 void TextureDatabaseRuntime::InjectHooks() {
