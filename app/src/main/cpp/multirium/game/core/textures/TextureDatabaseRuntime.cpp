@@ -137,14 +137,14 @@ void TextureDatabaseRuntime::Unregister(TextureDatabaseRuntime *toUnregister) {
 }
 
 RwTexture* TextureDatabaseRuntime::GetTexture(const char *name) {
-    // Do not bootstrap every texture database from this low-level wrapper.
-    // Native GetTexture is used by many systems and can be reached during
-    // startup; forcing global database initialization here creates re-entrancy
-    // and lifecycle problems. MobileMenu is guarded at its owning entry point.
-    RwTexture* texture = ((RwTexture*(*)(const char*))(g_libGTASA + (VER_x32 ? 0x001E9C64 + 1 : 0x286718)))(name);
-    if (!texture)
-        Log("TextureDatabaseRuntime::GetTexture returned null: %s", name ? name : "<null>");
+    if (!name || !*name) return nullptr;
 
+    RwTexture* texture = ((RwTexture*(*)(const char*))(g_libGTASA + (VER_x32 ? 0x001E9C64 + 1 : 0x286718)))(name);
+
+    // We add defensive return to prevent crash if not found
+    if (!texture) {
+        Log("TextureDatabaseRuntime::GetTexture returned null: %s", name);
+    }
     return texture;
 }
 

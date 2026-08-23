@@ -30,6 +30,7 @@ void Menu_MapInitPause() {
 }
 
 void MobileMenu::Load() {
+    if (g_libGTASA <= 0x1000) return;
     CHook::CallFunction<void>("_ZN10MobileMenu4LoadEv");
 }
 /*
