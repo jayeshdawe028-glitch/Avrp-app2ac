@@ -373,6 +373,11 @@ void MobileMenu::Render(MobileMenu* menu) {
     return;
 }
 
+void FrontendIdle_Hook() {
+    // Return immediately so we don't try to render uninitialized UI states
+    return;
+}
+
 void MobileMenu::InjectHooks() {
     gMobileMenu = *(MobileMenu*)(g_libGTASA + (VER_x32 ? 0x6E0074 : 0x8BE780));
  //   CHook::Redirect("_ZN10MobileMenu10InitializeEv", &MobileMenu::Initialize);
@@ -381,4 +386,7 @@ void MobileMenu::InjectHooks() {
 
     // Redirect Render to our safe no-op to bypass the SIGSEGV
     CHook::Redirect("_ZN10MobileMenu6RenderEv", &MobileMenu::Render);
+
+    // Bypass FrontendIdle entirely
+    CHook::Redirect("_Z12FrontendIdlev", &FrontendIdle_Hook);
 }
