@@ -30,6 +30,9 @@ Java_com_multirium_mobile_gui_auth_Autorization_nativeInit(JNIEnv* env, jclass /
 
 void CAuthrization::show(bool isEmail, bool isAutoAuth, int skinId)
 {
+    extern CJavaWrapper* pJavaWrapper;
+    if (pJavaWrapper) pJavaWrapper->HideLoadingScreen();
+
     JNIEnv* env = CJavaWrapper::GetEnv();
     if (!env) return;
 
