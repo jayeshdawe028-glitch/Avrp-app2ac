@@ -702,9 +702,16 @@ extern CNetGame* pNetGame;
 extern CGUI *pGUI;
 
 void MainLoop();
-void CGame::Process() {
-    if(bIsGameExiting)return;
-    if(!pGame || !pGame->IsGameLoaded())return;
+void (*orig_CGame_Process)();
+void CGame_Process_hook() {
+    if(CGame::bIsGameExiting) {
+        if (orig_CGame_Process) orig_CGame_Process();
+        return;
+    }
+    if(!pGame || !pGame->IsGameLoaded()) {
+        if (orig_CGame_Process) orig_CGame_Process();
+        return;
+    }
 
     MainLoop();
     if (pNetGame)
@@ -715,180 +722,30 @@ void CGame::Process() {
         }
     }
 
-    ProcessMainThreadTasks();
-
-    uint32_t CurrentTimeInCycles;
-    uint32_t v1; // r4
-    uint32_t v2; // r5
-    uint32_t v3; // r5
-
-    //FIXME
-    ((void(*)())(g_libGTASA + (VER_x32 ? 0x003F8B50 + 1 : 0x4DB464)))(); // CPad::UpdatePads()
-    ((void(*)())(g_libGTASA + (VER_x32 ? 0x002B03F8 + 1 : 0x36F374)))(); // CTouchInterface::Clear()
-    ((void(*)())(g_libGTASA + (VER_x32 ? 0x0028C178 + 1 : 0x3467BC)))(); // CHID::Update()
-
-//	CLoadMonitor::BeginFrame(&g_LoadMonitor);
-    CurrentTimeInCycles = CTimer::GetCurrentTimeInCycles();
-    v1 = CurrentTimeInCycles / CTimer::GetCyclesPerMillisecond();
-
-    //CStreaming::Update();
-    CHook::CallFunction<int64>("_ZN10CStreaming6UpdateEv");
-
-    v2 = CTimer::GetCurrentTimeInCycles();
-    v3 = v2 / CTimer::GetCyclesPerMillisecond();
-/*
-    if (CTimer::m_CodePause)
-    {
-        *(int*)(g_libGTASA + 0xD217F8) = 0;
-    }
-    else
-    {
-        auto gMobileMenu = (uintptr_t *) (g_libGTASA + (VER_x32 ? 0x006E0074 : 0x8BE780));
-        ((void(*)(uintptr_t*))(g_libGTASA + (VER_x32 ? 0x0029A730 + 1 : 0x356A7C)))(gMobileMenu); // MobileMenu::Update
-
-        bool codePaused = CTimer::m_CodePause;
-        bool userPaused = CTimer::m_UserPause;
-        *(int*)(g_libGTASA + 0xD217F8) = 0;
-        if (!(codePaused || userPaused))
-        {
-            CSprite2d::SetRecipNearClip();
-        }
-    }*/
-
-    //	CCutsceneMgr::Update();
-
-    if ( !(CTimer::m_CodePause << 0x18) )
-    {
-        auto gMobileMenu = (uintptr_t *) (g_libGTASA + (VER_x32 ? 0x006E0074 : 0x8BE780));
-        ((void(*)(uintptr_t*))(g_libGTASA + (VER_x32 ? 0x0029A730 + 1 : 0x356A7C)))(gMobileMenu); // MobileMenu::Update
+    if (pGame) {
+        pGame->ProcessMainThreadTasks();
     }
 
-    // CTheZones::Update()
+    if (orig_CGame_Process) orig_CGame_Process();
 
-    // CCover::Update()
-
-    CCamera& TheCamera = *reinterpret_cast<CCamera*>(g_libGTASA + (VER_x32 ? 0x00951FA8 : 0xBBA8D0));
-
-//	auto p_tx = (CSimpleTransform *)&TheCamera + 0x14 + 0x30;
-//	if ( !TheCamera.m_pMat )
-//		p_tx = *TheCamera + 0x4;
-
-    //CAudioZones::Update(0, p_tx->m_translate);
-
-    *(int32_t*)(g_libGTASA + (VER_x32 ? 0x00A7D22C: 0xD217F8)) = 0; // CWindModifiers::Number
-
-    if ( !CTimer::m_CodePause && !CTimer::m_UserPause)
-    {
-        CSprite2d::SetRecipNearClip();
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x005C89F8 + 1 : 0x6ECF00)))(); // CSprite2d::InitPerFrame();
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x005A8A74 + 1 : 0x6CC898)))(); // CFont::InitPerFrame()
-        // CCheat::DoCheats();
-        // CClock::Update()
-
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x005CC2E8 + 1 : 0x6F0BD8)))(); // CWeather::Update()
-        ((void(*)())(g_libGTASA + (VER_x32 ? 0x0032AED8 + 1 : 0x3F3AD8)))(); // CTheScripts::Process()
-        // CCollision::Update()
-        //CCollision::Update();
-
-        // CPathFind::UpdateStreaming
-
-        CHook::CallFunction<void>(g_libGTASA+(VER_x32?0x57D098+1:0x6A0A14));// CTrain::UpdateTrains();
-        //CHook::CallFunction<void>(g_libGTASA+(VER_x32?0x572EBC+1:0x695608));// CHeli::UpdatHelis
-        // CDarkel::Update()
-        ((void(*)())(g_libGTASA + (VER_x32 ? 0x005BE838 + 1 : 0x6E2F08)))(); // CSkidmarks::Update();
-        ((void(*)())(g_libGTASA + (VER_x32 ? 0x005AB4C8 + 1 : 0x6D032C)))(); // CGlass::Update()
-        // CWanted::UpdateEachFrame();
-        // CCreepingFire::Update();
-        // CSetPieces::Update();
-
-        auto gFireManager = (uintptr_t *) (g_libGTASA + (VER_x32 ? 0x00958800 : 0xBC12D8));
-        ((void (*)(uintptr_t *)) (g_libGTASA + (VER_x32 ? 0x003F1628 + 1 : 0x4D361C)))(gFireManager); // CFireManager::Update
-
-        // FIXME: add if
-        ((void(*)(bool))(g_libGTASA + (VER_x32 ? 0x004CC380 + 1 : 0x5CB5E0)))(false); // CPopulation::Update нужно (
-
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x005DB8E8 + 1 : 0x700AF4)))(); // CWeapon::UpdateWeapons()
-//		if ( !CCutsceneMgr::ms_running )
-//			CTheCarGenerators::Process();
-//		CCranes::UpdateCranes();
-		CClouds::Update();
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x005A6720 + 1 : 0x6CA130)))(); // CMovingThings::Update();
-        ((void(*)())(g_libGTASA + (VER_x32 ? 0x005CBB20 + 1 : 0x6F04CC)))(); // CWaterCannons::Update()
-//		CUserDisplay::Process();
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x00427744 + 1 : 0x50BE40)))(); // CWorld::Process()
-
-//		CLoadMonitor::EndFrame(&g_LoadMonitor);
-
-        if ( !CTimer::bSkipProcessThisFrame )
-        {
-            CPickups::Update();
-//			CCarCtrl::PruneVehiclesOfInterest();
-            CHook::CallFunction<void>(g_libGTASA+(VER_x32?0x30E760+1:0x3D4134)); //CGarages::Update();
-// 			CEntryExitManager::Update();
-            CHook::CallFunction<void>(g_libGTASA+(VER_x32?0x3616C4+1:0x4304D0)); //	CStuntJumpManager::Update();
-            ((void (*)()) (g_libGTASA + (VER_x32 ? 0x0059CFC0 + 1 : 0x6C13F0)))(); // CBirds::Update()
-            ((void (*)()) (g_libGTASA + (VER_x32 ? 0x005C03E4 + 1 : 0x6E4A7C)))(); // CSpecialFX::Update()
-            // CRopes::Update();
-        }
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x005B28D8 + 1 : 0x6D6E34)))(); // CPostEffects::Update()
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x0041EF78 + 1 : 0x502ADC)))(); // CTimeCycle::Update() crash without
-        // CPopCycle::Update()
-
-        // CInterestingEvents::ScanForNearbyEntities
-
-        ((void (*)(CCamera*)) (g_libGTASA + (VER_x32 ? 0x003DC7D0 + 1 : 0x4BAB78)))(&TheCamera); // CCamera::Process()
-
-        // CCullZones::Update() менты не могут найти?
-       // CHook::CallFunction<void>(g_libGTASA+(VER_x32 ? 0x307D8C+1:0x3CD630));// CGameLogic::Update()
-        // CGangWars::Update();
-        // CConversations::Update()
-        // CPedToPlayerConversations::Update()
-        // CBridge::Update()
-
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x005A3E40 + 1 : 0x6C75E4)))(); // CCoronas::DoSunAndMoon()
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x005A22C8 + 1 : 0x6C5BE0)))(); // CCoronas::Update()
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x005BD370 + 1 : 0x6E1BC4)))(); // CShadows::UpdatePermanentShadows()
-
-        // CPlantMgr::Update
-
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x002CA3A4 + 1 : 0x38B6DC)))(); // CCustomBuildingRenderer::Update()
-//		if ( v6 <= 3 )
-//			CCarCtrl::GenerateRandomCars();
-//		CRoadBlocks::GenerateRoadBlocks();
-//		CCarCtrl::RemoveDistantCars();
-//		CCarCtrl::RemoveCarsIfThePoolGetsFull();
-        auto temp = TheCamera.m_pRwCamera;
-
-        auto g_fx = *(uintptr_t *) (g_libGTASA + (VER_x32 ? 0x00820520 : 0xA062A8));
-        ((void (*)(uintptr_t*, RwCamera*, float )) (g_libGTASA + (VER_x32 ? 0x00363DE0 + 1 : 0x433F48)))(&g_fx, temp, CTimer::ms_fTimeStep / 50.0f); // Fx_c::Update
-
-        auto g_breakMan = (uintptr_t *) (g_libGTASA + (VER_x32 ? 0x0099DD14 : 0xC31CF0));
-        ((void (*)(uintptr_t*, float )) (g_libGTASA + (VER_x32 ? 0x0045267C + 1 : 0x53AFDC)))(g_breakMan, CTimer::ms_fTimeStep); // BreakManager_c::Update
-
-        // InteriorManager_c::Update(&g_interiorMan);
-        // ProcObjectMan_c::Update
-
-        // WaterCreatureManager_c::Update
-
-        ((void (*)()) (g_libGTASA + (VER_x32 ? 0x00596540 + 1 : 0x6BB3A8)))(); // CWaterLevel::PreRenderWater()
-    }
-
-    //CHook::CallFunction<void>(g_libGTASA+(VER_x32?0x572EBC+1:0x695608));
-//	CCheat::ProcessAllCheats();
     static bool once = false;
     if (!once)
     {
         CCrossHair::Init();
+        // Defer GUI/Fonts initialization until after the engine has processed explicitly
+        // to ensure the texture database and native pools are ready.
         InitGui();
         once = true;
-        return;
     }
 }
+void CGame::Process() {} // Retained for ABI compatibility
+
+
 
 void CGame::InjectHooks()
 {
     CHook::Redirect("_ZN5CGame22InitialiseOnceBeforeRWEv", &CGame::InitialiseOnceBeforeRW);
-    CHook::Redirect("_ZN5CGame7ProcessEv", &CGame::Process);
+    CHook::InlineHook("_ZN5CGame7ProcessEv", CGame_Process_hook, &orig_CGame_Process);
 
     CHook::Write(g_libGTASA + (VER_x32 ? 0x00678C38 : 0x84F8A0), &CGame::currArea);
 

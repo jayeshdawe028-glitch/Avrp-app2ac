@@ -75,6 +75,9 @@ Java_com_multirium_mobile_gui_auth_RegistrationNative_nativeInit(JNIEnv* env, jc
 
 void CRegistration::show()
 {
+    extern CJavaWrapper* pJavaWrapper;
+    if (pJavaWrapper) pJavaWrapper->HideLoadingScreen();
+
     if (bIsShow) return;
 
     JNIEnv* env = CJavaWrapper::GetEnv();

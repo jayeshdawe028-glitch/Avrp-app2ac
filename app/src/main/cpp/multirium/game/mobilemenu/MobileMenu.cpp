@@ -30,6 +30,7 @@ void Menu_MapInitPause() {
 }
 
 void MobileMenu::Load() {
+    if (g_libGTASA <= 0x1000) return;
     CHook::CallFunction<void>("_ZN10MobileMenu4LoadEv");
 }
 /*
@@ -165,7 +166,7 @@ bool MobileMenu::IsMainMenuScreen(MobileMenu *menu) {
 }
 
 bool Menu_IsPlayingGame(bool checkThatGameIsResumable) {
-    return gGameState == 9;
+    return *(uint32_t*)(g_libGTASA + 0xD3D640) == 9;
 }
 
 MobileMenu::~MobileMenu()
@@ -367,41 +368,14 @@ void RenderFadeOverlay(CRGBA upperColor, CRGBA lowerColor, float screenWidth, fl
 }
 
 void MobileMenu::Render(MobileMenu* menu) {
-    if (!menu->screenStack.numEntries && !menu->pendingScreen)
-        return;
+    // We do not want libGTASA's default singleplayer menu rendering to execute and crash,
+    // especially with the custom frontend hook flows.
+    return;
+}
 
-    if (CHook::CallFunction<int>("_Z21emu_IsAltRenderTargetv"))
-        CHook::CallFunction<void>("_Z24emu_FlushAltRenderTargetv");
-
-    CRGBA blackTransparent(0, 0, 0, 0);
-    CRGBA blackOpaque(0, 0, 0, 255);
-
-    if (menu->screenStack.numEntries > 0 &&
-        Menu_IsPlayingGame(true) &&
-        !menu->InitializedForSignOut) {
-
-        CHook::CallFunction<void>("_Z14Menu_MapRenderv");
-       // Menu_MapRender();
-        MobileMenu::PrepareToRender();
-
-        if (mapModeOpacity < 1.0f) {
-            CRGBA fadeColor1 = blackTransparent * (1.0f - mapModeOpacity);
-            CRGBA fadeColor2 = blackOpaque * (1.0f - mapModeOpacity);
-
-            RenderFadeOverlay(fadeColor1, fadeColor2,
-                              RsGlobal->screenWidth,
-                              RsGlobal->screenHeight * 0.85f);
-        }
-
-        if (mapModeOpacity > 0.0f) {
-            MenuScreen* topScreen = menu->screenStack.dataPtr[menu->screenStack.numEntries - 1];
-            float savedOpacity = topScreen->opacity;
-
-            topScreen->opacity = mapModeOpacity;
-            //topScreen->Render(true);
-            topScreen->opacity = savedOpacity;
-        }
-    }
+void FrontendIdle_Hook() {
+    // Return immediately so we don't try to render uninitialized UI states
+    return;
 }
 
 void MobileMenu::InjectHooks() {
@@ -409,4 +383,10 @@ void MobileMenu::InjectHooks() {
  //   CHook::Redirect("_ZN10MobileMenu10InitializeEv", &MobileMenu::Initialize);
     mapModeOpacity = *(float*)(g_libGTASA + (VER_x32 ? 0x6E0128 : 0x8BE854));
     CHook::InlineHook("_ZN10MobileMenu12InitForPauseEv", MobileMenu::InitForPause, &MobileMenu::InitForPause_orig);
+
+    // Redirect Render to our safe no-op to bypass the SIGSEGV
+    CHook::Redirect("_ZN10MobileMenu6RenderEv", &MobileMenu::Render);
+
+    // Bypass FrontendIdle entirely
+    CHook::Redirect("_Z12FrontendIdlev", &FrontendIdle_Hook);
 }

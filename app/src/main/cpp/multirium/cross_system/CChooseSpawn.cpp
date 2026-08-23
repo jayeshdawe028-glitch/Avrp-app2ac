@@ -70,6 +70,9 @@ Java_com_multirium_mobile_gui_auth_SpawnSelectNative_nativeInit(JNIEnv* env, job
 
 void CChooseSpawn::show(int organization, int home, int family, int pos)
 {
+    extern CJavaWrapper* pJavaWrapper;
+    if (pJavaWrapper) pJavaWrapper->HideLoadingScreen();
+
     JNIEnv* env = CJavaWrapper::GetEnv(); // declared in your existing jniutil/CJavaWrapper
     if (!env) return;
 
