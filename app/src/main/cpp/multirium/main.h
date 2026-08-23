@@ -60,12 +60,6 @@ VALIDATE_SIZE(CAudioEngine, 0xD0);
 VALIDATE_SIZE(CAudioEngine, 0xE8);
 #endif
 
-extern uint32_t gGameState;
-extern bool RwInitialized;
-extern CAudioEngine AudioEngine;
-extern int SkipBankLoader;
-extern bool isForeground;
-
 //extern CCamera TheCamera;
 
 #ifndef SAFE_DELETE

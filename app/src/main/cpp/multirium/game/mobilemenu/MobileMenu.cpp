@@ -165,7 +165,7 @@ bool MobileMenu::IsMainMenuScreen(MobileMenu *menu) {
 }
 
 bool Menu_IsPlayingGame(bool checkThatGameIsResumable) {
-    return gGameState == 9;
+    return *(uint32_t*)(g_libGTASA + 0xD3D640) == 9;
 }
 
 MobileMenu::~MobileMenu()

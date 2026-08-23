@@ -869,47 +869,9 @@ int SkipBankLoader;
 bool isForeground;
 
 void DoGameState() {
-    gGameState = *(uint32_t*)(g_libGTASA + 0xD3D640);
-    AudioEngine = *(CAudioEngine*)(g_libGTASA + 0xBB65F8);
-    RwInitialized = *(bool*)(g_libGTASA + 0xD3D668);
-    SkipBankLoader = *(bool*)(g_libGTASA + 0x85DCE8);
-    isForeground = *(bool*)(g_libGTASA + 0xD3D66C);
-
-    switch (gGameState) {
-        case 0: case 1: case 2: case 3: case 4: case 5:
-        {
-            bool initSuccess = CHook::CallFunction<bool>("_ZN5CGame27InitialiseEssentialsAfterRWEv");
-            if (!initSuccess) { RsGlobal->quit = true; break; }
-            CHook::CallFunction<bool>("_ZN5CGame25InitialiseCoreDataAfterRWEv");
-            gGameState = 6;
-            SkipBankLoader = 0;
-        } break;
-
-        case 6: case 7: case 8:
-            InitialiseGame();
-            gGameState = 9;
-            CHook::CallFunction<void>("_ZN12CAudioEngine21InitialisePostLoadingEv", &AudioEngine);
-            break;
-
-        case 9:
-        {
-            uint32_t currentTime = CTimer::GetCurrentTimeInCycles();
-            uint32_t cyclesPerMs = CTimer::GetCyclesPerMillisecond();
-            double frameTimeThreshold = cyclesPerMs * 0.001 * (1000000.0 / RsGlobal->maxFPS);
-
-            if (RwInitialized && currentTime > frameTimeThreshold) {
-                CHook::CallFunction<void>("_Z11UpdateInputv");
-                CHook::CallFunction<RsEventStatus>("_Z14RsEventHandler7RsEventPv", rsIDLE, 1);
-            } else {
-                OS_ThreadSleep(100);
-            }
-        } break;
-
-        default:
-            break;
-    }
-
-    if (!isForeground) isForeground = true;
+    // We explicitly let the native game engine state machine drive the initialization
+    // sequence (Pre-RW -> RenderWare Initialise -> Menu Init -> Game/World Init).
+    // The legacy manual tick logic has been removed to prevent race conditions and SIGSEGV crashes.
 }
 
 uintptr_t g_libGTASA = 0x00;
@@ -933,12 +895,6 @@ jint JNI_OnLoad(JavaVM* vm, void*)
     ApplyPatches_level0();
     InitRenderWareFunctions();
     MultiTouch::initialize();
-
-    gGameState = *(uint32_t*)(g_libGTASA + 0xD3D640);
-    AudioEngine = *(CAudioEngine*)(g_libGTASA + 0xBB65F8);
-    RwInitialized = *(bool*)(g_libGTASA + 0xD3D668);
-    SkipBankLoader = *(bool*)(g_libGTASA + 0x85DCE8);
-    isForeground = *(bool*)(g_libGTASA + 0xD3D66C);
 
     CLoader::initJavaClasses(vm);
 
