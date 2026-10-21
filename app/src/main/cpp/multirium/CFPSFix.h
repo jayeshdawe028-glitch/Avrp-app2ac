@@ -3,18 +3,21 @@
 #include <vector>
 #include <thread>
 #include <mutex>
+#include <atomic>
 
 class CFPSFix
 {
 private:
-	void Routine();
+    void Routine();
 
-	std::mutex m_Mutex;
-	std::vector<pid_t> m_Threads;
+    std::mutex m_Mutex;
+    std::vector<pid_t> m_Threads;
+    std::atomic<bool> m_Running{false};
+    std::thread m_Worker;
+
 public:
-	CFPSFix();
-	~CFPSFix();
+    CFPSFix();
+    ~CFPSFix();
 
-	void PushThread(pid_t tid);
+    void PushThread(pid_t tid);
 };
-
